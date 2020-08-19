@@ -9,7 +9,7 @@ public class Bandit_ : MonoBehaviour
 
   private Animator m_animator;
   private Rigidbody2D m_body2d;
-  [SerializeField] private Rigidbody2D m_anim2d;
+  private Jumper jumper;
   private bool m_grounded = false;
   private bool m_combatIdle = false;
   private bool m_isDead = false;
@@ -19,13 +19,14 @@ public class Bandit_ : MonoBehaviour
   {
     m_animator = GetComponentInChildren<Animator>();
     m_body2d = GetComponent<Rigidbody2D>();
+    jumper = GetComponentInChildren<Jumper>();
   }
 
   // Update is called once per frame
   void Update()
   {
     //Check if character just landed on the ground
-    var checkGrounded = CheckGrounded();
+    var checkGrounded = IsGrounded();
     if ( !m_grounded && checkGrounded )
     {
       m_grounded = true;
@@ -54,7 +55,7 @@ public class Bandit_ : MonoBehaviour
     Run( inputX, inputY );
 
     //Set AirSpeed in animator
-    float verticalSpeed = GetVerticalSpeed();
+    float verticalSpeed = jumper.GetVerticalSpeed();
     m_animator.SetFloat( "AirSpeed", verticalSpeed );
 
     // -- Handle Animations --
@@ -74,7 +75,7 @@ public class Bandit_ : MonoBehaviour
       m_animator.SetTrigger( "Hurt" );
 
     //Attack
-    else if ( Input.GetMouseButtonDown( 0 ) )
+    else if ( Input.GetKeyDown( KeyCode.Return ) || Input.GetKeyDown( KeyCode.KeypadEnter ) )
     {
       m_animator.SetTrigger( "Attack" );
     }
@@ -84,12 +85,12 @@ public class Bandit_ : MonoBehaviour
       m_combatIdle = !m_combatIdle;
 
     //Jump
-    else if ( Input.GetKeyDown( "space" ) && m_grounded )
+    else if ( Input.GetKeyDown( KeyCode.Space ) && m_grounded )
     {
       m_animator.SetTrigger( "Jump" );
       m_grounded = false;
       m_animator.SetBool( "Grounded", m_grounded );
-      Jump();
+      jumper.Jump( m_jumpForce );
     }
 
     //Run
@@ -105,24 +106,13 @@ public class Bandit_ : MonoBehaviour
       m_animator.SetInteger( "AnimState", 0 );
   }
 
-  private void Jump()
-  {
-    m_anim2d.velocity = new Vector2( 0, m_jumpForce );
-    //m_groundSensor.Disable( 0.2f );
-  }
-
-  private float GetVerticalSpeed()
-  {
-    return m_anim2d.velocity.y;
-  }
-
   private void Run( float inputX, float inputY )
   {
-    m_body2d.velocity = new Vector2( inputX, inputY ) * m_speed; //m_body2d.velocity.y
+    m_body2d.velocity = new Vector2( inputX, inputY ) * m_speed;
   }
 
-  private static bool CheckGrounded()
+  private bool IsGrounded()
   {
-    return true;
+    return jumper.IsGrounded();
   }
 }
