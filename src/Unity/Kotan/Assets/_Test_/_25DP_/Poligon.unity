@@ -180,11 +180,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801835500}
-  - component: {fileID: 801835501}
-  - component: {fileID: 801835502}
-  - component: {fileID: 801835504}
   - component: {fileID: 801835503}
   - component: {fileID: 801835505}
+  - component: {fileID: 801835501}
   m_Layer: 9
   m_Name: Fly
   m_TagString: Untagged
@@ -206,42 +204,22 @@ Transform:
   m_Father: {fileID: 1566276258}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &801835501
-EdgeCollider2D:
+--- !u!54 &801835501
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801835499}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &801835502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801835499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efed549e1c469114694cc2646cb2321e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foot: {fileID: 801835501}
-  d: 0
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &801835503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,27 +232,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f2c687b6cd8b148b4ab7beeb2fcdfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &801835504
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801835499}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!212 &801835505
 SpriteRenderer:
   m_ObjectHideFlags: 0

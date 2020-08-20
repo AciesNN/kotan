@@ -4,10 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class Fly : MonoBehaviour
 {
-  [SerializeField] EdgeCollider2D foot;
+  /*[SerializeField]*/public EdgeCollider2D foot;
   public float d;
 
   //Vector3 globalPos =>

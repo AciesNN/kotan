@@ -1,56 +1,40 @@
-using System.Net.Http.Headers;
 using UnityEngine;
 
 //Wrap up rigidbody2D behavior in 2.5D world
 [RequireComponent(typeof(Rigidbody))]
-public class Kinematic25D : MonoBehaviour
+public class Kinematic25D_rb2d : MonoBehaviour
 {
-    private Rigidbody _rb;
-    private Rigidbody rb { get { if (_rb == null) { _rb = GetComponent<Rigidbody>(); } return _rb; } }
+    private Rigidbody2D _rb;
+    private Rigidbody2D rb { get { if (_rb == null) { _rb = GetComponent<Rigidbody2D>(); } return _rb; } }
 
-    public float Depth => _transform.position.z;
-    public bool IsFlying { get; private set; }
-    /*private float _lastTransformY;
-    private Transform _lastParent;*/
+    public float Depth { private set; get; }
+    public bool IsFlying { private set; get; }
+    private float _lastTransformY;
     private Transform _transform;
 
-    public bool IsMoveHorizontaly { get; private set; }
+    public bool IsMoveHorizontaly { get => rb.isKinematic; set => rb.isKinematic = value; }
 
     private void Awake()
     {
-        rb.useGravity = false;
-        rb.detectCollisions = false;
-        IsMoveHorizontaly = true;
+        rb.isKinematic = true;
         _transform = transform;
-        /*_lastTransformY = _transform.position.y;
-        _lastParent = _transform.parent;*/
+        _lastTransformY = _transform.position.y;
     }
 
-    /*private void LateUpdate()
+    private void LateUpdate()
     {
         var y = _transform.position.y;
-        if (IsMoveHorizontaly 
-            && !IsFlying 
-            && _lastParent == _transform.parent)
+        if (IsMoveHorizontaly && !IsFlying)
         {
             var delta = y - _lastTransformY;
             if (delta > float.Epsilon || delta < -float.Epsilon)
             {
                 //TODO - floating after fly
-                SetDepth( Depth + delta);
+                Depth += delta;
             }
         }
         _lastTransformY = y;
-        _lastParent = _transform.parent;
-    }*/
-
-    /*private void SetDepth(float depth)
-    {
-        _transform.transform.position = new Vector3(
-            _transform.transform.position.x,
-            _transform.transform.position.y,
-            depth );
-    }*/
+    }
 
     public void Move(Vector3 dir, Vector2 speed)
     {
@@ -58,15 +42,8 @@ public class Kinematic25D : MonoBehaviour
         {
             return;
         }
-        if(dir.magnitude > float.Epsilon)
-        {
-            int i = 0;
-        }
 
-        rb.velocity = new Vector3(
-            dir.x * speed.x, 
-            dir.y * speed.y, 
-            dir.y * speed.y);
+        rb.velocity = dir * speed;
         IsFlying = false;
     }
 
@@ -99,7 +76,6 @@ public class Kinematic25D : MonoBehaviour
         }
 
         IsFlying = false;
-        rb.useGravity = true;
         IsMoveHorizontaly = false;
         TurnOffVerticalVelocity();
         AddForce(Vector2.up * force);
@@ -117,7 +93,7 @@ public class Kinematic25D : MonoBehaviour
 
     private void AddForce(Vector2 force)
     {
-        rb.AddForce(force, ForceMode.Impulse);
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 
     private void TurnOffVerticalVelocity()
