@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _25d_
+namespace _3d
 {
-    public class _TestFlyPlayerInput : MonoBehaviour
+    public class _TestPlayerInput_ : MonoBehaviour
     {
-        [SerializeField] Kinematic25D kinematic;
+        [SerializeField] Kinematic kinematic;
         [SerializeField] Vector2 speed;
         [SerializeField] float flySpeed;
         [SerializeField] float jumpForce;
@@ -55,5 +55,4 @@ namespace _25d_
             kinematic.Fly(flyVector, flySpeed);
         }
     }
-
 }

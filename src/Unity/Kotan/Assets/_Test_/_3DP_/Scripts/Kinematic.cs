@@ -1,68 +1,26 @@
-using System.Net.Http.Headers;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace _25d_
+namespace _3d
 {
-    //Wrap up rigidbody2D behavior in 2.5D world
-    [RequireComponent(typeof(Rigidbody))]
-    public class Kinematic25D : MonoBehaviour
+    public class Kinematic : MonoBehaviour
     {
         private Rigidbody _rb;
         private Rigidbody rb { get { if (_rb == null) { _rb = GetComponent<Rigidbody>(); } return _rb; } }
 
         public float Depth => _transform.position.z;
         public bool IsFlying { get; private set; }
-        /*private float _lastTransformY;
-        private Transform _lastParent;*/
+
         private Transform _transform;
 
         public bool IsMoveHorizontaly { get; private set; }
 
         private void Awake()
         {
-            rb.useGravity = false;
-            rb.detectCollisions = false;
             IsMoveHorizontaly = true;
             _transform = transform;
-            /*_lastTransformY = _transform.position.y;
-            _lastParent = _transform.parent;*/
         }
-
-        private void Start()
-        {
-            Physics25D.instance.RegisterKinematicObject(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            Physics25D.instance.DeregisterKinematicObject(gameObject);
-        }
-
-        /*private void LateUpdate()
-        {
-            var y = _transform.position.y;
-            if (IsMoveHorizontaly 
-                && !IsFlying 
-                && _lastParent == _transform.parent)
-            {
-                var delta = y - _lastTransformY;
-                if (delta > float.Epsilon || delta < -float.Epsilon)
-                {
-                    //TODO - floating after fly
-                    SetDepth( Depth + delta);
-                }
-            }
-            _lastTransformY = y;
-            _lastParent = _transform.parent;
-        }*/
-
-        /*private void SetDepth(float depth)
-        {
-            _transform.transform.position = new Vector3(
-                _transform.transform.position.x,
-                _transform.transform.position.y,
-                depth );
-        }*/
 
         public void Move(Vector3 dir, Vector2 speed)
         {
@@ -70,14 +28,10 @@ namespace _25d_
             {
                 return;
             }
-            if (dir.magnitude > float.Epsilon)
-            {
-                int i = 0;
-            }
 
             rb.velocity = new Vector3(
                 dir.x * speed.x,
-                dir.y * speed.y,
+                0,
                 dir.y * speed.y);
             IsFlying = false;
         }
