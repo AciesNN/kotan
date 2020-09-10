@@ -6,6 +6,8 @@ using UnityEngine;
 
 namespace P25D
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class Kinematic25D : MonoBehaviour
     {
         public bool IsGrounded { get; set; }

@@ -28,7 +28,16 @@ namespace P25D
             ProcessKinematicObjects();
         }
 
+
         #region Static
+        private static ContactFilter2D floorFilter = new ContactFilter2D()
+        {
+          //floor layer filter mask
+        };
+
+        private static RaycastHit2D[] castResult = new RaycastHit2D[ 16 ];
+        private static Collider2D[] overlapResult = new Collider2D[ 16 ];
+
         public static void RegisterKinematicObject(Kinematic25D ko)
         {
             kinematicObjects.Add(ko);
@@ -78,7 +87,7 @@ namespace P25D
                     if (groundThisUpdate)
                     {
                         //position = ... (set by ref)
-                        velocity = Vector3.zero;
+                        velocity.y = 0; //velocity = Vector3.zero; //?bounce
                         isGrounded = true;
                     }
                 }
@@ -86,8 +95,8 @@ namespace P25D
 
             if (!groundThisUpdate)
             {
-                var deltaPos = velocity.To25D();
-                position += deltaPos * deltaTime;
+                var velocity25D = velocity.To25D();
+                position += velocity25D * deltaTime;
 
                 if (ko.UseGravity)
                 {
@@ -110,7 +119,24 @@ namespace P25D
 
         private static bool CheckStillGrounded(Kinematic25D ko)
         {
-            return true;
+            var collider = ko.Collider2D;
+            if ( collider == null || !collider.enabled )
+            {
+                return false;
+            }
+
+            var resCount = collider.OverlapCollider(floorFilter, overlapResult);
+            for (int i = 0; i < resCount; i++)
+            {
+                var hitInfo = overlapResult[i];
+                float height = GetGeometryObjectHeight(hitInfo.gameObject);
+                if (Mathf.Approximately(ko.Position.Get25Height(), height))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static bool CheckWillGroundThisUpdate(Kinematic25D ko, Vector3 velocity, float deltaTime, ref Vector3 position)
@@ -121,29 +147,49 @@ namespace P25D
                 return false;
             }
 
-            var direction = new Vector2(velocity.x, velocity.y);
-            var filter = new ContactFilter2D()
-            {
-                //floor layer filter mask
-            };
-            RaycastHit2D[] result = new RaycastHit2D[16];
-            var resCount = collider.Cast(direction, filter, result, direction.magnitude * deltaTime, true);
+            Vector3 velocity25D = velocity.To25D();
+            Vector3 nextPosition = position + velocity25D * deltaTime;
+
+            var resCount = collider.Cast(velocity25D, floorFilter, castResult, ((Vector2)velocity25D).magnitude * deltaTime, true);
+            var candidatesIndexes = new int[resCount];
+            var candidatesCount = 0;
+
             for (int i = 0; i < resCount; i++)
             {
-                var hitInfo = result[i];
-
-                float height = GetGeometryObgectHeight(hitInfo.collider.gameObject);
-                
-
-                position += velocity.To25D() * deltaTime * hitInfo.fraction;
-                return true;
+                var hitInfo = castResult[i];
+                float height = GetGeometryObjectHeight(hitInfo.collider.gameObject);
+                if (height <= position.Get25Height() && height >= nextPosition.Get25Height())
+                {
+                    candidatesIndexes[candidatesCount] = i;
+                    candidatesCount++;
+                }
             }
+
+            for (int i = 0; i < candidatesCount; i++)
+            {
+                var hitInfo = castResult[candidatesIndexes[i]];
+                float height = GetGeometryObjectHeight(hitInfo.collider.gameObject);
+                float heightFraction = Mathf.InverseLerp(position.Get25Height(), nextPosition.Get25Height(), height);
+                Vector3 fractionPosition = Vector3.Lerp(position, nextPosition, heightFraction);
+                Vector3 move = fractionPosition - position;
+
+                var overlapped = Physics2D.OverlapAreaNonAlloc((Vector2)fractionPosition + collider.offset, collider.bounds.size, overlapResult, floorFilter.useLayerMask ? floorFilter.layerMask.value : Physics2D.DefaultRaycastLayers);
+                for (int j = 0; j < overlapped; j++)
+                {
+                    if (overlapResult[j] == hitInfo.collider)
+                    {
+                        position = fractionPosition;
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
-        private static float GetGeometryObgectHeight(GameObject go)
+        private static float GetGeometryObjectHeight(GameObject go)
         {
-            return 0;
+            return go.transform.position.y;
         }
         #endregion
     }
@@ -156,6 +202,11 @@ namespace P25D
                 vector.x,
                 vector.y + vector.z,
                 vector.z);
+        }
+
+        public static float Get25Height(this Vector3 vector)
+        {
+            return vector.y - vector.z;
         }
     }
 }
