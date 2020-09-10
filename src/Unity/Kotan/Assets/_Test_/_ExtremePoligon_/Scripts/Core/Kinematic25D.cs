@@ -8,7 +8,10 @@ namespace P25D
 {
     public class Kinematic25D : MonoBehaviour
     {
+        public bool IsGrounded { get; set; }
+
         public Vector3 Velocity { get; set; }
+        public Collider2D Collider2D { get; set; }
 
         [SerializeField] private bool useGravity = true;
         public bool UseGravity { get => useGravity; set { useGravity = value; } }
@@ -30,6 +33,7 @@ namespace P25D
         private void Awake()
         {
             _transform = transform;
+            Collider2D = GetComponent<Collider2D>();
         }
 
         private void OnEnable()

@@ -19,9 +19,9 @@ public class _UserInput : MonoBehaviour
             fly1.UseGravity = true;
         }
 
-        if (fly2 && Input.GetKeyDown(KeyCode.Alpha2) && fly3.UseGravity)
+        if (fly2 && Input.GetKeyDown(KeyCode.Alpha2) && fly2.UseGravity)
         {
-            fly3.Velocity += Vector3.right * 3;
+            fly2.Velocity += Vector3.right * 3;
         }
 
         if (fly3 && Input.GetKeyDown(KeyCode.Alpha3) && !fly3.UseGravity)

@@ -12,6 +12,7 @@ namespace P25D
         static float Gravity;
 
         [SerializeField] float gravity = 1.0f;
+        [SerializeField] float minY = -2.0f;
 
         public static Physics25D instance { get; private set; }
 
@@ -66,16 +67,95 @@ namespace P25D
         {
             var velocity = ko.Velocity;
             var position = ko.Position;
+            var isGrounded = ko.IsGrounded;
 
-            position += velocity * deltaTime;
+            bool groundThisUpdate = false;
             if (ko.UseGravity)
             {
-                velocity += Vector3.down * Gravity * deltaTime;
+                if (!isGrounded && velocity.y < 0)
+                {
+                    groundThisUpdate = CheckWillGroundThisUpdate(ko, ko.Velocity, deltaTime, ref position);
+                    if (groundThisUpdate)
+                    {
+                        //position = ... (set by ref)
+                        velocity = Vector3.zero;
+                        isGrounded = true;
+                    }
+                }
+            }
+
+            if (!groundThisUpdate)
+            {
+                var deltaPos = velocity.To25D();
+                position += deltaPos * deltaTime;
+
+                if (ko.UseGravity)
+                {
+                    if (isGrounded)
+                    { 
+                        isGrounded = CheckStillGrounded(ko);
+                    }
+
+                    if (!isGrounded)
+                    {
+                        velocity += Vector3.down * Gravity * deltaTime;
+                    }
+                }
             }
 
             ko.Velocity = velocity;
             ko.Position = position;
+            ko.IsGrounded = isGrounded;
+        }
+
+        private static bool CheckStillGrounded(Kinematic25D ko)
+        {
+            return true;
+        }
+
+        private static bool CheckWillGroundThisUpdate(Kinematic25D ko, Vector3 velocity, float deltaTime, ref Vector3 position)
+        {
+            var collider = ko.Collider2D;
+            if (collider == null || !collider.enabled)
+            {
+                return false;
+            }
+
+            var direction = new Vector2(velocity.x, velocity.y);
+            var filter = new ContactFilter2D()
+            {
+                //floor layer filter mask
+            };
+            RaycastHit2D[] result = new RaycastHit2D[16];
+            var resCount = collider.Cast(direction, filter, result, direction.magnitude * deltaTime, true);
+            for (int i = 0; i < resCount; i++)
+            {
+                var hitInfo = result[i];
+
+                float height = GetGeometryObgectHeight(hitInfo.collider.gameObject);
+                
+
+                position += velocity.To25D() * deltaTime * hitInfo.fraction;
+                return true;
+            }
+            return false;
+        }
+
+        private static float GetGeometryObgectHeight(GameObject go)
+        {
+            return 0;
         }
         #endregion
+    }
+
+    public static class Physics25DExctentions
+    {
+        public static Vector3 To25D(this Vector3 vector)
+        {
+            return new Vector3(
+                vector.x,
+                vector.y + vector.z,
+                vector.z);
+        }
     }
 }
