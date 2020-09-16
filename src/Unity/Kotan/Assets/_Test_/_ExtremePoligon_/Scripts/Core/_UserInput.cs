@@ -8,6 +8,8 @@ public class _UserInput : MonoBehaviour
     public Kinematic25D fly1;
     public Kinematic25D fly2;
     public Kinematic25D fly3;
+    public Kinematic25D fly4;
+    public Kinematic25D fly5;
 
     public Kinematic25D ko;
 
@@ -28,6 +30,16 @@ public class _UserInput : MonoBehaviour
         {
             fly3.UseGravity = true;
             fly3.Velocity = Vector3.up * 4;
+        }
+
+        if (fly4 && Input.GetKeyDown(KeyCode.Alpha4) )
+        {
+            fly4.Velocity = new Vector3(1, 1, 1);
+        }
+
+        if (fly5 && Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            fly5.Velocity = new Vector3(-1, 1, -1);
         }
     }
 }
