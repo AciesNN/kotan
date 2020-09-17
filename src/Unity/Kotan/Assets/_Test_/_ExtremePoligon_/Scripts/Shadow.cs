@@ -18,15 +18,23 @@ public class Shadow : MonoBehaviour
     {
         if (shadow && kinematic25D)
         {
-            var isShadow = Physics25D.GetNearestFloorPosition(kinematic25D, out Vector3 shadowPosition);
-            if (isShadow)
+            if (kinematic25D.IsGrounded)
             {
                 shadow.SetActive(true);
-                shadow.transform.position = shadowPosition;
+                shadow.transform.position = kinematic25D.transform.position;
             }
             else
             {
-                shadow.SetActive(false);
+                var isShadow = Physics25D.GetNearestFloorPosition(kinematic25D, out Vector3 shadowPosition);
+                if (isShadow)
+                {
+                    shadow.SetActive(true);
+                    shadow.transform.position = shadowPosition;
+                }
+                else
+                {
+                    shadow.SetActive(false);
+                }
             }
         }
     }

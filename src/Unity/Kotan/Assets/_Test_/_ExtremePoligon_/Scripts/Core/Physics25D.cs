@@ -195,6 +195,10 @@ namespace P25D
         public static bool GetNearestFloorPosition(Kinematic25D ko, out Vector3 floorPosition)
         {
             floorPosition = ko.Position;
+            if (ko.IsGrounded)
+            {
+                return true;
+            }
             if (CheckWillGroundThisUpdate(ko, Vector3.down, 666f, ref floorPosition))
             {
                 return true;
