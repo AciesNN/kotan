@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 40945345}
   - component: {fileID: 40945347}
   - component: {fileID: 40945346}
+  - component: {fileID: 40945348}
   m_Layer: 8
   m_Name: 'DisconnectedFloor '
   m_TagString: Untagged
@@ -232,6 +233,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &40945348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40945344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faecee0933524744dadaa3de866051fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52848895
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +256,7 @@ GameObject:
   - component: {fileID: 52848896}
   - component: {fileID: 52848897}
   - component: {fileID: 52848898}
+  - component: {fileID: 52848899}
   m_Layer: 8
   m_Name: FirstFloor
   m_TagString: Untagged
@@ -341,6 +355,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &52848899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52848895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faecee0933524744dadaa3de866051fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &89325781
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,6 +948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717429734}
+  - component: {fileID: 717429737}
   - component: {fileID: 717429736}
   - component: {fileID: 717429735}
   m_Layer: 8
@@ -939,8 +966,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717429733}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3768, y: 0.5879, z: 0}
-  m_LocalScale: {x: 5.326762, y: 1.623293, z: 1}
+  m_LocalPosition: {x: 0.3768, y: 0.4999998, z: 0}
+  m_LocalScale: {x: 5.326762, y: 2.11, z: 1}
   m_Children: []
   m_Father: {fileID: 863621407}
   m_RootOrder: 3
@@ -970,11 +997,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.25, y: 0.25}
-      - {x: -0.25, y: -0.25}
+    - - {x: -0.24780405, y: 0.26056948}
+      - {x: -0.24384229, y: -0.25}
       - {x: 0.25, y: -0.25}
-      - {x: 0.3028858, y: 0.25734177}
-      - {x: 0.24784142, y: 0.25734174}
+      - {x: 0.30326095, y: 0.2576715}
 --- !u!212 &717429736
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1026,6 +1052,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &717429737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717429733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faecee0933524744dadaa3de866051fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &723010953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759379443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.382, y: 0.603, z: 0}
+  m_LocalPosition: {x: 0.382, y: 0.359, z: 0}
   m_LocalScale: {x: 0.22273085, y: 0.39702758, z: 1}
   m_Children: []
   m_Father: {fileID: 7289523857221474689}
@@ -2040,6 +2078,7 @@ GameObject:
   - component: {fileID: 1319822861}
   - component: {fileID: 1319822863}
   - component: {fileID: 1319822862}
+  - component: {fileID: 1319822864}
   m_Layer: 8
   m_Name: ConnectedFloor
   m_TagString: Untagged
@@ -2138,6 +2177,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1319822864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319822860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faecee0933524744dadaa3de866051fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1321973717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406701486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.486, y: 1.138, z: 0.15}
+  m_LocalPosition: {x: 0.801, y: 0.7969998, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1977786788}
