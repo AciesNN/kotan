@@ -216,24 +216,24 @@ namespace P25D
             }
 
             var position = ko.Position;
-            Vector3 velocity25D = velocity.To25D();
-            Vector3 nextPosition = position + velocity25D * deltaTime;
+            Vector3 horizontalVelocity = new Vector3(velocity.x, 0, velocity.z);
+            Vector3 nextPosition = position + horizontalVelocity * deltaTime;
 
-            var resCount = collider.Cast(velocity25D, obstacleFilter, castResult, ((Vector2)velocity25D).magnitude * deltaTime, true);
+            var resCount = collider.Cast(horizontalVelocity, obstacleFilter, castResult, horizontalVelocity.magnitude * deltaTime, true);
 
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = castResult[i];
-                if (!hitInfo.collider.gameObject.GetComponent<Obstacle25D>())
+                var obstacle = hitInfo.collider.gameObject.GetComponent<Obstacle25D>();//?
+                if (!obstacle) 
                 {
                     continue;
                 }
 
                 float obstacleAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
-                float obstacleHeight = GetObstacleHeight(hitInfo.collider.gameObject);
 
-                if (obstacleAltitude <= position.Get25Altitude() && obstacleAltitude + obstacleHeight >= position.Get25Altitude()
-                    || obstacleAltitude <= nextPosition.Get25Altitude() && obstacleAltitude + obstacleHeight >= nextPosition.Get25Altitude())
+                if (obstacleAltitude <= position.Get25Altitude() && 
+                    (obstacleAltitude + obstacle.Height >= position.Get25Altitude() || obstacle.InfiniteHeight))
                 {
                     fraction = hitInfo.fraction;
                     return true;

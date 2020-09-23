@@ -31,6 +31,7 @@ public class _UserInput : MonoBehaviour
         {
             fly3.UseGravity = true;
             fly3.Velocity = Vector3.up * 4;
+            fly3._debug = true;
         }
 
         if (fly4 && Input.GetKeyDown(KeyCode.Alpha4) )
