@@ -34,6 +34,10 @@ namespace P25D
         {
           //floor layer filter mask
         };
+        private static ContactFilter2D obstacleFilter = new ContactFilter2D()
+        {
+            //floor layer filter mask
+        };
 
         private static RaycastHit2D[] castResult = new RaycastHit2D[ 16 ];
         private static Collider2D[] overlapResult = new Collider2D[ 16 ];
@@ -74,16 +78,26 @@ namespace P25D
 
         private static void ProcessKinematicObject(Kinematic25D ko, float deltaTime)
         {
+            if (ko._debug)
+            {
+                var _name = ko.gameObject.name;
+                //debug
+            }
+
             var velocity = ko.Velocity;
             var position = ko.Position;
             var isGrounded = ko.IsGrounded;
 
             bool groundThisUpdate = false;
+
+            float obstacleFraction = 1;
+            bool obstacleThisUpdate = CheckWillCollideObstacleThisUpdate(ko, ko.Velocity, deltaTime, ref obstacleFraction);
+
             if (ko.UseGravity)
             {
                 if (!isGrounded && velocity.y < 0)
                 {
-                    groundThisUpdate = CheckWillGroundThisUpdate(ko, ko.Velocity, deltaTime, ref position);
+                    groundThisUpdate = CheckWillGroundThisUpdate(ko, ko.Velocity, deltaTime * obstacleFraction, ref position);
                     if (groundThisUpdate)
                     {
                         //position = ... (set by ref)
@@ -96,7 +110,7 @@ namespace P25D
             if (!groundThisUpdate)
             {
                 var velocity25D = velocity.To25D();
-                position += velocity25D * deltaTime;
+                position += velocity25D * deltaTime * obstacleFraction;
 
                 if (ko.UseGravity)
                 {
@@ -112,6 +126,12 @@ namespace P25D
                 }
             }
 
+            if (obstacleThisUpdate)
+            {
+                velocity.x = 0;
+                velocity.z = 0;
+            }
+            
             ko.Velocity = velocity;
             ko.Position = position;
             ko.IsGrounded = isGrounded;
@@ -129,8 +149,8 @@ namespace P25D
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = overlapResult[i];
-                float height = GetGeometryObjectHeight(hitInfo.gameObject);
-                if (Mathf.Approximately(ko.Position.Get25Height(), height))
+                float altitude = GetGeometryObjectAltitude(hitInfo.gameObject);
+                if (Mathf.Approximately(ko.Position.Get25Altitude(), altitude))
                 {
                     return true;
                 }
@@ -157,8 +177,8 @@ namespace P25D
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = castResult[i];
-                float height = GetGeometryObjectHeight(hitInfo.collider.gameObject);
-                if (height <= position.Get25Height() && height >= nextPosition.Get25Height())
+                float floorAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
+                if (floorAltitude <= position.Get25Altitude() && floorAltitude >= nextPosition.Get25Altitude())
                 {
                     candidatesIndexes[candidatesCount] = i;
                     candidatesCount++;
@@ -168,9 +188,9 @@ namespace P25D
             for (int i = 0; i < candidatesCount; i++)
             {
                 var hitInfo = castResult[candidatesIndexes[i]];
-                float height = GetGeometryObjectHeight(hitInfo.collider.gameObject);
-                float heightFraction = Mathf.InverseLerp(position.Get25Height(), nextPosition.Get25Height(), height);
-                Vector3 fractionPosition = Vector3.Lerp(position, nextPosition, heightFraction);
+                float altitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
+                float altitudeFraction = Mathf.InverseLerp(position.Get25Altitude(), nextPosition.Get25Altitude(), altitude);
+                Vector3 fractionPosition = Vector3.Lerp(position, nextPosition, altitudeFraction);
                 Vector3 move = fractionPosition - position;
 
                 var overlapped = Physics2D.OverlapAreaNonAlloc((Vector2)fractionPosition + collider.offset, collider.bounds.size, overlapResult, floorFilter.useLayerMask ? floorFilter.layerMask.value : Physics2D.DefaultRaycastLayers);
@@ -187,7 +207,49 @@ namespace P25D
             return false;
         }
 
-        private static float GetGeometryObjectHeight(GameObject go)
+        private static bool CheckWillCollideObstacleThisUpdate(Kinematic25D ko, Vector3 velocity, float deltaTime, ref float fraction)
+        {
+            var collider = ko.Collider2D;
+            if (collider == null || !collider.enabled)
+            {
+                return false;
+            }
+
+            var position = ko.Position;
+            Vector3 velocity25D = velocity.To25D();
+            Vector3 nextPosition = position + velocity25D * deltaTime;
+
+            var resCount = collider.Cast(velocity25D, obstacleFilter, castResult, ((Vector2)velocity25D).magnitude * deltaTime, true);
+
+            for (int i = 0; i < resCount; i++)
+            {
+                var hitInfo = castResult[i];
+                if (!hitInfo.collider.gameObject.GetComponent<Obstacle25D>())
+                {
+                    continue;
+                }
+
+                float obstacleAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
+                float obstacleHeight = GetObstacleHeight(hitInfo.collider.gameObject);
+
+                if (obstacleAltitude <= position.Get25Altitude() && obstacleAltitude + obstacleHeight >= position.Get25Altitude()
+                    || obstacleAltitude <= nextPosition.Get25Altitude() && obstacleAltitude + obstacleHeight >= nextPosition.Get25Altitude())
+                {
+                    fraction = hitInfo.fraction;
+                    return true;
+                }            
+            }
+
+            return false;
+        }
+
+        private static float GetObstacleHeight(GameObject go)
+        {
+            var o = go.GetComponent<Obstacle25D>();
+            return o == null ? 0 : o.Height;
+        }
+
+        private static float GetGeometryObjectAltitude(GameObject go)
         {
             return go.transform.position.y;
         }
@@ -218,7 +280,7 @@ namespace P25D
                 vector.z);
         }
 
-        public static float Get25Height(this Vector3 vector)
+        public static float Get25Altitude(this Vector3 vector)
         {
             return vector.y - vector.z;
         }

@@ -6,6 +6,8 @@ namespace P25D
     [RequireComponent(typeof(Collider2D))]
     public class Kinematic25D : MonoBehaviour25D
     {
+        [SerializeField] public bool _debug;
+
         public bool IsGrounded { get; set; }
 
         public Vector3 Velocity { get; set; }
