@@ -11,7 +11,7 @@ namespace P25D
         public bool IsGrounded { get; set; }
 
         public Vector3 Velocity { get; set; }
-        public Collider2D Collider2D { get; set; }
+        public BoxCollider2D Collider2D { get; set; }
 
         [SerializeField] private bool useGravity = true;
         public bool UseGravity { get => useGravity; set { useGravity = value; } }
@@ -19,7 +19,7 @@ namespace P25D
         protected override void Awake()
         {
             base.Awake();
-            Collider2D = GetComponent<Collider2D>();
+            Collider2D = GetComponent<BoxCollider2D>();
         }
 
         private void OnEnable()

@@ -28,7 +28,6 @@ namespace P25D
             ProcessKinematicObjects();
         }
 
-
         #region Static
         private static ContactFilter2D floorFilter = new ContactFilter2D()
         {
@@ -39,8 +38,8 @@ namespace P25D
             //floor layer filter mask
         };
 
-        private static RaycastHit2D[] castResult = new RaycastHit2D[ 16 ];
-        private static Collider2D[] overlapResult = new Collider2D[ 16 ];
+        private static RaycastHit2D[] castResult = new RaycastHit2D[ 64 ];
+        private static Collider2D[] overlapResult = new Collider2D[ 64 ];
 
         public static void RegisterKinematicObject(Kinematic25D ko)
         {
@@ -90,14 +89,14 @@ namespace P25D
 
             bool groundThisUpdate = false;
 
-            float obstacleFraction = 1;
-            bool obstacleThisUpdate = CheckWillCollideObstacleThisUpdate(ko, ko.Velocity, deltaTime, ref obstacleFraction);
+            float obstacleFraction = 1.0f;
+            var obstacleThisUpdate = CheckWillCollideObstacleThisUpdate(ko, ko.Velocity, deltaTime, ref obstacleFraction);
 
             if (ko.UseGravity)
             {
                 if (!isGrounded && velocity.y < 0)
                 {
-                    groundThisUpdate = CheckWillGroundThisUpdate(ko, ko.Velocity, deltaTime * obstacleFraction, ref position);
+                    groundThisUpdate = CheckWillGroundThisUpdate(ko, ko.Velocity, deltaTime, ref position);
                     if (groundThisUpdate)
                     {
                         //position = ... (set by ref)
@@ -131,7 +130,7 @@ namespace P25D
                 velocity.x = 0;
                 velocity.z = 0;
             }
-            
+
             ko.Velocity = velocity;
             ko.Position = position;
             ko.IsGrounded = isGrounded;
@@ -209,15 +208,16 @@ namespace P25D
 
         private static bool CheckWillCollideObstacleThisUpdate(Kinematic25D ko, Vector3 velocity, float deltaTime, ref float fraction)
         {
+            var collisionResult = false;
+
             var collider = ko.Collider2D;
             if (collider == null || !collider.enabled)
             {
-                return false;
+                return collisionResult;
             }
 
             var position = ko.Position;
             Vector3 horizontalVelocity = new Vector3(velocity.x, 0, velocity.z);
-            Vector3 nextPosition = position + horizontalVelocity * deltaTime;
 
             var resCount = collider.Cast(horizontalVelocity, obstacleFilter, castResult, horizontalVelocity.magnitude * deltaTime, true);
 
@@ -235,12 +235,39 @@ namespace P25D
                 if (obstacleAltitude <= position.Get25Altitude() && 
                     (obstacleAltitude + obstacle.Height >= position.Get25Altitude() || obstacle.InfiniteHeight))
                 {
-                    fraction = hitInfo.fraction;
-                    return true;
-                }            
+                    float obstacleFraction = 1.0f;
+                    collisionResult |= CheckWillCollideObstacleThisUpdate(ko, velocity, deltaTime, hitInfo.collider, ref obstacleFraction);
+                    fraction = Mathf.Min(fraction, obstacleFraction);
+                }
             }
 
-            return false;
+            return collisionResult;
+        }
+
+        private static bool CheckWillCollideObstacleThisUpdate(Kinematic25D ko, Vector3 velocity, float deltaTime, Collider2D obstacle, ref float obstacleFraction)
+        {
+            var collider = ko.Collider2D;
+            var position = ko.Position;
+            Vector3 horizontalVelocity = new Vector3(velocity.x, 0, velocity.z);
+
+            float obstacleAltitude = GetGeometryObjectAltitude(obstacle.gameObject);
+            float altitude = position.Get25Altitude();
+            float altitudeDelta = altitude - obstacleAltitude;
+
+            RaycastHit2D[] castResultTemp = new RaycastHit2D[64];
+
+            var resCount = Physics2D.BoxCast(collider.bounds.center - Vector3.down * altitudeDelta, collider.size, 0, horizontalVelocity, obstacleFilter, castResultTemp, horizontalVelocity.magnitude * deltaTime);
+            for (int i = 0; i < resCount; i++)
+            {
+                var hitInfo = castResult[i];
+                if (hitInfo.collider == obstacle)
+                {
+                    obstacleFraction = hitInfo.fraction;
+                    break;
+                }
+            }
+
+            return 1 - obstacleFraction > float.Epsilon;
         }
 
         private static float GetObstacleHeight(GameObject go)

@@ -70,10 +70,6 @@ namespace _25d_
             {
                 return;
             }
-            if (dir.magnitude > float.Epsilon)
-            {
-                int i = 0;
-            }
 
             rb.velocity = new Vector3(
                 dir.x * speed.x,

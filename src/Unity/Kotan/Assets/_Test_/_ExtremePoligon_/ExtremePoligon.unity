@@ -737,10 +737,10 @@ GameObject:
   m_Component:
   - component: {fileID: 364386370}
   - component: {fileID: 364386369}
-  - component: {fileID: 364386368}
   - component: {fileID: 364386371}
   - component: {fileID: 364386372}
   - component: {fileID: 364386374}
+  - component: {fileID: 364386368}
   m_Layer: 0
   m_Name: FreeKinematicObject1
   m_TagString: Untagged
@@ -748,8 +748,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!68 &364386368
-EdgeCollider2D:
+--- !u!61 &364386368
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -762,14 +762,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.072626114, y: 0}
-  - {x: 0.0941062, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &364386369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,10 +2508,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1406701490}
   - component: {fileID: 1406701489}
-  - component: {fileID: 1406701488}
   - component: {fileID: 1406701487}
   - component: {fileID: 1406701491}
   - component: {fileID: 1406701492}
+  - component: {fileID: 1406701488}
   m_Layer: 0
   m_Name: FreeKinematicObject5
   m_TagString: Untagged
@@ -2536,8 +2540,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &1406701488
-EdgeCollider2D:
+--- !u!61 &1406701488
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2550,14 +2554,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.094430685, y: 0}
-  - {x: 0.12562847, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &1406701489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3269,10 +3277,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1913738996}
   - component: {fileID: 1913738995}
-  - component: {fileID: 1913738994}
   - component: {fileID: 1913738997}
   - component: {fileID: 1913738998}
   - component: {fileID: 1913738999}
+  - component: {fileID: 1913738994}
   m_Layer: 0
   m_Name: FreeKinematicObject3
   m_TagString: Untagged
@@ -3280,8 +3288,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!68 &1913738994
-EdgeCollider2D:
+--- !u!61 &1913738994
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3294,14 +3302,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.094430685, y: 0}
-  - {x: 0.12562847, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &1913738995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3389,10 +3401,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1965850972}
   - component: {fileID: 1965850971}
-  - component: {fileID: 1965850970}
   - component: {fileID: 1965850969}
   - component: {fileID: 1965850973}
   - component: {fileID: 1965850974}
+  - component: {fileID: 1965850970}
   m_Layer: 0
   m_Name: FreeKinematicObject4
   m_TagString: Untagged
@@ -3421,8 +3433,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &1965850970
-EdgeCollider2D:
+--- !u!61 &1965850970
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3435,14 +3447,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.094430685, y: 0}
-  - {x: 0.12562847, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &1965850971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3706,10 +3722,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2077086358}
   - component: {fileID: 2077086357}
-  - component: {fileID: 2077086356}
   - component: {fileID: 2077086359}
   - component: {fileID: 2077086360}
   - component: {fileID: 2077086361}
+  - component: {fileID: 2077086356}
   m_Layer: 0
   m_Name: FreeKinematicObject2
   m_TagString: Untagged
@@ -3717,8 +3733,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!68 &2077086356
-EdgeCollider2D:
+--- !u!61 &2077086356
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3731,14 +3747,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.09074783, y: -0.0006596446}
-  - {x: 0.10576296, y: -0.007094264}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &2077086357
 MonoBehaviour:
   m_ObjectHideFlags: 0
