@@ -81,10 +81,13 @@ namespace P25D
             public Vector3 position;
             public Vector2 fraction; //hor [x, z], vert [y]
             public bool isGrounded;
+
+            public override string ToString() => JsonUtility.ToJson(this);
         }
 
         struct ProcessInfo
         {
+            public bool _debug;
             public string name;
 
             public Vector3 velocity;
@@ -108,7 +111,7 @@ namespace P25D
             if (!Mathf.Approximately(OUT.fraction.x, OUT.fraction.y))
             {
                 var secondPhaseDeltaTime = deltaTime * (1 - Mathf.Min(OUT.fraction.x, OUT.fraction.y));
-                ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
+                OUT = ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
             }
         }
 
@@ -122,7 +125,7 @@ namespace P25D
 
         private static void LoadProcessResultToObject(Kinematic25D ko, ref ProcessResult OUT)
         {
-            ko.Velocity = OUT.velocity;
+            ko.Velocity = OUT.velocity; 
             ko.Position = OUT.position;
             ko.IsGrounded = OUT.isGrounded;
             //fraction ?
@@ -133,6 +136,7 @@ namespace P25D
             return new ProcessInfo()
             {
                 name = ko.name,//debug
+                _debug = ko._debug,
 
                 velocity = ko.Velocity,
                 position = ko.Position,
@@ -179,7 +183,7 @@ namespace P25D
         {
             if (!OUT.isGrounded && IN.useGravity)
             {
-                OUT.velocity += Vector3.down * Gravity * IN.deltaTime;
+                OUT.velocity = IN.velocity + Vector3.down * Gravity * IN.deltaTime;
             }
 
             if (OUT.isGrounded)
