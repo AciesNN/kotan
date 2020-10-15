@@ -2,8 +2,7 @@ using UnityEngine;
 
 namespace P25D
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class Kinematic25D : MonoBehaviour25D
     {
         [SerializeField] public bool _debug;

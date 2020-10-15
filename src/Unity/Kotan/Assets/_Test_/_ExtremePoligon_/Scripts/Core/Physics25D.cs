@@ -108,19 +108,19 @@ namespace P25D
             if (!Mathf.Approximately(OUT.fraction.x, OUT.fraction.y))
             {
                 var secondPhaseDeltaTime = deltaTime * (1 - Mathf.Min(OUT.fraction.x, OUT.fraction.y));
-                OUT = ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
+                ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
             }
         }
 
         private static ProcessResult ProcessKinematicObjectImpl(Kinematic25D ko, float deltaTime)
         {
             ProcessInfo IN = CreateProcessKinematicObjectObjectInfo(ko, deltaTime);
-            ProcessKinematicObject(IN, out ProcessResult OUT);
-            LoadProcessResultToObject(ko, OUT);
+            ProcessResult OUT = ProcessKinematicObject(IN);
+            LoadProcessResultToObject(ko, ref OUT);
             return OUT;
         }
 
-        private static void LoadProcessResultToObject(Kinematic25D ko, ProcessResult OUT)
+        private static void LoadProcessResultToObject(Kinematic25D ko, ref ProcessResult OUT)
         {
             ko.Velocity = OUT.velocity;
             ko.Position = OUT.position;
@@ -144,14 +144,16 @@ namespace P25D
             };
         }
 
-        private static void ProcessKinematicObject(ProcessInfo IN, out ProcessResult OUT) //result: fraction
+        private static ProcessResult ProcessKinematicObject(ProcessInfo IN)
         {
-            OUT = new ProcessResult();
+            var OUT = new ProcessResult();
 
             OUT.fraction = CalculateFraction(ref IN);
             ChangeVelocityAndPosition(ref IN, ref OUT);
             CheckIsGrounded(ref IN, ref OUT);
             CheckGravity(ref IN, ref OUT);
+
+            return OUT;
         }
 
         private static Vector2 CalculateFraction(ref ProcessInfo IN)
@@ -237,13 +239,17 @@ namespace P25D
             Vector3 velocity25D = IN.velocity.To25D();
             Vector3 nextPosition = IN.position + velocity25D * IN.deltaTime;
 
-            var resCount = IN.collider.Cast(velocity25D, floorFilter, castResult, ((Vector2)velocity25D).magnitude * IN.deltaTime, true);
+            var resCount = Physics2D.BoxCast/*NonAlloc*/(IN.collider.bounds.center, IN.collider.bounds.size, 0, velocity25D, floorFilter, castResult, ((Vector2)velocity25D).magnitude * IN.deltaTime);
             var candidatesIndexes = new int[resCount];
             var candidatesCount = 0;
 
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = castResult[i];
+                if (hitInfo.collider == IN.collider)
+                {
+                    continue;
+                }
                 float floorAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
                 if (floorAltitude <= IN.position.Get25Altitude() && floorAltitude >= nextPosition.Get25Altitude())
                 {
@@ -278,11 +284,15 @@ namespace P25D
             var fraction = 1.0f;
             Vector3 horizontalVelocity = new Vector3(IN.velocity.x, 0, IN.velocity.z);
 
-            var resCount = IN.collider.Cast(horizontalVelocity, obstacleFilter, castResult, horizontalVelocity.magnitude * IN.deltaTime, true);
+            var resCount = Physics2D.BoxCast/*NonAlloc*/(IN.collider.bounds.center, IN.collider.size, 0, horizontalVelocity, obstacleFilter, castResult, horizontalVelocity.magnitude * IN.deltaTime);
 
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = castResult[i];
+                if (hitInfo.collider == IN.collider)
+                {
+                    continue;
+                }
                 var obstacle = hitInfo.collider.gameObject.GetComponent<Obstacle25D>();//?
                 if (!obstacle) 
                 {
@@ -312,7 +322,7 @@ namespace P25D
 
             RaycastHit2D[] castResultTemp = new RaycastHit2D[64];
 
-            var resCount = Physics2D.BoxCast(IN.collider.bounds.center - Vector3.down * altitudeDelta, IN.collider.size, 0, horizontalVelocity, obstacleFilter, castResultTemp, horizontalVelocity.magnitude * IN.deltaTime);
+            var resCount = Physics2D.BoxCast/*NonAlloc*/(IN.collider.bounds.center - Vector3.down * altitudeDelta, IN.collider.size, 0, horizontalVelocity, obstacleFilter, castResultTemp, horizontalVelocity.magnitude * IN.deltaTime);
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = castResult[i];
