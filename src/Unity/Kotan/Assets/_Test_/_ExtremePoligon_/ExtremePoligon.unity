@@ -3072,6 +3072,7 @@ GameObject:
   - component: {fileID: 1906420870}
   - component: {fileID: 1906420871}
   - component: {fileID: 1906420872}
+  - component: {fileID: 1906420873}
   m_Layer: 0
   m_Name: KinematicObject
   m_TagString: Untagged
@@ -3151,6 +3152,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &1906420873
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906420868}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1912832869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,7 +3709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c064fb176ab27ac42baa6893f902996a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debug: 1
+  _debug: 0
   useGravity: 1
 --- !u!4 &2077086358
 Transform:

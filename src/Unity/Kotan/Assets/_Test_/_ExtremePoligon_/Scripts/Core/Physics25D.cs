@@ -110,7 +110,8 @@ namespace P25D
             ProcessResult OUT = ProcessKinematicObjectImpl(ko, deltaTime);
             if (!Mathf.Approximately(OUT.fraction.x, OUT.fraction.y))
             {
-                var secondPhaseDeltaTime = deltaTime * (1 - Mathf.Min(OUT.fraction.x, OUT.fraction.y));
+                var firstPhaseDeltaTime = Mathf.Min(OUT.fraction.x, OUT.fraction.y);
+                var secondPhaseDeltaTime = deltaTime * (1 - firstPhaseDeltaTime);
                 OUT = ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
             }
         }
@@ -162,19 +163,15 @@ namespace P25D
 
         private static Vector2 CalculateFraction(ref ProcessInfo IN)
         {
-            float obstacleFraction = 
-                IN.collider != null 
-                && (!Mathf.Approximately(IN.velocity.x, 0) || !Mathf.Approximately(IN.velocity.z, 0))
-                ? CheckCollideObstacle(ref IN)
-                : 1;
+            var checkCollide = IN.collider != null;
 
-            float floorFraction =
-                IN.collider != null
-                && IN.useGravity
-                && !IN.isGrounded
-                && IN.velocity.y < 0
-                ? CheckCollideFloor(ref IN)
-                : 1;
+            var checkCollideObstacle = checkCollide 
+                && (!Mathf.Approximately(IN.velocity.x, 0) || !Mathf.Approximately(IN.velocity.z, 0));
+            float obstacleFraction = checkCollideObstacle ? CheckCollideObstacle(ref IN) : 1;
+
+            var _ = Vector3.zero;
+            var checkCollideFloor = checkCollide && IN.useGravity && !IN.isGrounded && IN.velocity.y < 0;
+            float floorFraction = checkCollideFloor ? CheckCollideFloor(ref IN, ref _) : 1;
 
             return new Vector3(obstacleFraction, floorFraction);
         }
@@ -196,7 +193,7 @@ namespace P25D
         {
             if (IN.collider != null)
             {
-                OUT.isGrounded = CheckStillGrounded(IN.collider, IN.position);
+                OUT.isGrounded = CheckStillGrounded(ref IN, ref OUT);
             }
             else
             {
@@ -208,7 +205,8 @@ namespace P25D
         {
             var fraction = Mathf.Min(OUT.fraction.x, OUT.fraction.y);
 
-            OUT.position = IN.position + IN.velocity.To25D() * fraction * IN.deltaTime;
+            OUT.velocity = IN.velocity;
+            OUT.position = IN.position + OUT.velocity.To25D() * fraction * IN.deltaTime;
 
             if (OUT.fraction.x.LessThenOne())
             {
@@ -222,14 +220,19 @@ namespace P25D
             }
         }
 
-        private static bool CheckStillGrounded(BoxCollider2D collider, Vector3 position)
+        private static bool CheckStillGrounded(ref ProcessInfo IN, ref ProcessResult OUT)
         {
-            var resCount = collider.OverlapCollider(floorFilter, overlapResult);
+            var position = OUT.position - IN.position + IN.collider.bounds.center;
+            var resCount = Physics2D.OverlapBox(position, IN.collider.bounds.size, 0, floorFilter, overlapResult);
             for (int i = 0; i < resCount; i++)
             {
                 var hitInfo = overlapResult[i];
+                if (hitInfo.gameObject == IN.collider.gameObject)
+                {
+                    continue;
+                }
                 float altitude = GetGeometryObjectAltitude(hitInfo.gameObject);
-                if (Mathf.Approximately(position.Get25Altitude(), altitude))
+                if (Mathf.Approximately(OUT.position.Get25Altitude(), altitude))
                 {
                     return true;
                 }
@@ -238,10 +241,12 @@ namespace P25D
             return false;
         }
 
-        private static float CheckCollideFloor(ref ProcessInfo IN)
+        //return fracton
+        private static float CheckCollideFloor(ref ProcessInfo IN, ref Vector3 floorPosition)
         {
             Vector3 velocity25D = IN.velocity.To25D();
             Vector3 nextPosition = IN.position + velocity25D * IN.deltaTime;
+            float colliderSizeDelta = IN.collider.bounds.size.y / 2;
 
             var resCount = Physics2D.BoxCast/*NonAlloc*/(IN.collider.bounds.center, IN.collider.bounds.size, 0, velocity25D, floorFilter, castResult, ((Vector2)velocity25D).magnitude * IN.deltaTime);
             var candidatesIndexes = new int[resCount];
@@ -275,11 +280,13 @@ namespace P25D
                 {
                     if (overlapResult[j] == hitInfo.collider)
                     {
-                        return hitInfo.fraction;
+                        floorPosition = fractionPosition;
+                        return altitudeFraction;
                     }
                 }
             }
 
+            floorPosition = nextPosition;
             return 1;
         }
 
@@ -352,12 +359,16 @@ namespace P25D
         public static bool GetNearestFloorPosition(Kinematic25D ko, out Vector3 floorPosition)
         {
             floorPosition = ko.Position;
+
             if (ko.IsGrounded)
             {
                 return true;
             }
+
             var IN = CreateProcessKinematicObjectObjectInfo(ko, 666);
-            if (!CheckCollideFloor(ref IN).LessThenOne())
+            IN.velocity = Vector3.down;
+            var fraction = CheckCollideFloor(ref IN, ref floorPosition);
+            if (fraction.LessThenOne())
             {
                 return true;
             }
