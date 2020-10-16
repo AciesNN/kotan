@@ -310,7 +310,7 @@ namespace P25D
                     continue;
                 }
 
-                float obstacleAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
+                float obstacleAltitude = GetObstacleHeight(hitInfo.collider.gameObject);
 
                 if (obstacleAltitude <= IN.position.Get25Altitude() && 
                     (obstacleAltitude + obstacle.Height >= IN.position.Get25Altitude() || obstacle.InfiniteHeight))
@@ -327,7 +327,7 @@ namespace P25D
         {
             Vector3 horizontalVelocity = new Vector3(IN.velocity.x, 0, IN.velocity.z);
 
-            float obstacleAltitude = GetGeometryObjectAltitude(obstacle.gameObject);
+            float obstacleAltitude = GetObstacleHeight(obstacle.gameObject);
             float altitude = IN.position.Get25Altitude();
             float altitudeDelta = altitude - obstacleAltitude;
 
