@@ -56,7 +56,7 @@ namespace P25D
             for (int i = 0; i < kinematicObjects.Count; i++)
             {
                 var ko = kinematicObjects[i];
-                if (!ko.enabled || !ko.gameObject.activeInHierarchy)
+                if ( ko== null || !ko.enabled || !ko.gameObject.activeInHierarchy)
                 {
                     continue;
                 }
@@ -79,7 +79,7 @@ namespace P25D
         {
             public Vector3 velocity;
             public Vector3 position;
-            public Vector2 fraction; //hor [x, z], vert [y]
+            public Vector2 maxMovement; //hor [x, z], vert [y]
             public bool isGrounded;
 
             public override string ToString() => JsonUtility.ToJson(this);
@@ -105,34 +105,38 @@ namespace P25D
             {
                 var _name = ko.gameObject.name;
                 //debug
+                if (ko.gameObject.transform.localPosition.x > -3.0f)
+                {
+                    int i = 0;
+                }
             }
 
-            ProcessResult OUT = ProcessKinematicObjectImpl(ko, deltaTime);
-            if (!Mathf.Approximately(OUT.fraction.x, OUT.fraction.y))
+            ProcessResult OUT = ProcessKinematicObjectPhase(ko, deltaTime);
+            if (!Mathf.Approximately(OUT.maxMovement.x, OUT.maxMovement.y)
+                && OUT.velocity.sqrMagnitude > 0)
             {
-                var firstPhaseDeltaTime = Mathf.Min(OUT.fraction.x, OUT.fraction.y);
+                var firstPhaseDeltaTime = Mathf.Min(OUT.maxMovement.x, OUT.maxMovement.y);
                 var secondPhaseDeltaTime = deltaTime * (1 - firstPhaseDeltaTime);
-                OUT = ProcessKinematicObjectImpl(ko, secondPhaseDeltaTime);
+                OUT = ProcessKinematicObjectPhase(ko, secondPhaseDeltaTime);
             }
         }
 
-        private static ProcessResult ProcessKinematicObjectImpl(Kinematic25D ko, float deltaTime)
+        private static ProcessResult ProcessKinematicObjectPhase(Kinematic25D ko, float deltaTime)
         {
-            ProcessInfo IN = CreateProcessKinematicObjectObjectInfo(ko, deltaTime);
+            ProcessInfo IN = CreateProcessInfo(ko, deltaTime);
             ProcessResult OUT = ProcessKinematicObject(IN);
-            LoadProcessResultToObject(ko, ref OUT);
+            LoadResultToObject(ko, ref OUT);
             return OUT;
         }
 
-        private static void LoadProcessResultToObject(Kinematic25D ko, ref ProcessResult OUT)
+        private static void LoadResultToObject(Kinematic25D ko, ref ProcessResult OUT)
         {
             ko.Velocity = OUT.velocity; 
             ko.Position = OUT.position;
             ko.IsGrounded = OUT.isGrounded;
-            //fraction ?
         }
 
-        private static ProcessInfo CreateProcessKinematicObjectObjectInfo(Kinematic25D ko, float deltaTime)
+        private static ProcessInfo CreateProcessInfo(Kinematic25D ko, float deltaTime)
         {
             return new ProcessInfo()
             {
@@ -153,27 +157,27 @@ namespace P25D
         {
             var OUT = new ProcessResult();
 
-            OUT.fraction = CalculateFraction(ref IN);
-            ChangeVelocityAndPosition(ref IN, ref OUT);
+            OUT.maxMovement = GetMaxMovement(ref IN);
+            SetVelocityAndPosition(ref IN, ref OUT);
             CheckIsGrounded(ref IN, ref OUT);
             CheckGravity(ref IN, ref OUT);
 
             return OUT;
         }
 
-        private static Vector2 CalculateFraction(ref ProcessInfo IN)
+        private static Vector2 GetMaxMovement(ref ProcessInfo IN)
         {
             var checkCollide = IN.collider != null;
 
-            var checkCollideObstacle = checkCollide 
+            var checkHorizontal = checkCollide 
                 && (!Mathf.Approximately(IN.velocity.x, 0) || !Mathf.Approximately(IN.velocity.z, 0));
-            float obstacleFraction = checkCollideObstacle ? CheckCollideObstacle(ref IN) : 1;
+            float maxHorizontalMovement = checkHorizontal ? GetMaxHorizontalMovement( ref IN) : 1;
 
             var _ = Vector3.zero;
-            var checkCollideFloor = checkCollide && IN.useGravity && !IN.isGrounded && IN.velocity.y < 0;
-            float floorFraction = checkCollideFloor ? CheckCollideFloor(ref IN, ref _) : 1;
+            var checkVertical = checkCollide && IN.useGravity && !IN.isGrounded && IN.velocity.y < 0;
+            float maxVerticalMovement = checkVertical ? GetMaxVerticalMovement( ref IN, ref _) : 1;
 
-            return new Vector3(obstacleFraction, floorFraction);
+            return new Vector3( maxHorizontalMovement, maxVerticalMovement );
         }
 
         private static void CheckGravity(ref ProcessInfo IN, ref ProcessResult OUT)
@@ -201,20 +205,20 @@ namespace P25D
             }
         }
 
-        private static void ChangeVelocityAndPosition(ref ProcessInfo IN, ref ProcessResult OUT)
+        private static void SetVelocityAndPosition(ref ProcessInfo IN, ref ProcessResult OUT)
         {
-            var fraction = Mathf.Min(OUT.fraction.x, OUT.fraction.y);
+            var maxMovement = Mathf.Min(OUT.maxMovement.x, OUT.maxMovement.y);
 
             OUT.velocity = IN.velocity;
-            OUT.position = IN.position + OUT.velocity.To25D() * fraction * IN.deltaTime;
+            OUT.position = IN.position + OUT.velocity.To25D() * maxMovement * IN.deltaTime;
 
-            if (OUT.fraction.x.LessThenOne())
+            if (OUT.maxMovement.x.LessThenOne())
             {
                 OUT.velocity.x = 0;
                 OUT.velocity.z = 0;
             }
 
-            if (OUT.fraction.y.LessThenOne())
+            if (OUT.maxMovement.y.LessThenOne())
             {
                 OUT.velocity.y = 0;
             }
@@ -242,7 +246,7 @@ namespace P25D
         }
 
         //return fracton
-        private static float CheckCollideFloor(ref ProcessInfo IN, ref Vector3 floorPosition)
+        private static float GetMaxVerticalMovement( ref ProcessInfo IN, ref Vector3 floorPosition)
         {
             Vector3 velocity25D = IN.velocity.To25D();
             Vector3 nextPosition = IN.position + velocity25D * IN.deltaTime;
@@ -260,7 +264,8 @@ namespace P25D
                     continue;
                 }
                 float floorAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
-                if (floorAltitude <= IN.position.Get25Altitude() && floorAltitude >= nextPosition.Get25Altitude())
+                if (floorAltitude.LessOrApproximatelyEqualThan(IN.position.Get25Altitude())
+                    && floorAltitude.GreaterOrApproximatelyEqualThan(nextPosition.Get25Altitude()))
                 {
                     candidatesIndexes[candidatesCount] = i;
                     candidatesCount++;
@@ -290,7 +295,7 @@ namespace P25D
             return 1;
         }
 
-        private static float CheckCollideObstacle(ref ProcessInfo IN)
+        private static float GetMaxHorizontalMovement( ref ProcessInfo IN)
         {
             var fraction = 1.0f;
             Vector3 horizontalVelocity = new Vector3(IN.velocity.x, 0, IN.velocity.z);
@@ -310,12 +315,12 @@ namespace P25D
                     continue;
                 }
 
-                float obstacleAltitude = GetObstacleHeight(hitInfo.collider.gameObject);
+                float obstacleAltitude = GetGeometryObjectAltitude(hitInfo.collider.gameObject);
 
                 if (obstacleAltitude <= IN.position.Get25Altitude() && 
                     (obstacleAltitude + obstacle.Height >= IN.position.Get25Altitude() || obstacle.InfiniteHeight))
                 {
-                    var obstacleFraction= CheckCollideObstacle(ref IN, hitInfo.collider);
+                    var obstacleFraction= GetMaxHorizontalMovement( ref IN, hitInfo.collider);
                     fraction = Mathf.Min(fraction, obstacleFraction);
                 }
             }
@@ -323,11 +328,11 @@ namespace P25D
             return fraction;
         }
 
-        private static float CheckCollideObstacle(ref ProcessInfo IN, Collider2D obstacle)
+        private static float GetMaxHorizontalMovement( ref ProcessInfo IN, Collider2D obstacle)
         {
             Vector3 horizontalVelocity = new Vector3(IN.velocity.x, 0, IN.velocity.z);
 
-            float obstacleAltitude = GetObstacleHeight(obstacle.gameObject);
+            float obstacleAltitude = GetGeometryObjectAltitude(obstacle.gameObject);
             float altitude = IN.position.Get25Altitude();
             float altitudeDelta = altitude - obstacleAltitude;
 
@@ -345,12 +350,6 @@ namespace P25D
             return 1;
         }
 
-        private static float GetObstacleHeight(GameObject go)
-        {
-            var o = go.GetComponent<Obstacle25D>();
-            return o == null ? 0 : o.Height;
-        }
-
         private static float GetGeometryObjectAltitude(GameObject go)
         {
             return go.transform.position.y;
@@ -365,9 +364,9 @@ namespace P25D
                 return true;
             }
 
-            var IN = CreateProcessKinematicObjectObjectInfo(ko, 666);
+            var IN = CreateProcessInfo(ko, 666);
             IN.velocity = Vector3.down;
-            var fraction = CheckCollideFloor(ref IN, ref floorPosition);
+            var fraction = GetMaxVerticalMovement( ref IN, ref floorPosition);
             if (fraction.LessThenOne())
             {
                 return true;
@@ -395,6 +394,16 @@ namespace P25D
         public static bool LessThenOne(this float val)
         {
             return val < 1 && !Mathf.Approximately(1, val);
+        }
+
+        public static bool GreaterOrApproximatelyEqualThan(this float val, float compare)
+        {
+            return val > compare || Mathf.Approximately(val, compare);
+        }
+
+        public static bool LessOrApproximatelyEqualThan(this float val, float compare)
+        {
+            return val < compare || Mathf.Approximately(val, compare);
         }
     }
 }

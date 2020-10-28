@@ -34,7 +34,7 @@ public class _UserInput : MonoBehaviour
             fly3._debug = true;
         }
 
-        if (fly4 && Input.GetKeyDown(KeyCode.Alpha4) )
+        if (fly4 && Input.GetKeyDown(KeyCode.Alpha4))
         {
             fly4.Velocity = new Vector3(1, 1, 1);
         }
@@ -42,6 +42,15 @@ public class _UserInput : MonoBehaviour
         if (fly5 && Input.GetKeyDown(KeyCode.Alpha5))
         {
             fly5.Velocity = new Vector3(-1, 1, -1);
+        }
+
+        if (ko)
+        {
+            ko.Move(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+            if (Input.GetButtonDown("Jump"))
+            {
+                ko.Jump();
+            }
         }
     }
 }

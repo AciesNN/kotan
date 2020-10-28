@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace P25D
@@ -24,6 +25,22 @@ namespace P25D
         private void OnEnable()
         {
             Physics25D.RegisterKinematicObject(this);
+        }
+
+        public void Move(Vector2 dir)
+        {
+            if (IsGrounded)
+            {
+                Velocity = new Vector3(dir.x, 0, dir.y);
+            }
+        }
+
+        public void Jump()
+        {
+            if (IsGrounded)
+            {
+                Velocity += Vector3.up;
+            }
         }
     }
 }
