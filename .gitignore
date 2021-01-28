@@ -7,3 +7,4 @@
 /src/Unity/Kotan/.vs
 /src/Unity/Kotan/obj
 /src/Unity/Kotan/*.csproj
+/src/Unity/Kotan/UserSettings/EditorUserSettings.asset
