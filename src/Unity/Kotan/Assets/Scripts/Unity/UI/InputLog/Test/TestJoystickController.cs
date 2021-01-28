@@ -35,7 +35,11 @@ namespace UI.Test
                 var dir = GetJoystickPosition();
                 OnJoystickSetPosition?.Invoke(dir);
                 dirSet = true;
-            } else if (dirSet)
+            } else if (dirSet
+                && !Input.GetKey("up")
+                && !Input.GetKey("down")
+                && !Input.GetKey("left")
+                && !Input.GetKey("right"))
             {
                 OnJoystickSetPosition?.Invoke(Vector2.zero);
                 dirSet = false;

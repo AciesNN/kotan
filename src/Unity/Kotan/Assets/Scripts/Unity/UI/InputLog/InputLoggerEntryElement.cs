@@ -20,9 +20,10 @@ namespace UI
         [SerializeField] List<InputLoggerEntryElementActionSpriteSetting> actionSpites;
 
         [SerializeField] Image arrow;
-
+        [SerializeField] Image actionPrefab;
 
         Dictionary<InputLogAction, Sprite> actionsDict = new Dictionary<InputLogAction, Sprite>();
+        List<Image> actions = new List<Image>();
 
         IInputLogEntry data;
 
@@ -65,6 +66,24 @@ namespace UI
             {
                 arrow.sprite = arrow6;
                 arrow.transform.localEulerAngles = Vector3.forward * GetArrowAngle(data.Dir);
+            }
+
+            for (int i = actions.Count - 1; i >= data.States.Count; i--)
+            {
+                Destroy(actions[i].gameObject);
+                actions.RemoveAt(i);
+            }
+
+            for (int i = actions.Count; i < data.States.Count; i++)
+            {
+                var newActon = GameObject.Instantiate(actionPrefab, actionPrefab.transform.parent);
+                newActon.gameObject.SetActive(true);
+                actions.Add(newActon);
+            }
+
+            for (int i = 0; i < data.States.Count; i++)
+            {
+                actions[i].sprite = actionsDict[data.States[i]];
             }
         }
 
