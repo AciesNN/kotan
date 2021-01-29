@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -45,11 +46,24 @@ namespace UI
         void Data_OnEntryAdded()
         {
             CreateElement(data.LastEntry);
+            CheckSize();
         }
 
         private void CreateElement(IInputLogEntry entry)
         {
-            elementPrefab.SetData(entry);
+            var newElement = Instantiate(elementPrefab, elementsRoot);
+            newElement.gameObject.SetActive(true);
+            newElement.SetData(entry);
+        }
+
+        private void CheckSize()
+        {
+            Canvas.ForceUpdateCanvases();
+            if (elementsRoot.childCount > 0 && elementsRoot.GetComponent<RectTransform>().rect.width > gameObject.GetComponent<RectTransform>().rect.width)
+            {
+                Destroy(elementsRoot.GetChild(0).gameObject);
+                Canvas.ForceUpdateCanvases();
+            }
         }
     }
 }

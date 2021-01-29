@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowN: {fileID: 21300000, guid: 415d3026abce08a458d1703c35fb0fda, type: 3}
   arrow6: {fileID: 21300000, guid: 610b4aea93b6da045a61f0b03ea3f1a6, type: 3}
+  arrow6press: {fileID: 21300000, guid: ebf8b317316cd6f42a747010c3029ad6, type: 3}
   actionSpites:
   - action: 1
     sprite: {fileID: 21300000, guid: 3d2b5e85b8dc00f41a730c10b2e0938f, type: 3}

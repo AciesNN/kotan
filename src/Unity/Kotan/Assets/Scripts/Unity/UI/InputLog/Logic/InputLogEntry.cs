@@ -7,27 +7,35 @@ namespace UI
     public class InputLogEntry : IInputLogEntry
     {
         public const int MaxStates = 3;
+        public const int PressFramesLimit = 30;
 
         public event Action OnChanged;
 
         public int Frame => frame;
         private readonly int frame;
 
+        public bool IsPress => isPress;
+        private bool isPress;
+
         public Vector2Int Dir => dir;
-        private Vector2Int dir;
+        private readonly Vector2Int dir;
 
         public List<InputLogAction> States => states;
         private List<InputLogAction> states = new List<InputLogAction>(MaxStates);
 
-        public InputLogEntry(int frame)
+        public InputLogEntry(int frame, Vector2Int dir)
         {
             this.frame = frame;
+            this.dir = dir;
         }
 
-        public void SetDir(Vector2Int dir)
+        public void UpdateDir(int frame, Vector2Int dir)
         {
-            this.dir = dir;
-            OnChanged?.Invoke();
+            if (dir != this.dir && !isPress && frame - Frame < PressFramesLimit)
+            {
+                isPress = true;
+                OnChanged?.Invoke();
+            }
         }
 
         public void AddState(InputLogAction state)

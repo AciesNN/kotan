@@ -17,17 +17,18 @@ namespace UI
 
         [SerializeField] Sprite arrowN;
         [SerializeField] Sprite arrow6;
+        [SerializeField] Sprite arrow6press;
         [SerializeField] List<InputLoggerEntryElementActionSpriteSetting> actionSpites;
 
         [SerializeField] Image arrow;
         [SerializeField] Image actionPrefab;
 
-        Dictionary<InputLogAction, Sprite> actionsDict = new Dictionary<InputLogAction, Sprite>();
+        [SerializeField] Dictionary<InputLogAction, Sprite> actionsDict = new Dictionary<InputLogAction, Sprite>();
         List<Image> actions = new List<Image>();
 
         IInputLogEntry data;
 
-        private void Start()
+        private void Awake()
         {
             foreach (var item in actionSpites)
                 actionsDict[item.action] = item.sprite;
@@ -57,6 +58,8 @@ namespace UI
 
         public void ShowEntry()
         {
+            gameObject.name = data.Frame.ToString();
+
             if (data.Dir.x == 0 && data.Dir.y == 0)
             {
                 arrow.sprite = arrowN;
@@ -64,7 +67,7 @@ namespace UI
             }
             else
             {
-                arrow.sprite = arrow6;
+                arrow.sprite = data.IsPress ? arrow6press : arrow6;
                 arrow.transform.localEulerAngles = Vector3.forward * GetArrowAngle(data.Dir);
             }
 

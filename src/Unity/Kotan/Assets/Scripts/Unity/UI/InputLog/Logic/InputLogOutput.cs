@@ -17,6 +17,7 @@ namespace UI
     {
         Vector2Int Dir { get; }
         int Frame { get; }
+        bool IsPress { get; }
         List<InputLogAction> States { get; }
 
         event Action OnChanged;
@@ -24,7 +25,7 @@ namespace UI
         void AddState(InputLogAction state);
         bool Equals(object obj);
         int GetHashCode();
-        void SetDir(Vector2Int dir);
+        void UpdateDir(int frame, Vector2Int dir);
     }
 
     public class InputLogOutput : IInputLogOutput
@@ -62,7 +63,6 @@ namespace UI
             if (newDir != curDir)
             {
                 var entry = GetOrCreateEntry();
-                entry.SetDir(newDir);
                 curDir = newDir;
             }
         }
@@ -81,7 +81,9 @@ namespace UI
                 return lastEntry;
             }
 
-            lastEntry = new InputLogEntry(frame);
+            var dir = GetCurrentJoystickPos();
+            lastEntry?.UpdateDir(frame, dir);
+            lastEntry = new InputLogEntry(frame, dir);
             OnEntryAdded?.Invoke();
 
             return lastEntry;
