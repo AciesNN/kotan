@@ -10,7 +10,7 @@ namespace UI.Test
         // Start is called before the first frame update
         void Start()
         {
-            var controller = GetComponent<TestJoystickController>();
+            var controller = GetComponent<IPlayerInputController>();
             var logger = new InputLogOutput(controller);
             GetComponent<InputLoggerUI>().SetData(logger);
         }

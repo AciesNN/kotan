@@ -58,8 +58,6 @@ namespace UI
 
         public void ShowEntry()
         {
-            gameObject.name = data.Frame.ToString();
-
             if (data.Dir.x == 0 && data.Dir.y == 0)
             {
                 arrow.sprite = arrowN;
@@ -67,7 +65,7 @@ namespace UI
             }
             else
             {
-                arrow.sprite = data.IsPress ? arrow6press : arrow6;
+                arrow.sprite = data.IsPressed ? arrow6press : arrow6;
                 arrow.transform.localEulerAngles = Vector3.forward * GetArrowAngle(data.Dir);
             }
 

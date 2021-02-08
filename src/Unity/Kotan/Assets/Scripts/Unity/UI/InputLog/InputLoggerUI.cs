@@ -45,7 +45,7 @@ namespace UI
 
         void Data_OnEntryAdded()
         {
-            CreateElement(data.LastEntry);
+            CreateElement(data.LastEntry); //TODO - reuse instead of destroy
             CheckSize();
         }
 
@@ -53,6 +53,7 @@ namespace UI
         {
             var newElement = Instantiate(elementPrefab, elementsRoot);
             newElement.gameObject.SetActive(true);
+            newElement.name = Time.frameCount.ToString();
             newElement.SetData(entry);
         }
 
