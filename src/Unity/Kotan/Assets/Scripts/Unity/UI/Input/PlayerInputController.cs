@@ -17,15 +17,13 @@ namespace UI
 
         #region Consts
         public const int MaxStates = 2;
-
-        private const float directionTimeout = 0.06f;
-        private const float directionPressTimeout = 1.0f;
-        private const float directionNeitralTimeout = 0.5f;
-        private const float actionTimeout = 0.06f;
         #endregion
 
-        [SerializeField] string HorizontalAxis;
-        [SerializeField] string VerticalAxis;
+        [SerializeField] PlayerInputControllerSettings settings;
+        [SerializeField] string AxisPostfix;
+        
+        string HorizontalAxis => $"Horizontal{AxisPostfix}";
+        string VerticalAxis => $"Vertical{AxisPostfix}";
 
         float lastDirChange;
         bool neitral = true;
@@ -75,7 +73,7 @@ namespace UI
 
             foreach (var action in actions)
             {
-                if (Input.GetButtonDown(action.ToString()))
+                if (Input.GetButtonDown($"{action}{AxisPostfix}"))
                 {
                     if (curActions[0] != InputLogAction.None)
                     {
@@ -95,7 +93,7 @@ namespace UI
             if (curActions[0] != InputLogAction.None && curActions[1] == InputLogAction.None)
             {
                 var timeSinceLastChanged = Time.time - lastActionChange;
-                if (timeSinceLastChanged > actionTimeout)
+                if (timeSinceLastChanged > settings.ActionTimeout)
                 {
                     OnJoystickPressAction?.Invoke();
                     clearStates = true;
@@ -138,7 +136,7 @@ namespace UI
             }
 
             var timeSinceLastChanged = Time.time - lastDirChange;
-            if (dirChanged && timeSinceLastChanged > directionTimeout)
+            if (dirChanged && timeSinceLastChanged > settings.DirectionTimeout)
             {
                 OnJoystickSetPosition?.Invoke(curDir);
                 dirChanged = false;
@@ -148,7 +146,7 @@ namespace UI
             {
                 if (neitral)
                 {
-                    if (timeSinceLastChanged > directionNeitralTimeout)
+                    if (timeSinceLastChanged > settings.DirectionNeitralTimeout)
                     {
                         OnJoystickNeitralPosition?.Invoke();
                         dirPressed = true;
@@ -156,7 +154,7 @@ namespace UI
                 }
                 else
                 {
-                    if (timeSinceLastChanged > directionPressTimeout)
+                    if (timeSinceLastChanged > settings.DirectionPressTimeout)
                     {
                         OnJoystickPressPosition?.Invoke(curDir);
                         dirPressed = true;

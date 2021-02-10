@@ -75,7 +75,7 @@ public class Bandit_ : MonoBehaviour
       m_animator.SetTrigger( "Hurt" );
 
     //Attack
-    else if ( Input.GetKeyDown( KeyCode.Return ) || Input.GetKeyDown( KeyCode.KeypadEnter ) )
+    else if ( Input.GetButtonDown( "Action" ) || Input.GetKeyDown( KeyCode.KeypadEnter ) )
     {
       m_animator.SetTrigger( "Attack" );
     }
@@ -85,7 +85,7 @@ public class Bandit_ : MonoBehaviour
       m_combatIdle = !m_combatIdle;
 
     //Jump
-    else if ( Input.GetKeyDown( KeyCode.Space ) && m_grounded )
+    else if ( Input.GetButtonDown( "Jump" ) && m_grounded )
     {
       m_animator.SetTrigger( "Jump" );
       m_grounded = false;
