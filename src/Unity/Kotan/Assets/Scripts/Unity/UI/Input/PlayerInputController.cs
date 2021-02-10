@@ -103,37 +103,20 @@ namespace UI
 
         private void CheckDirection()
         {
-            var isDirButtonDownThisFrame = Input.GetButtonDown(HorizontalAxis) || Input.GetButtonDown(VerticalAxis);
-            var isDirButtonUpThisFrame = Input.GetButtonUp(HorizontalAxis) || Input.GetButtonUp(VerticalAxis);
+            var dir = GetJoystickPositionInt();
 
-            if (neitral)
+            if (!dir.Equals(curDir))
             {
-                if (isDirButtonDownThisFrame)
+                curDir = dir;
+                neitral = curDir.Equals(Vector2Int.zero);
+                if (!dirChanged)
                 {
-                    curDir = GetJoystickPositionInt();
-                    neitral = false;
-                    if (!dirChanged)
-                    {
-                        lastDirChange = Time.time;
-                    }
-                    dirChanged = true;
-                    dirPressed = false;
+                    lastDirChange = Time.time;
                 }
+                dirChanged = true;
+                dirPressed = false;
             }
-            else
-            {
-                if (isDirButtonDownThisFrame || isDirButtonUpThisFrame)
-                {
-                    curDir = GetJoystickPositionInt();
-                    neitral = curDir.Equals(Vector2Int.zero);
-                    if (!dirChanged)
-                    {
-                        lastDirChange = Time.time;
-                    }
-                    dirChanged = true;
-                    dirPressed = false;
-                }
-            }
+
 
             var timeSinceLastChanged = Time.time - lastDirChange;
             if (dirChanged && timeSinceLastChanged > settings.DirectionTimeout)
