@@ -1,0 +1,3540 @@
+fileFormatVersion: 2
+guid: 915a0cbc685e1d94f963896ae6bd872c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2486879538286108138
+    second: stern_idle_0
+  - first:
+      213: -4569566229514236930
+    second: stern_idle_1
+  - first:
+      213: -3690628216625986940
+    second: stern_idle_2
+  - first:
+      213: -4144012866229042687
+    second: stern_idle_3
+  - first:
+      213: -8836379130083448649
+    second: stern_roda_4
+  - first:
+      213: -2470789549710709224
+    second: stern_roda_5
+  - first:
+      213: 7964125014136738901
+    second: stern_roda_6
+  - first:
+      213: -4040665494567432655
+    second: stern_roda_7
+  - first:
+      213: 2336266815537252454
+    second: stern_roda_8
+  - first:
+      213: 7536935085030543739
+    second: stern_roda_9
+  - first:
+      213: 2180808199532943098
+    second: stern_roda_10
+  - first:
+      213: -1469066418880613492
+    second: stern_roda_11
+  - first:
+      213: 5708605326925022681
+    second: stern_roda_12
+  - first:
+      213: -8458652599583065180
+    second: stern_roda_13
+  - first:
+      213: -1718659402497917685
+    second: stern_roda_14
+  - first:
+      213: -8430627682191285816
+    second: stern_roda_15
+  - first:
+      213: -2958238449954179954
+    second: stern_roda_16
+  - first:
+      213: 803395720553352346
+    second: stern_roda_17
+  - first:
+      213: 8141018527689407456
+    second: stern_roda_18
+  - first:
+      213: -544987884545570241
+    second: stern_roda_19
+  - first:
+      213: -2215201853952949130
+    second: stern_roda_20
+  - first:
+      213: -2046819224878137979
+    second: stern_roda_21
+  - first:
+      213: 1621036194664581783
+    second: stern_roda_22
+  - first:
+      213: -6365768266046404491
+    second: stern_roda_23
+  - first:
+      213: 4874743293792291
+    second: stern_roda_24
+  - first:
+      213: -4266798423854115660
+    second: stern_roda_25
+  - first:
+      213: -154533826050938728
+    second: stern_roda_26
+  - first:
+      213: -712387818183053264
+    second: stern_roda_27
+  - first:
+      213: 5379113022532554287
+    second: stern_roda_28
+  - first:
+      213: -172245205936875816
+    second: stern_roda_29
+  - first:
+      213: 2995189804122935391
+    second: stern_roda_30
+  - first:
+      213: 7302102927975778289
+    second: stern_roda_31
+  - first:
+      213: 3810885407270958930
+    second: stern_roda_32
+  - first:
+      213: -4703644634880116018
+    second: stern_roda_33
+  - first:
+      213: -2351268083302603702
+    second: stern_roda_34
+  - first:
+      213: -8543013558246771356
+    second: stern_roda_35
+  - first:
+      213: -6020965489633488723
+    second: stern_roda_36
+  - first:
+      213: -3935400606559679675
+    second: stern_roda_37
+  - first:
+      213: -6791588238289778025
+    second: stern_walk_0
+  - first:
+      213: 6624248542818778283
+    second: stern_walk_1
+  - first:
+      213: -752330168841030058
+    second: stern_walk_2
+  - first:
+      213: -38413982502528351
+    second: stern_walk_3
+  - first:
+      213: 8405411206608343931
+    second: stern_walk_4
+  - first:
+      213: 3397678341567706364
+    second: stern_walk_5
+  - first:
+      213: 322547179432393411
+    second: stern_walk_6
+  - first:
+      213: -8925065672870102051
+    second: stern_walk_7
+  - first:
+      213: 6217156156438735353
+    second: stern_roda_46
+  - first:
+      213: -5798643239721030933
+    second: stern_roda_47
+  - first:
+      213: 3508603884355660955
+    second: stern_roda_48
+  - first:
+      213: 3601238445110311821
+    second: stern_roda_49
+  - first:
+      213: 7086937777483471041
+    second: stern_roda_50
+  - first:
+      213: 1875363036873821222
+    second: stern_roda_51
+  - first:
+      213: -4398160995466496580
+    second: stern_roda_52
+  - first:
+      213: -5423725252940507668
+    second: stern_roda_53
+  - first:
+      213: 3151150243775907980
+    second: stern_run_0
+  - first:
+      213: -9094054460306353484
+    second: stern_run_1
+  - first:
+      213: -2663247376404678287
+    second: stern_run_2
+  - first:
+      213: -5921920111453887641
+    second: stern_run_3
+  - first:
+      213: -450585589064852236
+    second: stern_run_4
+  - first:
+      213: -4385078226393191511
+    second: stern_run_5
+  - first:
+      213: 4099297478238253080
+    second: stern_run_6
+  - first:
+      213: -6031812443235959302
+    second: stern_run_7
+  - first:
+      213: 7327215108904489282
+    second: stern_roda_62
+  - first:
+      213: 3517709085766604023
+    second: stern_roda_63
+  - first:
+      213: -3615494291763928919
+    second: stern_roda_64
+  - first:
+      213: -1644042727660473688
+    second: stern_roda_65
+  - first:
+      213: 8012451787878713224
+    second: stern_roda_66
+  - first:
+      213: -4725536657298634282
+    second: stern_roda_67
+  - first:
+      213: -8095109866491172904
+    second: stern_roda_68
+  - first:
+      213: -5315047629583272969
+    second: stern_roda_69
+  - first:
+      213: -4246254525775559103
+    second: stern_roda_70
+  - first:
+      213: -6126910423096596990
+    second: stern_roda_71
+  - first:
+      213: -5710985817802194297
+    second: stern_roda_72
+  - first:
+      213: 4464188541685238363
+    second: stern_roda_73
+  - first:
+      213: -6545571336125160712
+    second: stern_roda_74
+  - first:
+      213: 6370947916889348913
+    second: stern_roda_75
+  - first:
+      213: -4395059932166033263
+    second: stern_roda_76
+  - first:
+      213: -8767763884505388170
+    second: stern_roda_77
+  - first:
+      213: 7939770423119769958
+    second: stern_roda_78
+  - first:
+      213: -8847479790120441070
+    second: stern_roda_79
+  - first:
+      213: 8643761438447429943
+    second: stern_roda_80
+  - first:
+      213: 5495856947109244095
+    second: stern_roda_81
+  - first:
+      213: -8183201169004551299
+    second: stern_roda_82
+  - first:
+      213: -2688415327372124707
+    second: stern_roda_83
+  - first:
+      213: -8897627142033525504
+    second: stern_roda_84
+  - first:
+      213: 2143103937090971648
+    second: stern_roda_85
+  - first:
+      213: 5338562633745265267
+    second: stern_roda_86
+  - first:
+      213: 4535460210985379099
+    second: stern_roda_87
+  - first:
+      213: -8581003746786034144
+    second: stern_roda_88
+  - first:
+      213: -8510056978821239336
+    second: stern_roda_89
+  - first:
+      213: 1224941220374815789
+    second: stern_roda_90
+  - first:
+      213: -3511201463988645528
+    second: stern_roda_91
+  - first:
+      213: -1022471037079048714
+    second: stern_roda_92
+  - first:
+      213: 3102098735057875421
+    second: stern_roda_93
+  - first:
+      213: 990816979430543688
+    second: stern_roda_94
+  - first:
+      213: -4874763866442820357
+    second: stern_roda_95
+  - first:
+      213: 3245073375645677711
+    second: stern_roda_96
+  - first:
+      213: 67558975097360915
+    second: stern_roda_97
+  - first:
+      213: 8328264453449856670
+    second: stern_roda_98
+  - first:
+      213: -5410033093196405389
+    second: stern_roda_99
+  - first:
+      213: 3271590558578837558
+    second: stern_roda_100
+  - first:
+      213: 2877680775246576995
+    second: stern_roda_101
+  - first:
+      213: 5936816602102330667
+    second: stern_roda_102
+  - first:
+      213: -1931812582054888055
+    second: stern_roda_103
+  - first:
+      213: 6141967340575764435
+    second: stern_roda_104
+  - first:
+      213: 9107683974225763259
+    second: stern_roda_105
+  - first:
+      213: 6757778414374899637
+    second: stern_roda_106
+  - first:
+      213: 6973438919447032221
+    second: stern_roda_107
+  - first:
+      213: -8333838429750352329
+    second: stern_roda_108
+  - first:
+      213: 7644088162905490310
+    second: stern_roda_109
+  - first:
+      213: 4365758673927237327
+    second: stern_roda_110
+  - first:
+      213: -779179273834102578
+    second: stern_roda_111
+  - first:
+      213: -3696240502979786995
+    second: stern_roda_112
+  - first:
+      213: 6042614201794859990
+    second: stern_roda_113
+  - first:
+      213: 7836162084243186123
+    second: stern_roda_114
+  - first:
+      213: 8333478368093617434
+    second: stern_roda_115
+  - first:
+      213: -2910695583545288859
+    second: stern_roda_116
+  - first:
+      213: 8843125650295629850
+    second: stern_roda_117
+  - first:
+      213: 1493244726256649323
+    second: stern_roda_118
+  - first:
+      213: -3957557603384170232
+    second: stern_roda_119
+  - first:
+      213: -4133302800752874554
+    second: stern_roda_120
+  - first:
+      213: -3863351820863773010
+    second: stern_roda_121
+  - first:
+      213: -6478032266523135994
+    second: stern_roda_122
+  - first:
+      213: 4992833166746430772
+    second: stern_roda_123
+  - first:
+      213: 5973677367884249960
+    second: stern_roda_124
+  - first:
+      213: -3597142919317339418
+    second: stern_roda_125
+  - first:
+      213: 5747466396311442297
+    second: stern_roda_126
+  - first:
+      213: -4895519561996937297
+    second: stern_roda_127
+  - first:
+      213: 8931396428962384535
+    second: stern_roda_128
+  - first:
+      213: 3354184198288639688
+    second: stern_roda_129
+  - first:
+      213: 8854240932050685094
+    second: stern_roda_130
+  - first:
+      213: 2328272556566266136
+    second: stern_roda_131
+  - first:
+      213: 4667159793242115648
+    second: stern_roda_132
+  - first:
+      213: 2875661353451177562
+    second: stern_roda_133
+  - first:
+      213: -4335467983422881617
+    second: stern_roda_134
+  - first:
+      213: -2965249156982709594
+    second: stern_roda_135
+  - first:
+      213: 1641738292184339488
+    second: stern_roda_136
+  - first:
+      213: -8237341773078295364
+    second: stern_roda_137
+  - first:
+      213: 4548665314791244956
+    second: stern_roda_138
+  - first:
+      213: 3302081248408492805
+    second: stern_roda_139
+  - first:
+      213: -2500644466962726078
+    second: stern_roda_140
+  - first:
+      213: 5949862735136995374
+    second: stern_roda_141
+  - first:
+      213: -3258183180022369858
+    second: stern_roda_142
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: stern_idle_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1509
+        width: 61
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed1bb693cb238220800000000000000
+      internalID: 2486879538286108138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_idle_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 1509
+        width: 61
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efbce2099b3a590c0800000000000000
+      internalID: -4569566229514236930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_idle_2
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1509
+        width: 61
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48289f5d03148ccc0800000000000000
+      internalID: -3690628216625986940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_idle_3
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1509
+        width: 61
+        height: 96
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10205cb01428d76c0800000000000000
+      internalID: -4144012866229042687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_4
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 1510
+        width: 58
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b863b29fffde5580800000000000000
+      internalID: -8836379130083448649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_5
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 1510
+        width: 73
+        height: 107
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81eeebecefdf5bdd0800000000000000
+      internalID: -2470789549710709224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_6
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 1508
+        width: 48
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5545c6e2181468e60800000000000000
+      internalID: 7964125014136738901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_7
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 1509
+        width: 50
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13e412c142cace7c0800000000000000
+      internalID: -4040665494567432655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_8
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 1513
+        width: 48
+        height: 54
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66881a86a461c6020800000000000000
+      internalID: 2336266815537252454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_9
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 1511
+        width: 50
+        height: 65
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b719c660782989860800000000000000
+      internalID: 7536935085030543739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_10
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 1505
+        width: 48
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af69b68c089c34e10800000000000000
+      internalID: 2180808199532943098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 1390
+        width: 57
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c837a2f10e3dc9be0800000000000000
+      internalID: -1469066418880613492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_12
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1389
+        width: 52
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d5c442ac4a093f40800000000000000
+      internalID: 5708605326925022681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_13
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1392
+        width: 49
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4abba6bc644dc9a80800000000000000
+      internalID: -8458652599583065180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_14
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 1390
+        width: 46
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0df93811681628e0800000000000000
+      internalID: -1718659402497917685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_15
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1389
+        width: 57
+        height: 88
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c1e9695ac4600b80800000000000000
+      internalID: -8430627682191285816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_16
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 1397
+        width: 71
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84349d9dc932f6d0800000000000000
+      internalID: -2958238449954179954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_17
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 1397
+        width: 89
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cc6a9b62c362b00800000000000000
+      internalID: 803395720553352346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_18
+      rect:
+        serializedVersion: 2
+        x: 553
+        y: 1398
+        width: 88
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ebfcccc735baf070800000000000000
+      internalID: 8141018527689407456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_19
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 1391
+        width: 81
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a05ce0860df68f0800000000000000
+      internalID: -544987884545570241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_20
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 1392
+        width: 81
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 674095586a50241e0800000000000000
+      internalID: -2215201853952949130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_21
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1391
+        width: 60
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58db2bd62cc3893e0800000000000000
+      internalID: -2046819224878137979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_22
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 1387
+        width: 42
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a880794d31f7610800000000000000
+      internalID: 1621036194664581783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_23
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1275
+        width: 46
+        height: 102
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57889d34d7f38a7a0800000000000000
+      internalID: -6365768266046404491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_24
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 1276
+        width: 40
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320d56e9d81511000800000000000000
+      internalID: 4874743293792291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_25
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 1275
+        width: 33
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b49af1a07949c4c0800000000000000
+      internalID: -4266798423854115660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_26
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 1275
+        width: 33
+        height: 98
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898a370dd4cfaddf0800000000000000
+      internalID: -154533826050938728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_27
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1274
+        width: 33
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03032e2cd071d16f0800000000000000
+      internalID: -712387818183053264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_28
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 1276
+        width: 33
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e0bb25bc276aa40800000000000000
+      internalID: 5379113022532554287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_29
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1276
+        width: 33
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d65ed5d5ef0c9df0800000000000000
+      internalID: -172245205936875816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_30
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1272
+        width: 40
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f509e95f14d019920800000000000000
+      internalID: 2995189804122935391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_31
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 1271
+        width: 39
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f7065fbce7465560800000000000000
+      internalID: 7302102927975778289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_32
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 1271
+        width: 35
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257fa14461cf2e430800000000000000
+      internalID: 3810885407270958930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_33
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 1273
+        width: 35
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca7c44202c49beb0800000000000000
+      internalID: -4703644634880116018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_34
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 1272
+        width: 35
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a44e803c22e9e5fd0800000000000000
+      internalID: -2351268083302603702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_35
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1273
+        width: 35
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465fa5d7e6e117980800000000000000
+      internalID: -8543013558246771356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_36
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 1272
+        width: 38
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da09281a9cb317ca0800000000000000
+      internalID: -6020965489633488723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_37
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 1271
+        width: 50
+        height: 101
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b472dbff5a269c0800000000000000
+      internalID: -3935400606559679675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1168
+        width: 38
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a440c0b7e6fb1a0800000000000000
+      internalID: -6791588238289778025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_1
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1169
+        width: 35
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bacbc92f3fe0eeb50800000000000000
+      internalID: 6624248542818778283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 1172
+        width: 37
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656bb6c82bf2f85f0800000000000000
+      internalID: -752330168841030058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1171
+        width: 43
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa578abfa6877ff0800000000000000
+      internalID: -38413982502528351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_4
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 1168
+        width: 44
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b735af865f406a470800000000000000
+      internalID: 8405411206608343931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_5
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 1170
+        width: 43
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf47e22337af62f20800000000000000
+      internalID: 3397678341567706364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_6
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 1172
+        width: 37
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ca3f5563fae97400800000000000000
+      internalID: 322547179432393411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_walk_7
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 1175
+        width: 34
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb7b8bbe0cc32480800000000000000
+      internalID: -8925065672870102051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_46
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 1172
+        width: 46
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9e9a99596c74650800000000000000
+      internalID: 6217156156438735353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_47
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 1174
+        width: 45
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea253d22b4178fa0800000000000000
+      internalID: -5798643239721030933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_48
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1172
+        width: 45
+        height: 84
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c2398b4a011b030800000000000000
+      internalID: 3508603884355660955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_49
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 1173
+        width: 48
+        height: 84
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8bb740294b2af130800000000000000
+      internalID: 3601238445110311821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_50
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 1173
+        width: 49
+        height: 84
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8d2344c5cd95260800000000000000
+      internalID: 7086937777483471041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_51
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 1173
+        width: 48
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c03c5feb0a60a10800000000000000
+      internalID: 1875363036873821222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_52
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 1174
+        width: 45
+        height: 82
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb5bd3880e796f2c0800000000000000
+      internalID: -4398160995466496580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_53
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 1174
+        width: 43
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce55a2b5e9e0bb4b0800000000000000
+      internalID: -5423725252940507668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 1063
+        width: 47
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c88062283722bbb20800000000000000
+      internalID: 3151150243775907980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_1
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1062
+        width: 59
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b2126596ad6bc180800000000000000
+      internalID: -9094054460306353484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_2
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1067
+        width: 56
+        height: 69
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17978642f9e3a0bd0800000000000000
+      internalID: -2663247376404678287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_3
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1061
+        width: 47
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763ac88c80d11dda0800000000000000
+      internalID: -5921920111453887641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_4
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 1064
+        width: 45
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fc11e64bc23fb9f0800000000000000
+      internalID: -450585589064852236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_5
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 1064
+        width: 60
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aba88316921523c0800000000000000
+      internalID: -4385078226393191511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_6
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 1066
+        width: 58
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810bb036651a3e830800000000000000
+      internalID: 4099297478238253080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_run_7
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 1064
+        width: 46
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afdb3217a82ba4ca0800000000000000
+      internalID: -6031812443235959302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_62
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 1078
+        width: 100
+        height: 57
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241902ff15f7fa560800000000000000
+      internalID: 7327215108904489282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_63
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 932
+        width: 59
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f45840a6c961d030800000000000000
+      internalID: 3517709085766604023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_64
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 931
+        width: 59
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a065fbe81f23ddc0800000000000000
+      internalID: -3615494291763928919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_65
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 931
+        width: 51
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a2bb3689df2f29e0800000000000000
+      internalID: -1644042727660473688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_66
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 936
+        width: 65
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88744740372f13f60800000000000000
+      internalID: 8012451787878713224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_67
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 936
+        width: 56
+        height: 97
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9c0a872758b6eb0800000000000000
+      internalID: -4725536657298634282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_68
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 937
+        width: 92
+        height: 78
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d7a806577468af80800000000000000
+      internalID: -8095109866491172904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_69
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 938
+        width: 48
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3386a57582d36b0800000000000000
+      internalID: -5315047629583272969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_70
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 939
+        width: 61
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146c045a1064215c0800000000000000
+      internalID: -4246254525775559103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_71
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 936
+        width: 47
+        height: 110
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20660b49e67d8faa0800000000000000
+      internalID: -6126910423096596990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_72
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 939
+        width: 77
+        height: 102
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7824b9428a08eb0b0800000000000000
+      internalID: -5710985817802194297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_73
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 939
+        width: 70
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a848d83dbf3fd30800000000000000
+      internalID: 4464188541685238363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_74
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 936
+        width: 76
+        height: 92
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2e74abc857925a0800000000000000
+      internalID: -6545571336125160712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_75
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 936
+        width: 39
+        height: 110
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13b54bc20672a6850800000000000000
+      internalID: 6370947916889348913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_76
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 792
+        width: 57
+        height: 118
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190f0b8174c9103c0800000000000000
+      internalID: -4395059932166033263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_77
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 793
+        width: 60
+        height: 109
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67bae8d5335a25680800000000000000
+      internalID: -8767763884505388170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_78
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 791
+        width: 61
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661f434122bbf2e60800000000000000
+      internalID: 7939770423119769958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_79
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 795
+        width: 91
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b6c60c100773580800000000000000
+      internalID: -8847479790120441070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_80
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 793
+        width: 76
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 739e0ed4b3fc4f770800000000000000
+      internalID: 8643761438447429943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_81
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 793
+        width: 88
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbc2fcc66c4354c40800000000000000
+      internalID: 5495856947109244095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_82
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 680
+        width: 57
+        height: 70
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d732ceba4ed6f6e80800000000000000
+      internalID: -8183201169004551299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_83
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 680
+        width: 63
+        height: 73
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddd44be084d0bad0800000000000000
+      internalID: -2688415327372124707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_84
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 680
+        width: 75
+        height: 91
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005b7378147458480800000000000000
+      internalID: -8897627142033525504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_85
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 680
+        width: 75
+        height: 91
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0086c071da5ddbd10800000000000000
+      internalID: 2143103937090971648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_86
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 680
+        width: 67
+        height: 90
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3727f833e62661a40800000000000000
+      internalID: 5338562633745265267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_87
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 680
+        width: 67
+        height: 91
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15a3b0380131fe30800000000000000
+      internalID: 4535460210985379099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_88
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 680
+        width: 79
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02eb5807e862ae880800000000000000
+      internalID: -8581003746786034144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_89
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 732
+        width: 26
+        height: 27
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dda607144436e980800000000000000
+      internalID: -8510056978821239336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_90
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 680
+        width: 79
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24ac27cc8ddff010800000000000000
+      internalID: 1224941220374815789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_91
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 680
+        width: 63
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86110242fd4b54fc0800000000000000
+      internalID: -3511201463988645528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_92
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 555
+        width: 66
+        height: 77
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd27c152047fc1f0800000000000000
+      internalID: -1022471037079048714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_93
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 556
+        width: 64
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd130592d5edc0b20800000000000000
+      internalID: 3102098735057875421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_94
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 554
+        width: 76
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84112601bc610cd00800000000000000
+      internalID: 990816979430543688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_95
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 556
+        width: 78
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf414c0571c595cb0800000000000000
+      internalID: -4874763866442820357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_96
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 554
+        width: 74
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f883071ca01d80d20800000000000000
+      internalID: 3245073375645677711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_97
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 555
+        width: 80
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3125118a78400f000800000000000000
+      internalID: 67558975097360915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_98
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 544
+        width: 75
+        height: 111
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9634673560f39370800000000000000
+      internalID: 8328264453449856670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_99
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 540
+        width: 99
+        height: 117
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375abe8b093bbe4b0800000000000000
+      internalID: -5410033093196405389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_100
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 554
+        width: 95
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6380d968746076d20800000000000000
+      internalID: 3271590558578837558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_101
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 555
+        width: 63
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36dfa812b639fe720800000000000000
+      internalID: 2877680775246576995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_102
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 435
+        width: 63
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2573f8be3fc36250800000000000000
+      internalID: 5936816602102330667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_103
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 437
+        width: 57
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98dfcf911b2d035e0800000000000000
+      internalID: -1931812582054888055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_104
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 437
+        width: 57
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dfa11531c6ac3550800000000000000
+      internalID: 6141967340575764435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_105
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 437
+        width: 58
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbb9e3ae15ef46e70800000000000000
+      internalID: 9107683974225763259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_106
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 435
+        width: 58
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf4e93e9a378cd50800000000000000
+      internalID: 6757778414374899637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_107
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 433
+        width: 71
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91368810c1a6c060800000000000000
+      internalID: 6973438919447032221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_108
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 431
+        width: 71
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7362b3b4a12485c80800000000000000
+      internalID: -8333838429750352329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_109
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 435
+        width: 71
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68300cd1fa1451a60800000000000000
+      internalID: 7644088162905490310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_110
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 436
+        width: 64
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce6386126a469c30800000000000000
+      internalID: 4365758673927237327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_111
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 336
+        width: 57
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec085c6249ccf25f0800000000000000
+      internalID: -779179273834102578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_112
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 335
+        width: 65
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d078a7798d054bcc0800000000000000
+      internalID: -3696240502979786995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_113
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 338
+        width: 62
+        height: 71
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d396b4f99dabd350800000000000000
+      internalID: 6042614201794859990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_114
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 336
+        width: 63
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc123b9d5e3afbc60800000000000000
+      internalID: 7836162084243186123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_115
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 336
+        width: 89
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1d3f915c6676a370800000000000000
+      internalID: 8333478368093617434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_116
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 335
+        width: 63
+        height: 72
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5671c7dc9c12b97d0800000000000000
+      internalID: -2910695583545288859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_117
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 194
+        width: 30
+        height: 99
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1824021de719ba70800000000000000
+      internalID: 8843125650295629850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_118
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 191
+        width: 30
+        height: 113
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64c04fba2219b410800000000000000
+      internalID: 1493244726256649323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_119
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 192
+        width: 30
+        height: 114
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 809e328e35ee319c0800000000000000
+      internalID: -3957557603384170232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_120
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 195
+        width: 52
+        height: 107
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cb6ffb700f83a6c0800000000000000
+      internalID: -4133302800752874554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_121
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 194
+        width: 52
+        height: 107
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea66e03ecfd926ac0800000000000000
+      internalID: -3863351820863773010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_122
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 200
+        width: 51
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 600be56c9f76916a0800000000000000
+      internalID: -6478032266523135994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_123
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 202
+        width: 52
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43da5bedf4b1a4540800000000000000
+      internalID: 4992833166746430772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_124
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 197
+        width: 35
+        height: 106
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86bf78b8ae3c6e250800000000000000
+      internalID: 5973677367884249960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_125
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 193
+        width: 54
+        height: 112
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e247c7c291641ec0800000000000000
+      internalID: -3597142919317339418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_126
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 197
+        width: 37
+        height: 109
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97353ae6c3a13cf40800000000000000
+      internalID: 5747466396311442297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_127
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 195
+        width: 36
+        height: 103
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7523c55ee9f0cb0800000000000000
+      internalID: -4895519561996937297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_128
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 180
+        width: 58
+        height: 100
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ace784bb1b2fb70800000000000000
+      internalID: 8931396428962384535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_129
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 179
+        width: 56
+        height: 105
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c60932d1c47c8e20800000000000000
+      internalID: 3354184198288639688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_130
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 181
+        width: 53
+        height: 95
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6acca96473590ea70800000000000000
+      internalID: 8854240932050685094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_131
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 181
+        width: 54
+        height: 81
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8114c62fd8faf4020800000000000000
+      internalID: 2328272556566266136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_132
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 181
+        width: 60
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04e8e22ba1515c040800000000000000
+      internalID: 4667159793242115648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_133
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 182
+        width: 56
+        height: 75
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a56c6cad3c668e720800000000000000
+      internalID: 2875661353451177562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_134
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 50
+        width: 60
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa00001e6d255d3c0800000000000000
+      internalID: -4335467983422881617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_135
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 50
+        width: 96
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a2e48f2a9159d6d0800000000000000
+      internalID: -2965249156982709594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_136
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 50
+        width: 99
+        height: 93
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024ddc74740a8c610800000000000000
+      internalID: 1641738292184339488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_137
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 49
+        width: 90
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbc8e2afc451fad80800000000000000
+      internalID: -8237341773078295364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_138
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 48
+        width: 55
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94c542010b102f30800000000000000
+      internalID: 4548665314791244956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_139
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 48
+        width: 44
+        height: 131
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50bddd6766953dd20800000000000000
+      internalID: 3302081248408492805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_140
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 46
+        width: 44
+        height: 113
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24304253b1deb4dd0800000000000000
+      internalID: -2500644466962726078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_141
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 46
+        width: 44
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e28bc2642a8229250800000000000000
+      internalID: 5949862735136995374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stern_roda_142
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 45
+        width: 49
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb13d9d09ab98c2d0800000000000000
+      internalID: -3258183180022369858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9b569a614942f97488bfb9c5761d3fc6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
