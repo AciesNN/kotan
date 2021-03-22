@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace UI
 {
-    public enum PlayerInputAction
+    public enum InputAction
     {
         None,
         Action,

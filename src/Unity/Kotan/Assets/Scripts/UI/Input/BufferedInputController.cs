@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class PlayerInputController : MonoBehaviour, IPlayerInputController
+    public class BufferedInputController : MonoBehaviour, IBufferedInputController
     {
         #region Events
         public event Action<Vector2Int> OnJoystickSetPosition;
@@ -33,13 +33,13 @@ namespace UI
 
         float lastActionChange;
         bool clearStates;
-        PlayerInputAction[] actions;
-        PlayerInputAction[] curActions = new PlayerInputAction[MaxStates]; //TODO all logic now is about 2 max actions (PlayerInputController.CheckActions())
+        InputAction[] actions;
+        InputAction[] curActions = new InputAction[MaxStates]; //TODO all logic now is about 2 max actions (PlayerInputController.CheckActions())
 
         #region MonoBehaviour
         private void Awake()
         {
-            actions = Enum.GetValues(typeof(PlayerInputAction)).Cast<PlayerInputAction>().Where(e => e != PlayerInputAction.None).ToArray();
+            actions = Enum.GetValues(typeof(InputAction)).Cast<InputAction>().Where(e => e != InputAction.None).ToArray();
         }
 
         void Update()
@@ -52,7 +52,7 @@ namespace UI
         #region IPlayerInputController interface
         //public bool GetJoystickActionState(InputLogAction action) => Input.GetButtonDown(action.ToString());
 
-        public PlayerInputAction[] GetJoystickActions() => curActions;
+        public InputAction[] GetJoystickActions() => curActions;
 
         public Vector2Int GetJoystickPositionInt() => new Vector2Int(
                 SignOrZero(Input.GetAxisRaw(HorizontalAxis)),
@@ -66,8 +66,8 @@ namespace UI
         {
             if (clearStates)
             {
-                curActions[0] = PlayerInputAction.None;
-                curActions[1] = PlayerInputAction.None;
+                curActions[0] = InputAction.None;
+                curActions[1] = InputAction.None;
                 clearStates = false;
             }
 
@@ -75,7 +75,7 @@ namespace UI
             {
                 if (Input.GetButtonDown($"{action}{AxisPostfix}"))
                 {
-                    if (curActions[0] != PlayerInputAction.None)
+                    if (curActions[0] != InputAction.None)
                     {
                         curActions[1] = action;
                         OnJoystickPressAction?.Invoke();
@@ -90,7 +90,7 @@ namespace UI
                 }
             }
 
-            if (curActions[0] != PlayerInputAction.None && curActions[1] == PlayerInputAction.None)
+            if (curActions[0] != InputAction.None && curActions[1] == InputAction.None)
             {
                 var timeSinceLastChanged = Time.time - lastActionChange;
                 if (timeSinceLastChanged > settings.ActionTimeout)

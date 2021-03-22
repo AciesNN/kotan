@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public interface IPlayerInputController
+    public interface IBufferedInputController
     {
         event Action<Vector2Int> OnJoystickSetPosition;
         event Action<Vector2Int> OnJoystickPressPosition;
@@ -15,14 +15,14 @@ namespace UI
         Vector2Int GetJoystickPositionInt();
         bool GetJoystickDirIsPressed { get; }
 
-        PlayerInputAction[] GetJoystickActions();
+        InputAction[] GetJoystickActions();
     }
 
     public interface IInputLoggerModelEntry
     {
         Vector2Int Dir { get; }
         bool IsPressed { get; }
-        List<PlayerInputAction> States { get; }
+        List<InputAction> States { get; }
 
         event Action OnChanged;
 
@@ -36,10 +36,10 @@ namespace UI
         public IInputLoggerModelEntry LastEntry => lastEntry;
         private IInputLoggerModelEntry lastEntry;
 
-        private IPlayerInputController controller;
+        private IBufferedInputController controller;
 
         #region Public
-        public InputLoggerModel(IPlayerInputController controller)
+        public InputLoggerModel(IBufferedInputController controller)
         {
             this.controller = controller;
 

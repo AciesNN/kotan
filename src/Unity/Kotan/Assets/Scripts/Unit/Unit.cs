@@ -1,42 +1,49 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unit
 {
-    public class Unit : MonoBehaviour, IUnit
+    public class Unit : MonoBehaviour
     {
-        [SerializeField] Animator animator;
         [SerializeField] UnitSettings settings;
+        [SerializeField] UnitPhysics unitPhysics;
+        [SerializeField] UnitAnimator unitAnimator;
 
-        Rigidbody rb;
+        public UnitState UnitState { get; private set; }
+
 
         #region MonoBehaviour
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            SetState(UnitState.Idle);
         }
         #endregion
 
-        #region IUnit
-        public void Move(Vector2Int dir, UnitMoveType type)
+        #region Interface
+        public void SetState(UnitState newState)
         {
-            var speed = type == UnitMoveType.Walk ? settings.HorizontalSpeed : settings.HorizontalRunSpeed;
-            rb.velocity = new Vector3(speed * dir.x, speed * dir.y);
-            animator.SetBool("Walk", type == UnitMoveType.Walk);
-            animator.SetBool("Run", type == UnitMoveType.Run);
-            if (dir.x != 0 && dir.x * animator.transform.localScale.x < 0)
-            {
-                animator.transform.localScale = new Vector3(dir.x, 1, 1);
-            }
+            SetState(new UnitStateChangeArg(newState));
+        }   
+        
+        public void SetState(UnitStateChangeArg newUnitStateChange)
+        {
+            UnitState = newUnitStateChange.NewState;
+            unitAnimator.SetState(UnitState, newUnitStateChange.Args);
+            unitPhysics.SetState(UnitState, newUnitStateChange.Args);
+        }
+
+        public void Move(Vector2Int dir)
+        {
         }
 
         public void Stop()
         {
-            animator.SetBool("Walk", false);
-            animator.SetBool("Run", false);
-            rb.velocity = Vector2.zero;
         }
+        #endregion
+
+        #region Impl
         #endregion
     }
 }

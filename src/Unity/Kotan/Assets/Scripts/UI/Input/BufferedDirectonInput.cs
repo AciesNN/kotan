@@ -1,36 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public enum UnitMoveType
-{
-    Walk,
-    Run,
-    Dash,
-}
-
-public interface IUnit
-{
-    void Move(Vector2Int dir, UnitMoveType type);
-    void Stop();
-}
 
 namespace UI
 {
-    public class PlayerInputManager : IDisposable
+    public class BufferedDirectonInput : IDisposable
     {
-        private IPlayerInputController controller;
-        private IUnit unit;
+        private IBufferedInputController controller;
 
         private Vector2Int lastPreRunDir;
         private Vector2Int curDir;
 
         #region Life circle
-        public PlayerInputManager(IPlayerInputController controller, IUnit unit)
+        public BufferedDirectonInput(IBufferedInputController controller)
         {
             this.controller = controller;
-            this.unit = unit;
 
             Subscribe();
         }
@@ -47,8 +30,6 @@ namespace UI
             controller.OnJoystickSetPosition += Controller_OnJoystickSetPosition;
             controller.OnJoystickNeitralPosition += Controller_OnJoystickNeitralPosition;
             controller.OnJoystickPressPosition += Controller_OnJoystickPressPosition;
-
-            controller.OnJoystickPressAction += Controller_OnJoystickPressAction;
         }
 
         private void Unsubscribe()
@@ -56,31 +37,41 @@ namespace UI
             controller.OnJoystickSetPosition -= Controller_OnJoystickSetPosition;
             controller.OnJoystickNeitralPosition -= Controller_OnJoystickNeitralPosition; 
             controller.OnJoystickPressPosition -= Controller_OnJoystickPressPosition;
-
-            controller.OnJoystickPressAction -= Controller_OnJoystickPressAction;
         }
 
         private void Controller_OnJoystickSetPosition(Vector2Int dir)
         {
             if (dir.Equals(Vector2Int.zero))
             {
-                unit.Stop();
+                Stop();
             }
             else
             {
                 if (lastPreRunDir.Equals(dir))
                 {
                     lastPreRunDir = dir;
-                    unit.Move(dir, UnitMoveType.Run);
+                    Run(dir);
                 }
                 else
                 {
                     lastPreRunDir = dir;
-                    unit.Move(dir, UnitMoveType.Walk);
+                    Move(dir);
                 }
             }
 
             curDir = dir;
+        }
+
+        private void Run(Vector2Int dir)
+        {
+        }
+
+        private void Move(Vector2Int dir)
+        {
+        }
+
+        private void Stop()
+        {
         }
 
         private void Controller_OnJoystickPressPosition(Vector2Int dir)
@@ -93,10 +84,6 @@ namespace UI
         {
             lastPreRunDir = Vector2Int.zero;
             //should be already stopped
-        }
-
-        private void Controller_OnJoystickPressAction()
-        {
         }
         #endregion
     }

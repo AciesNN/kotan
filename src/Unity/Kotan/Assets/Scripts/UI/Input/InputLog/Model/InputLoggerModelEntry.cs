@@ -17,14 +17,14 @@ namespace UI
         public Vector2Int Dir => dir;
         private readonly Vector2Int dir;
 
-        public List<PlayerInputAction> States => states; //TODO array?
-        private readonly List<PlayerInputAction> states;
+        public List<InputAction> States => states; //TODO array?
+        private readonly List<InputAction> states;
 
-        public InputLoggerModelEntry(Vector2Int dir, bool isPressed, PlayerInputAction[] states = null)
+        public InputLoggerModelEntry(Vector2Int dir, bool isPressed, InputAction[] states = null)
         {
             this.dir = dir;
             this.isPressed = isPressed;
-            this.states = states.Where(e => e != PlayerInputAction.None).OrderBy(e => e).ToList();
+            this.states = states.Where(e => e != InputAction.None).OrderBy(e => e).ToList();
         }
 
         public void SetPressed()

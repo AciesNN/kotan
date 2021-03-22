@@ -11,7 +11,7 @@ namespace UI
         [Serializable]
         public class InputLoggerEntryElementActionSpriteSetting
         {
-            [SerializeField] public PlayerInputAction action;
+            [SerializeField] public InputAction action;
             [SerializeField] public Sprite sprite;
         }
 
@@ -23,7 +23,7 @@ namespace UI
         [SerializeField] Image arrow;
         [SerializeField] Image actionPrefab;
 
-        [SerializeField] Dictionary<PlayerInputAction, Sprite> actionsDict = new Dictionary<PlayerInputAction, Sprite>();
+        [SerializeField] Dictionary<InputAction, Sprite> actionsDict = new Dictionary<InputAction, Sprite>();
         List<Image> actions = new List<Image>();
 
         IInputLoggerModelEntry data;
