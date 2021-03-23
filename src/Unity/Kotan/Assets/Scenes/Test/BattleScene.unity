@@ -214,11 +214,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227359451}
-  - component: {fileID: 227359450}
-  - component: {fileID: 227359449}
   - component: {fileID: 227359448}
+  - component: {fileID: 227359449}
   m_Layer: 0
-  m_Name: InputController1
+  m_Name: InputController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,31 +246,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 227359447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: c40bc670a4306204f8092a79048afee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &227359450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227359447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  unit: {fileID: 1347921125}
+  bufferedInputController: {fileID: 227359448}
 --- !u!4 &227359451
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,7 +1185,6 @@ GameObject:
   - component: {fileID: 1347921124}
   - component: {fileID: 1347921128}
   - component: {fileID: 1347921127}
-  - component: {fileID: 1347921126}
   m_Layer: 9
   m_Name: Hero
   m_TagString: Player
@@ -1260,20 +1238,6 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 52b6db879fbf51b4bb8623c588ad1de1, type: 2}
   unitPhysics: {fileID: 1347921127}
   unitAnimator: {fileID: 1347921128}
---- !u!114 &1347921126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347921122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40bc670a4306204f8092a79048afee1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unit: {fileID: 1347921125}
-  bufferedInputController: {fileID: 227359448}
 --- !u!114 &1347921127
 MonoBehaviour:
   m_ObjectHideFlags: 0

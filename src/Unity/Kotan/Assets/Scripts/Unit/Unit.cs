@@ -13,7 +13,6 @@ namespace Unit
 
         public UnitState UnitState { get; private set; }
 
-
         #region MonoBehaviour
         private void Awake()
         {
@@ -24,14 +23,16 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            SetState(new UnitStateChangeArg(newState));
-        }   
+            SetState(new UnitStateChangeArg() {
+                NewState = newState,
+            });
+        }
         
         public void SetState(UnitStateChangeArg newUnitStateChange)
         {
+            unitAnimator.SetState(newUnitStateChange, changeAnim: (UnitState != newUnitStateChange.NewState || newUnitStateChange.ReplayAnimation));
+            unitPhysics.SetState(newUnitStateChange);
             UnitState = newUnitStateChange.NewState;
-            unitAnimator.SetState(UnitState, newUnitStateChange.Args);
-            unitPhysics.SetState(UnitState, newUnitStateChange.Args);
         }
 
         public void Move(Vector2Int dir)

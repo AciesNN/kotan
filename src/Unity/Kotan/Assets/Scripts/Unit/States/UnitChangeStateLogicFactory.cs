@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Unit
@@ -11,7 +12,10 @@ namespace Unit
             new List<UnitStateChangeModel>(){
                 new UnitStateIdle(),
                 new UnitStateWalk(),
+                new UnitStateRun(),
+                new UnitStateDash(),
             }.ForEach(item => items[item.State] = item);
+            items[UnitState.None] = null;
         }
 
         public UnitStateChangeModel GetModel(UnitState unitState)

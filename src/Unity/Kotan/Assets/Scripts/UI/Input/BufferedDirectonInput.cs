@@ -5,9 +5,11 @@ namespace UI
 {
     public class BufferedDirectonInput : IDisposable
     {
+        public event Action<Vector2Int, bool> SetDir;
+
         private IBufferedInputController controller;
 
-        private Vector2Int lastPreRunDir;
+        private Vector2Int lastPreForceDir;
         private Vector2Int curDir;
 
         #region Life circle
@@ -47,14 +49,14 @@ namespace UI
             }
             else
             {
-                if (lastPreRunDir.Equals(dir))
+                if (lastPreForceDir.Equals(dir))
                 {
-                    lastPreRunDir = dir;
-                    Run(dir);
+                    lastPreForceDir = dir;
+                    Move(dir, forceMove: true);
                 }
                 else
                 {
-                    lastPreRunDir = dir;
+                    lastPreForceDir = dir;
                     Move(dir);
                 }
             }
@@ -62,27 +64,25 @@ namespace UI
             curDir = dir;
         }
 
-        private void Run(Vector2Int dir)
+        private void Move(Vector2Int dir, bool forceMove = false)
         {
-        }
-
-        private void Move(Vector2Int dir)
-        {
+            SetDir?.Invoke(dir, forceMove);
         }
 
         private void Stop()
         {
+            SetDir?.Invoke(Vector2Int.zero, false);
         }
 
         private void Controller_OnJoystickPressPosition(Vector2Int dir)
         {
-            lastPreRunDir = Vector2Int.zero;
+            lastPreForceDir = Vector2Int.zero;
             //should already move
         }
 
         private void Controller_OnJoystickNeitralPosition()
         {
-            lastPreRunDir = Vector2Int.zero;
+            lastPreForceDir = Vector2Int.zero;
             //should be already stopped
         }
         #endregion

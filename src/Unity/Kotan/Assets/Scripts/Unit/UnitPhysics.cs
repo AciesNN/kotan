@@ -8,32 +8,41 @@ namespace Unit
     public class UnitPhysics : MonoBehaviour
     {
         Rigidbody rb;
+        Rigidbody RB {
+            get {
+                if (null == rb)
+                    rb = GetComponent<Rigidbody>();
+                return rb;
+            }
+        }
+
+        Dictionary<UnitState, float> speeds = new Dictionary<UnitState, float>() {
+            {UnitState.Idle, 0},
+            {UnitState.Walk, 2},
+            {UnitState.Run, 3},
+            {UnitState.Dash, 2},
+        };
 
         #region MonoBehaviour
-        private void Awake()
-        {
-            rb = GetComponent<Rigidbody>();
-        }
         #endregion
 
         #region Intefrace
-        public void SetState(UnitState state, object[] stateArgs)
+        public void SetState(UnitStateChangeArg newState)
         {
-            switch (state) {
-                case UnitState.Idle:
-                    rb.velocity = Vector3.zero;
-                    break;
-                case UnitState.Walk:
-                    Move((Vector2Int)stateArgs[0], 2);
-                    break;
-            }
+            var newSpeed = GetSpeed(newState.NewState);
+            SetMove(newState.Dir, newSpeed);
         }
         #endregion
 
         #region Impl
-        private void Move(Vector2Int dir, float speed)
+        private float GetSpeed(UnitState state)
         {
-            rb.AddForce(new Vector2(dir.x, dir.y) * speed, ForceMode.VelocityChange);
+            return speeds.ContainsKey(state) ? speeds[state] : 0;
+        }
+
+        private void SetMove(Vector2Int dir, float speed)
+        {
+            RB.velocity = new Vector2(dir.x, dir.y) * speed;
         }
         #endregion
     }
