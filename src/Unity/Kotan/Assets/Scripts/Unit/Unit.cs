@@ -7,6 +7,8 @@ namespace Unit
 {
     public class Unit : MonoBehaviour
     {
+        public event Action OnAnimationComplete;
+
         [SerializeField] UnitSettings settings;
         [SerializeField] UnitPhysics unitPhysics;
         [SerializeField] UnitAnimator unitAnimator;
@@ -47,12 +49,9 @@ namespace Unit
             UnitState = newState.State;
         }
 
-        public void Move(Vector2Int dir)
+        public void AnimationComplete()
         {
-        }
-
-        public void Stop()
-        {
+            OnAnimationComplete?.Invoke();
         }
         #endregion
 

@@ -55,10 +55,10 @@ TextureImporter:
     second: stern_roda_16
   - first:
       213: 803395720553352346
-    second: stern_roda_17
+    second: stern_lay_0
   - first:
       213: 8141018527689407456
-    second: stern_roda_18
+    second: stern_lay_1
   - first:
       213: -544987884545570241
     second: stern_roda_19
@@ -877,7 +877,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_17
+      name: stern_lay_0
       rect:
         serializedVersion: 2
         x: 456
@@ -898,7 +898,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_18
+      name: stern_lay_1
       rect:
         serializedVersion: 2
         x: 553

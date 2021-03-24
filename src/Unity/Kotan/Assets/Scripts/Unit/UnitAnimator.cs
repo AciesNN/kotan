@@ -28,5 +28,9 @@ namespace Unit
                 animator.transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
             }
         }
+
+        public void AnimationComplete()
+        {
+        }
     }
 }

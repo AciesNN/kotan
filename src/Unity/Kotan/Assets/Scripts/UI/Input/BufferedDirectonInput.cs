@@ -11,6 +11,10 @@ namespace UI
 
         private Vector2Int lastPreForceDir;
         private Vector2Int curDir;
+        private bool currentForce;
+
+        public Vector2Int CurrentDir => curDir;
+        public bool CurrentForce => currentForce;
 
         #region Life circle
         public BufferedDirectonInput(IBufferedInputController controller)
@@ -66,12 +70,14 @@ namespace UI
 
         private void Move(Vector2Int dir, bool forceMove = false)
         {
-            SetDir?.Invoke(dir, forceMove);
+            currentForce = forceMove;
+            SetDir?.Invoke(dir, currentForce);
         }
 
         private void Stop()
         {
-            SetDir?.Invoke(Vector2Int.zero, false);
+            currentForce = false;
+            SetDir?.Invoke(Vector2Int.zero, currentForce);
         }
 
         private void Controller_OnJoystickPressPosition(Vector2Int dir)
