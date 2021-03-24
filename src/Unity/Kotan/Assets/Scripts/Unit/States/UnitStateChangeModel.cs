@@ -3,30 +3,20 @@ using UnityEngine;
 
 namespace Unit
 {
-    #region Args
-    public class UnitStateChangeArg
-    {
-        public UnitState NewState;
-        public bool ChangeDir = true;
-        public Vector2Int Dir;
-        public bool ReplayAnimation;
-    }
-    #endregion
-
     public abstract class UnitStateChangeModel
     {
         public abstract UnitState State { get; }
 
         protected virtual List<UnitStateChangePositionLogic> changeDirectionStrategies { get; }
 
-        public UnitStateChangeArg ChangeDirection(Vector2Int dir, bool run = false)
+        public UnitStateChangeArg ChangeDirection(Unit unit, Vector2Int dir, bool run = false)
         {
             if (changeDirectionStrategies == null)
                 return null;
 
             foreach (var strategy in changeDirectionStrategies)
             {
-                var res = strategy.Do(dir, run);
+                var res = strategy.Do(unit.CurDir, dir, run);
                 if (res != null) {
                     res.Dir = dir;
                     return res;
@@ -50,17 +40,31 @@ namespace Unit
         };
     }
 
-    public class UnitStateWalk : UnitStateIdle
+    public class UnitStateWalk : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Walk;
+
+        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
+            new UnitStateChangePositionLogic_Idle(),
+            new UnitStateChangePositionLogic_Run(),
+            new UnitStateChangePositionLogic_Dash(),
+            new UnitStateChangePositionLogic_Walk(),
+        };
     }
 
-    public class UnitStateRun: UnitStateIdle
+    public class UnitStateRun: UnitStateChangeModel
     {
         public override UnitState State => UnitState.Run;
+
+        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
+            new UnitStateChangePositionLogic_Idle(),
+            new UnitStateChangePositionLogic_ContinueRun(),
+            new UnitStateChangePositionLogic_Dash(),
+            new UnitStateChangePositionLogic_Walk(),
+        };
     }
 
-    public class UnitStateDash: UnitStateIdle
+    public class UnitStateDash : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Dash;
     }

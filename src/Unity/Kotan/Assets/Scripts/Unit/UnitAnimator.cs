@@ -6,17 +6,15 @@ namespace Unit
     {
         [SerializeField] Animator animator;
 
-        private Vector2Int curDir;
-
         public void SetState(UnitStateChangeArg newState, bool changeAnim)
         {
             if (changeAnim) {
-                SetAnim(newState.NewState.ToString());
+                SetAnim(newState.State.ToString());
             }
 
-            if (newState.ChangeDir) {
+            /*if (newState.ChangeDir) {
                 SetDir(newState.Dir);
-            }
+            }*/
         }
 
         private void SetAnim(string animName)
@@ -24,9 +22,8 @@ namespace Unit
             animator.SetTrigger(animName);
         }
 
-        private void SetDir(Vector2Int dir)
+        public void SetDir(Vector2Int dir)
         {
-            curDir = dir;
             if (dir.x != 0) {
                 animator.transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
             }

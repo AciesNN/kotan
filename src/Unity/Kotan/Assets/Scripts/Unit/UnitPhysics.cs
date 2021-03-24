@@ -29,7 +29,7 @@ namespace Unit
         #region Intefrace
         public void SetState(UnitStateChangeArg newState)
         {
-            var newSpeed = GetSpeed(newState.NewState);
+            var newSpeed = GetSpeed(newState.State);
             SetMove(newState.Dir, newSpeed);
         }
         #endregion

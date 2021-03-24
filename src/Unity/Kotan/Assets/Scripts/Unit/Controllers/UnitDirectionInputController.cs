@@ -30,7 +30,7 @@ namespace Unit
 
         private void SetUnitDirection(Vector2Int dir, bool run)
         {
-            var newState = CurrentStateModel?.ChangeDirection(dir, run);
+            var newState = CurrentStateModel?.ChangeDirection(unit, dir, run);
             if (newState != null) {
                 unit.SetState(newState);
             }
