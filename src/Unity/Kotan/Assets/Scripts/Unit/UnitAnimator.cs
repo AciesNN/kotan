@@ -12,6 +12,7 @@ namespace Unit
                 SetAnim(newState.State.ToString());
             }
 
+            //TODO???
             /*if (newState.ChangeDir) {
                 SetDir(newState.Dir);
             }*/

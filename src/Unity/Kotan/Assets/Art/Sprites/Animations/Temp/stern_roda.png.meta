@@ -232,22 +232,22 @@ TextureImporter:
     second: stern_roda_75
   - first:
       213: -4395059932166033263
-    second: stern_roda_76
+    second: stern_poke_0
   - first:
       213: -8767763884505388170
-    second: stern_roda_77
+    second: stern_poke_1
   - first:
       213: 7939770423119769958
-    second: stern_roda_78
+    second: stern_poke_2
   - first:
       213: -8847479790120441070
-    second: stern_roda_79
+    second: stern_poke_3
   - first:
       213: 8643761438447429943
-    second: stern_roda_80
+    second: stern_poke_4
   - first:
       213: 5495856947109244095
-    second: stern_roda_81
+    second: stern_poke_5
   - first:
       213: -8183201169004551299
     second: stern_roda_82
@@ -2116,7 +2116,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_76
+      name: stern_poke_0
       rect:
         serializedVersion: 2
         x: 36
@@ -2137,7 +2137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_77
+      name: stern_poke_1
       rect:
         serializedVersion: 2
         x: 107
@@ -2158,7 +2158,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_78
+      name: stern_poke_2
       rect:
         serializedVersion: 2
         x: 182
@@ -2179,7 +2179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_79
+      name: stern_poke_3
       rect:
         serializedVersion: 2
         x: 255
@@ -2200,7 +2200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_80
+      name: stern_poke_4
       rect:
         serializedVersion: 2
         x: 357
@@ -2221,7 +2221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_81
+      name: stern_poke_5
       rect:
         serializedVersion: 2
         x: 443

@@ -19,7 +19,7 @@ namespace Unit
         Dictionary<UnitState, float> speeds = new Dictionary<UnitState, float>() {
             {UnitState.Idle, 0},
             {UnitState.Walk, 2},
-            {UnitState.Run, 3},
+            {UnitState.Run, 5},
             {UnitState.Dash, 2},
         };
 

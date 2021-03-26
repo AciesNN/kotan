@@ -17,6 +17,8 @@ namespace Unit
             bufferedDirectonInput = new BufferedDirectonInput(bufferedInputController);
             bufferedDirectonInput.SetDir += BufferedDirectonInput_SetDir;
 
+            bufferedInputController.OnJoystickPressAction += BufferedInputController_OnJoystickPressAction;
+
             unit.OnAnimationComplete += Unit_OnAnimationComplete;
         }
 
@@ -24,6 +26,8 @@ namespace Unit
         {
             bufferedDirectonInput.SetDir -= BufferedDirectonInput_SetDir; 
             unit.OnAnimationComplete -= Unit_OnAnimationComplete;
+
+            bufferedInputController.OnJoystickPressAction -= BufferedInputController_OnJoystickPressAction;
         }
         #endregion
 
@@ -43,6 +47,20 @@ namespace Unit
         private void SetUnitDirection(Vector2Int dir, bool run)
         {
             var newState = CurrentStateModel?.ChangeDirection(unit, dir, run);
+            if (newState != null) {
+                unit.SetState(newState);
+            }
+        }
+
+        private void BufferedInputController_OnJoystickPressAction()
+        {
+            var actions = bufferedInputController.GetJoystickActions();
+            ProcessAction(actions[0]); //FIXME: really?
+        }
+
+        private void ProcessAction(InputAction inputAction)
+        {
+            var newState = CurrentStateModel?.Action(unit, inputAction);
             if (newState != null) {
                 unit.SetState(newState);
             }

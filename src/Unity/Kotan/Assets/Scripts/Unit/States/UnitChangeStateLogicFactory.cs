@@ -5,7 +5,7 @@ namespace Unit
 {
     public class UnitChangeStateLogicFactory
     {
-        private Dictionary<UnitState, UnitStateChangeModel> items = new Dictionary<UnitState, UnitStateChangeModel>();
+        private readonly Dictionary<UnitState, UnitStateChangeModel> items = new Dictionary<UnitState, UnitStateChangeModel>();
 
         public UnitChangeStateLogicFactory()
         {
@@ -14,11 +14,11 @@ namespace Unit
                 new UnitStateWalk(),
                 new UnitStateRun(),
                 new UnitStateDash(),
+                new UnitStatePoke(),
             }.ForEach(item => items[item.State] = item);
-            items[UnitState.None] = null;
         }
 
         public UnitStateChangeModel GetModel(UnitState unitState)
-            => items[unitState];
+            => items.ContainsKey(unitState) ? items[unitState] : null;
     }
 }

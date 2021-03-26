@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 namespace Unit
@@ -8,6 +10,7 @@ namespace Unit
         public abstract UnitState State { get; }
 
         protected virtual List<UnitStateChangePositionLogic> changeDirectionStrategies { get; }
+        protected virtual List<UnitStateActionLogic> actionStrategies { get; }
 
         public UnitStateChangeArg ChangeDirection(Unit unit, Vector2Int dir, bool run = false)
         {
@@ -19,6 +22,22 @@ namespace Unit
                 var res = strategy.Do(unit.CurDir, dir, run);
                 if (res != null) {
                     res.Dir = dir;
+                    return res;
+                }
+            }
+
+            return null;
+        }
+
+        public UnitStateChangeArg Action(Unit unit, InputAction action)
+        {
+            if (actionStrategies == null)
+                return null;
+
+            foreach (var strategy in actionStrategies)
+            {
+                var res = strategy.Do(action);
+                if (res != null) {
                     return res;
                 }
             }
@@ -37,6 +56,10 @@ namespace Unit
             new UnitStateChangePositionLogic_Run(),
             new UnitStateChangePositionLogic_Dash(),
             new UnitStateChangePositionLogic_Walk(),
+        };
+
+        protected override List<UnitStateActionLogic> actionStrategies => new List<UnitStateActionLogic>() {
+            new UnitStateActionLogic_Poke(),
         };
     }
 
@@ -67,6 +90,19 @@ namespace Unit
     public class UnitStateDash : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Dash;
+    }
+
+    public class UnitStatePoke : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Poke;
+
+        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
+            new UnitStateChangePositionLogic_Walk(),
+        };
+
+        protected override List<UnitStateActionLogic> actionStrategies => new List<UnitStateActionLogic>() {
+            new UnitStateActionLogic_Poke(),
+        };
     }
     #endregion
 }

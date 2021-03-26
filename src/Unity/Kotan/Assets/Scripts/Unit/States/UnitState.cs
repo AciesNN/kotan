@@ -8,6 +8,6 @@ namespace Unit
         Run,
         Dash,
         Jump,
-        Combo1,
+        Poke,
     }
 }
