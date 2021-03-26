@@ -29,13 +29,16 @@ namespace Unit
 
         #region Impl
         private void BufferedDirectonInput_SetDir(Vector2Int dir, bool forceMove)
-            => SetUnitDirection(dir, run: forceMove);
+            => SetUnitDirection(dir, run: forceMove); //or SetCurrentUnitDirection() ?
 
         private void Unit_OnAnimationComplete()
-            => SetCurrentUnitDirection();
+        {
+            unit.SetState(UnitState.Idle);
+            SetUnitDirection(bufferedDirectonInput.CurrentDir, run: false);//run: false or clear force state?
+        }
 
-        private void SetCurrentUnitDirection()
-            => SetUnitDirection(bufferedDirectonInput.CurrentDir, bufferedDirectonInput.CurrentForce);
+        /*private void SetCurrentUnitDirection()
+            => SetUnitDirection(bufferedDirectonInput.CurrentDir, bufferedDirectonInput.CurrentForce);*/
 
         private void SetUnitDirection(Vector2Int dir, bool run)
         {

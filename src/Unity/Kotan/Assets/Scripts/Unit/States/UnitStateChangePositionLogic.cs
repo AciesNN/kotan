@@ -64,7 +64,7 @@ namespace Unit
     public class UnitStateChangePositionLogic_Walk : UnitStateChangePositionLogic
     {
         protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
-            => dir.x != 0 || dir.y == 0;
+            => dir.x != 0 || dir.y != 0;
         protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
