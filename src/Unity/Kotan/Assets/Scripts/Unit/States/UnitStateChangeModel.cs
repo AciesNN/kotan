@@ -36,7 +36,7 @@ namespace Unit
 
             foreach (var strategy in actionStrategies)
             {
-                var res = strategy.Do(action);
+                var res = strategy.Do(unit, action);
                 if (res != null) {
                     return res;
                 }
@@ -102,6 +102,16 @@ namespace Unit
 
         protected override List<UnitStateActionLogic> actionStrategies => new List<UnitStateActionLogic>() {
             new UnitStateActionLogic_Poke(),
+            new UnitStateActionLogic_Combo1(),
+        };
+    }
+
+    public class UnitStateCombo1 : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Combo1;
+
+        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
+            new UnitStateChangePositionLogic_Walk(),
         };
     }
     #endregion

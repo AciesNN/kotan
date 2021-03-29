@@ -16,10 +16,10 @@ TagManager:
   - Environment
   - Units
   - Geometry
-  - 
-  - 
-  - 
-  - 
+  - PlayerHD
+  - PlayerWeapon
+  - EnemyHD
+  - EnemyWeapon
   - 
   - 
   - 

@@ -250,34 +250,34 @@ TextureImporter:
     second: stern_poke_5
   - first:
       213: -8183201169004551299
-    second: stern_roda_82
+    second: stern_combo1_0
   - first:
       213: -2688415327372124707
-    second: stern_roda_83
+    second: stern_combo1_1
   - first:
       213: -8897627142033525504
-    second: stern_roda_84
+    second: stern_combo1_2
   - first:
       213: 2143103937090971648
-    second: stern_roda_85
+    second: stern_combo1_3
   - first:
       213: 5338562633745265267
-    second: stern_roda_86
+    second: stern_combo1_4
   - first:
       213: 4535460210985379099
-    second: stern_roda_87
+    second: stern_combo1_5
   - first:
       213: -8581003746786034144
-    second: stern_roda_88
+    second: stern_combo1_6
   - first:
       213: -8510056978821239336
     second: stern_roda_89
   - first:
       213: 1224941220374815789
-    second: stern_roda_90
+    second: stern_combo1_8
   - first:
       213: -3511201463988645528
-    second: stern_roda_91
+    second: stern_combo1_9
   - first:
       213: -1022471037079048714
     second: stern_roda_92
@@ -2242,7 +2242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_82
+      name: stern_combo1_0
       rect:
         serializedVersion: 2
         x: 22
@@ -2263,10 +2263,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_83
+      name: stern_combo1_1
       rect:
         serializedVersion: 2
-        x: 90
+        x: 91
         y: 680
         width: 63
         height: 73
@@ -2284,7 +2284,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_84
+      name: stern_combo1_2
       rect:
         serializedVersion: 2
         x: 160
@@ -2305,7 +2305,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_85
+      name: stern_combo1_3
       rect:
         serializedVersion: 2
         x: 243
@@ -2326,7 +2326,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_86
+      name: stern_combo1_4
       rect:
         serializedVersion: 2
         x: 325
@@ -2347,7 +2347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_87
+      name: stern_combo1_5
       rect:
         serializedVersion: 2
         x: 399
@@ -2368,7 +2368,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_88
+      name: stern_combo1_6
       rect:
         serializedVersion: 2
         x: 477
@@ -2410,7 +2410,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_90
+      name: stern_combo1_8
       rect:
         serializedVersion: 2
         x: 569
@@ -2431,7 +2431,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_91
+      name: stern_combo1_9
       rect:
         serializedVersion: 2
         x: 660

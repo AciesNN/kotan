@@ -9,5 +9,6 @@ namespace Unit
         Dash,
         Jump,
         Poke,
+        Combo1,
     }
 }

@@ -10,17 +10,22 @@ namespace Unit
         [SerializeField] UnitSettings settings;
         [SerializeField] UnitPhysics unitPhysics;
         [SerializeField] UnitAnimator unitAnimator;
+        [SerializeField] UnitWeapon unitWeapon;
 
         public UnitState UnitState { get; private set; }
 
         private Vector2Int curDir;
-        public Vector2Int CurDir {
+        public Vector2Int CurDir
+        {
             get => curDir;
-            set {
+            set
+            {
                 curDir = value;
                 unitAnimator.SetDir(CurDir);
             }
         }
+
+        public bool HitDetected => unitWeapon.HitDetected;
 
         #region MonoBehaviour
         private void Awake()
@@ -32,24 +37,43 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            SetState(new UnitStateChangeArg() {
+            SetState(new UnitStateChangeArg()
+            {
                 State = newState,
             });
         }
-        
+
         public void SetState(UnitStateChangeArg newState)
         {
-            if (newState.ChangeDir) {
+            if (newState.ChangeDir)
+            {
                 CurDir = newState.Dir;
             }
             unitAnimator.SetState(newState, changeAnim: (UnitState != newState.State || newState.ReplayAnimation));
             unitPhysics.SetState(newState);
+            unitWeapon.Reset();
             UnitState = newState.State;
         }
 
-        public void AnimationComplete()
+        public void AnimationEvent(string eventName)
         {
-            OnAnimationComplete?.Invoke();
+            if (string.IsNullOrEmpty(eventName))
+            {
+                throw new ArgumentException("Empty animation event name");
+            }
+
+            switch (eventName)
+            {
+                case "AnimationComplete":
+                    OnAnimationComplete?.Invoke();
+                    break;
+                case "WeaponOn":
+                    unitWeapon.SetActive(true);
+                    break;
+                case "WeaponOff":
+                    unitWeapon.SetActive(false);
+                    break;
+            }
         }
         #endregion
 
