@@ -1,24 +1,25 @@
+using UI;
 using UnityEngine;
 
 namespace Unit
 {
-    public abstract class UnitStateChangePositionLogic
+    public abstract class UnitStateInputLogic
     {
-        public UnitStateChangeArg Do(Vector2Int curDir, Vector2Int dir, bool run)
+        public UnitStateChangeArg Do(Unit unit, InputAction action, Vector2Int dir, bool run)
         {
-            return CheckChangeCondition(curDir, dir, run) ? GetChangeArg(curDir, dir, run) : null;
+            return CheckChangeCondition(unit, action, dir, run) ? GetChangeArg(unit, action, dir, run) : null;
         }
 
-        protected abstract bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run);
-        protected abstract UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run);
+        protected abstract bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run);
+        protected abstract UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run);
     }
 
-    public class UnitStateChangePositionLogic_Idle : UnitStateChangePositionLogic
+    public class UnitStateInputLogic_Idle : UnitStateInputLogic
     {
-        protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
             => dir.x == 0 && dir.y == 0;
 
-        protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
                 State = UnitState.Idle,
@@ -26,49 +27,74 @@ namespace Unit
             };
     }
 
-    public class UnitStateChangePositionLogic_Run : UnitStateChangePositionLogic
+    public class UnitStateInputLogic_Run : UnitStateInputLogic
     {
-        protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
             => run && dir.x != 0 && dir.y == 0;
 
-        protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
                 State = UnitState.Run,
             };
     }
 
-    public class UnitStateChangePositionLogic_ContinueRun : UnitStateChangePositionLogic
+    public class UnitStateInputLogic_ContinueRun : UnitStateInputLogic
     {
-        protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
-            => dir.x != 0 && dir.x == curDir.x && dir.y != 0;
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
+            => dir.x != 0 && dir.x == unit.CurDir.x;
 
-        protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
                 State = UnitState.Run,
             };
     }
 
-    public class UnitStateChangePositionLogic_Dash : UnitStateChangePositionLogic
+    public class UnitStateInputLogic_Dash : UnitStateInputLogic
     {
-        protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
             => run && dir.x == 0 && dir.y != 0;
-        protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
                 State = UnitState.Dash,
             };
     }
 
-    public class UnitStateChangePositionLogic_Walk : UnitStateChangePositionLogic
+    public class UnitStateInputLogic_Walk : UnitStateInputLogic
     {
-        protected override bool CheckChangeCondition(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
             => dir.x != 0 || dir.y != 0;
-        protected override UnitStateChangeArg GetChangeArg(Vector2Int curDir, Vector2Int dir, bool run)
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
             => new UnitStateChangeArg()
             {
                 State = UnitState.Walk,
+            };
+    }
+
+    public class UnitStateInputLogic_Poke : UnitStateInputLogic
+    {
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
+            => action == InputAction.Slash && !unit.HitDetected;
+
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
+            => new UnitStateChangeArg()
+            {
+                State = UnitState.Poke,
+                ReplayAnimation = true,
+            };
+    }
+
+    public class UnitStateInputLogic_Combo1 : UnitStateInputLogic
+    {
+        protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool run)
+            => action == InputAction.Slash && !unit.HitDetected;
+
+        protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool run)
+            => new UnitStateChangeArg()
+            {
+                State = UnitState.Combo1,
             };
     }
 }

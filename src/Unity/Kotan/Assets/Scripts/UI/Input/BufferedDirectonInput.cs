@@ -49,35 +49,21 @@ namespace UI
         {
             if (dir.Equals(Vector2Int.zero))
             {
-                Stop();
+                curDir = Vector2Int.zero;
+                currentForce = false;
             }
             else
             {
-                if (lastPreForceDir.Equals(dir))
-                {
-                    lastPreForceDir = dir;
-                    Move(dir, forceMove: true);
-                }
-                else
-                {
-                    lastPreForceDir = dir;
-                    Move(dir);
-                }
+                currentForce = lastPreForceDir.Equals(dir);
+                curDir = lastPreForceDir = dir;
             }
 
-            curDir = dir;
+            FireSetDirEvent();
         }
 
-        private void Move(Vector2Int dir, bool forceMove = false)
+        private void FireSetDirEvent()
         {
-            currentForce = forceMove;
-            SetDir?.Invoke(dir, currentForce);
-        }
-
-        private void Stop()
-        {
-            currentForce = false;
-            SetDir?.Invoke(Vector2Int.zero, currentForce);
+            SetDir?.Invoke(curDir, currentForce);
         }
 
         private void Controller_OnJoystickPressPosition(Vector2Int dir)

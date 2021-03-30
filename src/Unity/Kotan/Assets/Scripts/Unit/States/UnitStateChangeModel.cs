@@ -9,35 +9,18 @@ namespace Unit
     {
         public abstract UnitState State { get; }
 
-        protected virtual List<UnitStateChangePositionLogic> changeDirectionStrategies { get; }
-        protected virtual List<UnitStateActionLogic> actionStrategies { get; }
+        protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
 
-        public UnitStateChangeArg ChangeDirection(Unit unit, Vector2Int dir, bool run = false)
+        public UnitStateChangeArg ChangeDirection(Unit unit, InputAction action, Vector2Int dir, bool run = false)
         {
-            if (changeDirectionStrategies == null)
+            if (unitStateInputLogic == null)
                 return null;
 
-            foreach (var strategy in changeDirectionStrategies)
+            foreach (var strategy in unitStateInputLogic)
             {
-                var res = strategy.Do(unit.CurDir, dir, run);
+                var res = strategy.Do(unit, action, dir, run);
                 if (res != null) {
                     res.Dir = dir;
-                    return res;
-                }
-            }
-
-            return null;
-        }
-
-        public UnitStateChangeArg Action(Unit unit, InputAction action)
-        {
-            if (actionStrategies == null)
-                return null;
-
-            foreach (var strategy in actionStrategies)
-            {
-                var res = strategy.Do(unit, action);
-                if (res != null) {
                     return res;
                 }
             }
@@ -51,15 +34,13 @@ namespace Unit
     {
         public override UnitState State => UnitState.Idle;
 
-        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
-            new UnitStateChangePositionLogic_Idle(),
-            new UnitStateChangePositionLogic_Run(),
-            new UnitStateChangePositionLogic_Dash(),
-            new UnitStateChangePositionLogic_Walk(),
-        };
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Poke(),
 
-        protected override List<UnitStateActionLogic> actionStrategies => new List<UnitStateActionLogic>() {
-            new UnitStateActionLogic_Poke(),
+            new UnitStateInputLogic_Idle(),
+            new UnitStateInputLogic_Run(),
+            new UnitStateInputLogic_Dash(),
+            new UnitStateInputLogic_Walk(),
         };
     }
 
@@ -67,11 +48,13 @@ namespace Unit
     {
         public override UnitState State => UnitState.Walk;
 
-        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
-            new UnitStateChangePositionLogic_Idle(),
-            new UnitStateChangePositionLogic_Run(),
-            new UnitStateChangePositionLogic_Dash(),
-            new UnitStateChangePositionLogic_Walk(),
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Poke(),
+
+            new UnitStateInputLogic_Idle(),
+            new UnitStateInputLogic_Run(),
+            new UnitStateInputLogic_Dash(),
+            new UnitStateInputLogic_Walk(),
         };
     }
 
@@ -79,11 +62,11 @@ namespace Unit
     {
         public override UnitState State => UnitState.Run;
 
-        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
-            new UnitStateChangePositionLogic_Idle(),
-            new UnitStateChangePositionLogic_ContinueRun(),
-            new UnitStateChangePositionLogic_Dash(),
-            new UnitStateChangePositionLogic_Walk(),
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Idle(),
+            new UnitStateInputLogic_ContinueRun(),
+            new UnitStateInputLogic_Dash(),
+            new UnitStateInputLogic_Walk(),
         };
     }
 
@@ -96,22 +79,20 @@ namespace Unit
     {
         public override UnitState State => UnitState.Poke;
 
-        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
-            new UnitStateChangePositionLogic_Walk(),
-        };
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Walk(),
 
-        protected override List<UnitStateActionLogic> actionStrategies => new List<UnitStateActionLogic>() {
-            new UnitStateActionLogic_Poke(),
-            new UnitStateActionLogic_Combo1(),
-        };
+            new UnitStateInputLogic_Poke(),
+            new UnitStateInputLogic_Combo1(),
+       };
     }
 
     public class UnitStateCombo1 : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Combo1;
 
-        protected override List<UnitStateChangePositionLogic> changeDirectionStrategies => new List<UnitStateChangePositionLogic>() {
-            new UnitStateChangePositionLogic_Walk(),
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Walk(),
         };
     }
     #endregion

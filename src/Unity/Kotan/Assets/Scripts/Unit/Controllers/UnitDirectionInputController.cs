@@ -33,34 +33,27 @@ namespace Unit
 
         #region Impl
         private void BufferedDirectonInput_SetDir(Vector2Int dir, bool forceMove)
-            => SetUnitDirection(dir, run: forceMove); //or SetCurrentUnitDirection() ?
+        {
+            UpdateUnitStateFromInput();
+        }
+        private void BufferedInputController_OnJoystickPressAction()
+        {
+            UpdateUnitStateFromInput();
+        }
 
         private void Unit_OnAnimationComplete()
         {
             unit.SetState(UnitState.Idle);
-            SetUnitDirection(bufferedDirectonInput.CurrentDir, run: false);//run: false or clear force state?
+            UpdateUnitStateFromInput();
         }
 
-        /*private void SetCurrentUnitDirection()
-            => SetUnitDirection(bufferedDirectonInput.CurrentDir, bufferedDirectonInput.CurrentForce);*/
-
-        private void SetUnitDirection(Vector2Int dir, bool run)
-        {
-            var newState = CurrentStateModel?.ChangeDirection(unit, dir, run);
-            if (newState != null) {
-                unit.SetState(newState);
-            }
-        }
-
-        private void BufferedInputController_OnJoystickPressAction()
+        private void UpdateUnitStateFromInput()
         {
             var actions = bufferedInputController.GetJoystickActions();
-            ProcessAction(actions[0]); //FIXME: really?
-        }
-
-        private void ProcessAction(InputAction inputAction)
-        {
-            var newState = CurrentStateModel?.Action(unit, inputAction);
+            var action = actions[0]; //FIXME: really?
+            var dir = bufferedDirectonInput.CurrentDir;
+            var run = bufferedDirectonInput.CurrentForce;
+            var newState = CurrentStateModel?.ChangeDirection(unit, action, dir, run);
             if (newState != null) {
                 unit.SetState(newState);
             }
