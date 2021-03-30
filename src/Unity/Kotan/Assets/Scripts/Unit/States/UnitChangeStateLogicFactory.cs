@@ -15,6 +15,7 @@ namespace Unit
                 new UnitStateRun(),
                 new UnitStateDash(),
                 new UnitStatePoke(),
+                new UnitStateCombo1(),
             }.ForEach(item => items[item.State] = item);
         }
 

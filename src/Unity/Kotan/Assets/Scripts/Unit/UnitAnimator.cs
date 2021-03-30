@@ -6,20 +6,18 @@ namespace Unit
     {
         [SerializeField] Animator animator;
 
+        public bool IsAnimationComplete { get; internal set; }
+
         public void SetState(UnitStateChangeArg newState, bool changeAnim)
         {
             if (changeAnim) {
                 SetAnim(newState.State.ToString());
             }
-
-            //TODO???
-            /*if (newState.ChangeDir) {
-                SetDir(newState.Dir);
-            }*/
         }
 
         private void SetAnim(string animName)
         {
+            IsAnimationComplete = false;
             animator.SetTrigger(animName);
         }
 
@@ -32,6 +30,7 @@ namespace Unit
 
         public void AnimationComplete()
         {
+            IsAnimationComplete = true;
         }
     }
 }

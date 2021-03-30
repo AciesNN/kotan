@@ -5,7 +5,10 @@ namespace UI
 {
     public class BufferedDirectonInput : IDisposable
     {
-        public event Action<Vector2Int, bool> SetDir;
+        private const float actionThreshold = 0.3f; //TODO - in settings
+
+        public event Action<Vector2Int, bool> OnSetDir;
+        public event Action<InputAction> OnAction;
 
         private IBufferedInputController controller;
 
@@ -15,6 +18,10 @@ namespace UI
 
         public Vector2Int CurrentDir => curDir;
         public bool CurrentForce => currentForce;
+
+        private InputAction currentAction;
+        private float lastActionChange;
+        public InputAction CurrentAction => GetCurrentAction();
 
         #region Life circle
         public BufferedDirectonInput(IBufferedInputController controller)
@@ -36,6 +43,8 @@ namespace UI
             controller.OnJoystickSetPosition += Controller_OnJoystickSetPosition;
             controller.OnJoystickNeitralPosition += Controller_OnJoystickNeitralPosition;
             controller.OnJoystickPressPosition += Controller_OnJoystickPressPosition;
+
+            controller.OnJoystickPressAction += BufferedInputController_OnJoystickPressAction;
         }
 
         private void Unsubscribe()
@@ -43,6 +52,8 @@ namespace UI
             controller.OnJoystickSetPosition -= Controller_OnJoystickSetPosition;
             controller.OnJoystickNeitralPosition -= Controller_OnJoystickNeitralPosition; 
             controller.OnJoystickPressPosition -= Controller_OnJoystickPressPosition;
+
+            controller.OnJoystickPressAction -= BufferedInputController_OnJoystickPressAction;
         }
 
         private void Controller_OnJoystickSetPosition(Vector2Int dir)
@@ -58,12 +69,12 @@ namespace UI
                 curDir = lastPreForceDir = dir;
             }
 
-            FireSetDirEvent();
+            FireOnSetDirEvent();
         }
 
-        private void FireSetDirEvent()
+        private void FireOnSetDirEvent()
         {
-            SetDir?.Invoke(curDir, currentForce);
+            OnSetDir?.Invoke(curDir, currentForce);
         }
 
         private void Controller_OnJoystickPressPosition(Vector2Int dir)
@@ -76,6 +87,28 @@ namespace UI
         {
             lastPreForceDir = Vector2Int.zero;
             //should be already stopped
+        }
+
+        private void BufferedInputController_OnJoystickPressAction()
+        {
+            var actions = controller.GetJoystickActions();
+            currentAction = actions[0]; //FIXME: really?
+            lastActionChange = Time.time;
+            FireOnActionEvent();
+        }
+
+        private void FireOnActionEvent()
+        {
+            OnAction?.Invoke(currentAction);
+        }
+
+        private InputAction GetCurrentAction()
+        {
+            if (Time.time - lastActionChange > actionThreshold) {
+                return InputAction.None;
+            }
+
+            return currentAction;
         }
         #endregion
     }

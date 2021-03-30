@@ -15,7 +15,7 @@ namespace Unit
         private void Awake()
         {
             bufferedDirectonInput = new BufferedDirectonInput(bufferedInputController);
-            bufferedDirectonInput.SetDir += BufferedDirectonInput_SetDir;
+            bufferedDirectonInput.OnSetDir += BufferedDirectonInput_SetDir;
 
             bufferedInputController.OnJoystickPressAction += BufferedInputController_OnJoystickPressAction;
 
@@ -24,7 +24,7 @@ namespace Unit
 
         private void OnDestroy()
         {
-            bufferedDirectonInput.SetDir -= BufferedDirectonInput_SetDir; 
+            bufferedDirectonInput.OnSetDir -= BufferedDirectonInput_SetDir; 
             unit.OnAnimationComplete -= Unit_OnAnimationComplete;
 
             bufferedInputController.OnJoystickPressAction -= BufferedInputController_OnJoystickPressAction;
@@ -43,20 +43,22 @@ namespace Unit
 
         private void Unit_OnAnimationComplete()
         {
-            unit.SetState(UnitState.Idle);
-            UpdateUnitStateFromInput();
+            UpdateUnitStateFromInput(useDefault: true);
         }
 
-        private void UpdateUnitStateFromInput()
+        private void UpdateUnitStateFromInput(bool useDefault = false)
         {
-            var actions = bufferedInputController.GetJoystickActions();
-            var action = actions[0]; //FIXME: really?
+            var action = bufferedDirectonInput.CurrentAction;
             var dir = bufferedDirectonInput.CurrentDir;
-            var run = bufferedDirectonInput.CurrentForce;
-            var newState = CurrentStateModel?.ChangeDirection(unit, action, dir, run);
-            if (newState != null) {
-                unit.SetState(newState);
+            var force = bufferedDirectonInput.CurrentForce;
+
+            var newState = CurrentStateModel?.ProcessInput(unit, action, dir, force);
+            
+            if (newState == null && useDefault) {
+                newState = UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
             }
+
+            unit.SetState(newState);
         }
         #endregion
     }

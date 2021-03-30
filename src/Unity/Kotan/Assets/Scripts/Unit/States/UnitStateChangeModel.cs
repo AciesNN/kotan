@@ -7,18 +7,19 @@ namespace Unit
 {
     public abstract class UnitStateChangeModel
     {
+        private static readonly UnitStateInputLogic defaultInputLogic = new UnitStateInputLogic_Idle();
         public abstract UnitState State { get; }
 
         protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
 
-        public UnitStateChangeArg ChangeDirection(Unit unit, InputAction action, Vector2Int dir, bool run = false)
+        public UnitStateChangeArg ProcessInput(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
             if (unitStateInputLogic == null)
                 return null;
 
             foreach (var strategy in unitStateInputLogic)
             {
-                var res = strategy.Do(unit, action, dir, run);
+                var res = strategy.Do(unit, action, dir, force);
                 if (res != null) {
                     res.Dir = dir;
                     return res;
@@ -26,6 +27,11 @@ namespace Unit
             }
 
             return null;
+        }
+
+        public static UnitStateChangeArg ProcessDefault(Unit unit, InputAction action, Vector2Int dir, bool force)
+        {
+            return defaultInputLogic.Do(unit, action, dir, force);
         }
     }
 

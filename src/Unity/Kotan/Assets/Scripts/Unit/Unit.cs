@@ -25,6 +25,8 @@ namespace Unit
             }
         }
 
+        public bool IsAnimationComplete => unitAnimator.IsAnimationComplete;
+
         public bool HitDetected => unitWeapon.HitDetected;
 
         #region MonoBehaviour
@@ -37,16 +39,18 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            SetState(new UnitStateChangeArg()
-            {
+            SetState(new UnitStateChangeArg() {
                 State = newState,
             });
         }
 
         public void SetState(UnitStateChangeArg newState)
         {
-            if (newState.ChangeDir)
-            {
+            if (newState == null) {
+                return;
+            }
+
+            if (newState.ChangeDir) {
                 CurDir = newState.Dir;
             }
             unitAnimator.SetState(newState, changeAnim: (UnitState != newState.State || newState.ReplayAnimation));
@@ -65,6 +69,7 @@ namespace Unit
             switch (eventName)
             {
                 case "AnimationComplete":
+                    unitAnimator.AnimationComplete();
                     OnAnimationComplete?.Invoke();
                     break;
                 case "WeaponOn":
