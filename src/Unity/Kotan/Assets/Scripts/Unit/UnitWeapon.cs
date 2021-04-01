@@ -26,8 +26,6 @@ namespace Unit
             _testHitEffect.SetActive(true);
         }
         
-
-
         private void OnTriggerEnter(Collider other)
         {
             HitDetection();
