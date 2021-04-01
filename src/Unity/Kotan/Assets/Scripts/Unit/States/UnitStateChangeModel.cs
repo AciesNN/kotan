@@ -45,6 +45,7 @@ namespace Unit
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Poke(),
+            new UnitStateInputLogic_Jump(),
 
             new UnitStateInputLogic_Idle(),
             new UnitStateInputLogic_Run(),
@@ -82,6 +83,11 @@ namespace Unit
     public class UnitStateDash : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Dash;
+    }    
+    
+    public class UnitStateJump : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Jump;
     }
 
     public class UnitStatePoke : UnitStateChangeModel
@@ -104,6 +110,30 @@ namespace Unit
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Walk(),
+
+            new UnitStateInputLogic_Combo2()
+        };
+    }    
+    
+    public class UnitStateCombo2 : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Combo2;
+
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Walk(),
+
+            new UnitStateInputLogic_Combo3(),
+        };
+    }   
+    
+    public class UnitStateCombo3 : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Combo3;
+
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Walk(),
+
+            new UnitStateInputLogic_Poke(onAmimationComplete: true),
         };
     }
     #endregion

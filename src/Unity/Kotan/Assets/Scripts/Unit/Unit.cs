@@ -33,6 +33,7 @@ namespace Unit
         #region MonoBehaviour
         private void Awake()
         {
+            unitPhysics.Init(this);
             SetState(UnitState.Idle);
         }
         #endregion

@@ -14,8 +14,12 @@ namespace Unit
                 new UnitStateWalk(),
                 new UnitStateRun(),
                 new UnitStateDash(),
+                new UnitStateJump(),
+                //new UnitStateFall(),
                 new UnitStatePoke(),
                 new UnitStateCombo1(),
+                new UnitStateCombo2(),
+                new UnitStateCombo3(),
             }.ForEach(item => items[item.State] = item);
         }
 
