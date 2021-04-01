@@ -20,6 +20,8 @@ namespace UI
         public bool CurrentForce => currentForce;
 
         private InputAction currentAction;
+        private InputAction lockedBufferedAction;
+
         private float lastActionChange;
         public InputAction CurrentAction => GetCurrentAction();
 
@@ -34,6 +36,17 @@ namespace UI
         public void Dispose()
         {
             Unsubscribe();
+        }
+
+        public void RefreshActionBuffer()
+        {
+            lockedBufferedAction = InputAction.None;
+            currentAction = InputAction.None;
+        }
+
+        public void LockBufferedAction(InputAction action)
+        {
+            lockedBufferedAction = action;
         }
         #endregion
 
@@ -104,6 +117,10 @@ namespace UI
 
         private InputAction GetCurrentAction()
         {
+            if (lockedBufferedAction != InputAction.None) {
+                return lockedBufferedAction;
+            }
+
             if (Time.time - lastActionChange > actionThreshold) {
                 return InputAction.None;
             }

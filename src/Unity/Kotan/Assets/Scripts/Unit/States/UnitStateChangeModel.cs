@@ -11,6 +11,7 @@ namespace Unit
         public abstract UnitState State { get; }
 
         protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
+        protected virtual InputAction ActionToLockBuffer { get; }
 
         public UnitStateChangeArg ProcessInput(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -33,6 +34,8 @@ namespace Unit
         {
             return defaultInputLogic.Do(unit, action, dir, force);
         }
+
+        public InputAction GetActionToLockBuffer() => ActionToLockBuffer;
     }
 
     #region State models
@@ -90,7 +93,9 @@ namespace Unit
 
             new UnitStateInputLogic_Poke(),
             new UnitStateInputLogic_Combo1(),
-       };
+        };
+
+        protected override InputAction ActionToLockBuffer => InputAction.Slash;
     }
 
     public class UnitStateCombo1 : UnitStateChangeModel

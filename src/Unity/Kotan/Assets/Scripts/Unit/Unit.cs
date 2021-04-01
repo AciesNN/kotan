@@ -6,6 +6,7 @@ namespace Unit
     public class Unit : MonoBehaviour
     {
         public event Action OnAnimationComplete;
+        public event Action OnStateChanged;
 
         [SerializeField] UnitSettings settings;
         [SerializeField] UnitPhysics unitPhysics;
@@ -44,10 +45,10 @@ namespace Unit
             });
         }
 
-        public void SetState(UnitStateChangeArg newState)
+        public bool SetState(UnitStateChangeArg newState)
         {
             if (newState == null) {
-                return;
+                return false;
             }
 
             if (newState.ChangeDir) {
@@ -56,7 +57,12 @@ namespace Unit
             unitAnimator.SetState(newState, changeAnim: (UnitState != newState.State || newState.ReplayAnimation));
             unitPhysics.SetState(newState);
             unitWeapon.Reset();
-            UnitState = newState.State;
+            if (UnitState != newState.State){
+                UnitState = newState.State;
+                OnStateChanged?.Invoke();
+            }
+
+            return true;
         }
 
         public void AnimationEvent(string eventName)

@@ -16,49 +16,69 @@ namespace Unit
         {
             bufferedDirectonInput = new BufferedDirectonInput(bufferedInputController);
             bufferedDirectonInput.OnSetDir += BufferedDirectonInput_SetDir;
-
-            bufferedInputController.OnJoystickPressAction += BufferedInputController_OnJoystickPressAction;
+            bufferedDirectonInput.OnAction += BufferedDirectonInput_OnAction;
 
             unit.OnAnimationComplete += Unit_OnAnimationComplete;
+            unit.OnStateChanged += Unit_OnStateChanged;
         }
 
         private void OnDestroy()
         {
             bufferedDirectonInput.OnSetDir -= BufferedDirectonInput_SetDir; 
-            unit.OnAnimationComplete -= Unit_OnAnimationComplete;
+            bufferedDirectonInput.OnAction -= BufferedDirectonInput_OnAction;
 
-            bufferedInputController.OnJoystickPressAction -= BufferedInputController_OnJoystickPressAction;
+            unit.OnAnimationComplete -= Unit_OnAnimationComplete;
+            unit.OnStateChanged -= Unit_OnStateChanged;
         }
         #endregion
 
         #region Impl
+        private void Unit_OnStateChanged()
+        {
+            bufferedDirectonInput.RefreshActionBuffer();
+        }
+
         private void BufferedDirectonInput_SetDir(Vector2Int dir, bool forceMove)
         {
             UpdateUnitStateFromInput();
         }
-        private void BufferedInputController_OnJoystickPressAction()
+
+        private void BufferedDirectonInput_OnAction(InputAction action)
         {
-            UpdateUnitStateFromInput();
+            var updated = UpdateUnitStateFromInput();
+            if (!updated) {
+                if (action != InputAction.None && action == CurrentStateModel?.GetActionToLockBuffer()) {
+                    bufferedDirectonInput.LockBufferedAction(action);
+                }
+            }
         }
 
         private void Unit_OnAnimationComplete()
         {
-            UpdateUnitStateFromInput(useDefault: true);
+            var updated = UpdateUnitStateFromInput();
+            if (!updated) {
+                UpdateUnitStateDefault();
+            }
         }
 
-        private void UpdateUnitStateFromInput(bool useDefault = false)
+        private bool UpdateUnitStateFromInput()
         {
             var action = bufferedDirectonInput.CurrentAction;
             var dir = bufferedDirectonInput.CurrentDir;
             var force = bufferedDirectonInput.CurrentForce;
 
             var newState = CurrentStateModel?.ProcessInput(unit, action, dir, force);
-            
-            if (newState == null && useDefault) {
-                newState = UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
-            }
+            return unit.SetState(newState);
+        }
 
-            unit.SetState(newState);
+        private bool UpdateUnitStateDefault()
+        {
+            var action = bufferedDirectonInput.CurrentAction;
+            var dir = bufferedDirectonInput.CurrentDir;
+            var force = bufferedDirectonInput.CurrentForce;
+
+            var newState = UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
+            return unit.SetState(newState);
         }
         #endregion
     }
