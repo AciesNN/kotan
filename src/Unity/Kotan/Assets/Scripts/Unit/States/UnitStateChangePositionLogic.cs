@@ -77,8 +77,16 @@ namespace Unit
 
     public class UnitStateInputLogic_Jump : UnitStateInputLogic
     {
+        private bool onAmimationComplete;
+
+        public UnitStateInputLogic_Jump(bool onAmimationComplete = false)
+        {
+            this.onAmimationComplete = onAmimationComplete;
+        }
+
         protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Jump && dir.y == 0;
+            => action == InputAction.Jump && dir.y == 0 
+            && (!onAmimationComplete || unit.IsAnimationComplete);
 
         protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool force)
             => new UnitStateChangeArg()

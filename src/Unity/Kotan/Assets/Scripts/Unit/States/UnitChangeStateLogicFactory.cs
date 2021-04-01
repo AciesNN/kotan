@@ -15,7 +15,7 @@ namespace Unit
                 new UnitStateRun(),
                 new UnitStateDash(),
                 new UnitStateJump(),
-                //new UnitStateFall(),
+                new UnitStateFall(),
                 new UnitStatePoke(),
                 new UnitStateCombo1(),
                 new UnitStateCombo2(),

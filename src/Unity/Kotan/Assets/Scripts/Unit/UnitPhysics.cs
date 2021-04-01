@@ -47,7 +47,7 @@ namespace Unit
         {
             if (newState.ProcessJump) {
                 StartJump(jumpSpeed);
-            } else {
+            } else if (!isJumping && !isFalling) {
                 var newSpeed = GetSpeed(newState.State);
                 SetMove(newState.Dir, newSpeed);
             }
@@ -85,7 +85,7 @@ namespace Unit
 
             _stopFalling();
 
-            unit.SetState(newState: UnitState.Idle);
+            unit.AnimationEvent("AnimationComplete");
         }
 
         private void ProcessJump()

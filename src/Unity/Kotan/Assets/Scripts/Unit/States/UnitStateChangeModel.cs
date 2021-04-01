@@ -90,6 +90,17 @@ namespace Unit
     {
         public override UnitState State => UnitState.Jump;
     }
+    public class UnitStateFall : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Fall;
+
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_Jump(onAmimationComplete: true),
+            new UnitStateInputLogic_Poke(onAmimationComplete: true),
+
+            new UnitStateInputLogic_Walk(),
+        };
+    }
 
     public class UnitStatePoke : UnitStateChangeModel
     {
