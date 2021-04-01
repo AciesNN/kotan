@@ -58,7 +58,8 @@ namespace Unit
             unitAnimator.SetState(newState, changeAnim: (UnitState != newState.State || newState.ReplayAnimation));
             unitPhysics.SetState(newState);
             unitWeapon.Reset();
-            if (UnitState != newState.State){
+            if (UnitState != newState.State && newState.State != UnitState.None){
+                //Debug.Log($"-> {newState.State}");
                 UnitState = newState.State;
                 OnStateChanged?.Invoke();
             }

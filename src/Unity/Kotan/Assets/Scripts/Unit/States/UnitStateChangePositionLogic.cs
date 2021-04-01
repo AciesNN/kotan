@@ -78,7 +78,7 @@ namespace Unit
     public class UnitStateInputLogic_Jump : UnitStateInputLogic
     {
         protected override bool CheckChangeCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Jump;
+            => action == InputAction.Jump && dir.y == 0;
 
         protected override UnitStateChangeArg GetChangeArg(Unit unit, InputAction action, Vector2Int dir, bool force)
             => new UnitStateChangeArg()

@@ -81,6 +81,8 @@ namespace Unit
 
         private void StopFalling()
         {
+            isFalling = false;
+
             _stopFalling();
 
             unit.SetState(newState: UnitState.Idle);
@@ -92,6 +94,8 @@ namespace Unit
                 _processJump();
             } else if (isFalling) {
                 _processFalling();
+            } else {
+                _process();
             }
         }
         #endregion
@@ -110,12 +114,19 @@ namespace Unit
                 StartFall();
             }
         }
+
         private void _processFalling()
         {
             if (_jumpRB.transform.localPosition.y < 0) {
                 StopFalling();
             }
+        }        
+        
+        private void _process()
+        {
+            _jumpRB.transform.localPosition = Vector3.zero;
         }
+
         private void _stopFalling()
         {
             _jumpRB.velocity = Vector3.zero;

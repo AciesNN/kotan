@@ -60,6 +60,7 @@ namespace Unit
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Poke(),
+            new UnitStateInputLogic_Jump(),
 
             new UnitStateInputLogic_Idle(),
             new UnitStateInputLogic_Run(),
