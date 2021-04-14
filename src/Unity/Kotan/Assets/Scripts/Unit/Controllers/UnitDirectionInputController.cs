@@ -9,7 +9,7 @@ namespace Unit
         [SerializeField] BufferedInputController bufferedInputController;
         private BufferedDirectonInput bufferedDirectonInput;
         
-        private UnitStateChangeModel CurrentStateModel => stateLogicFactory.GetModel(unit.UnitState);
+        private UnitStateChangeModel CurrentStateModel => stateLogicFactory.GetModel(unit.State);
 
         #region MonoBehaviour
         private void Awake()
@@ -67,8 +67,7 @@ namespace Unit
             var dir = bufferedDirectonInput.CurrentDir;
             var force = bufferedDirectonInput.CurrentForce;
 
-            var newState = CurrentStateModel?.ProcessInput(unit, action, dir, force);
-            return unit.SetState(newState);
+            return CurrentStateModel?.ProcessInput(unit, action, dir, force) ?? false;
         }
 
         private bool UpdateUnitStateDefault()
@@ -77,8 +76,7 @@ namespace Unit
             var dir = bufferedDirectonInput.CurrentDir;
             var force = bufferedDirectonInput.CurrentForce;
 
-            var newState = UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
-            return unit.SetState(newState);
+            return UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
         }
         #endregion
     }

@@ -30,6 +30,8 @@ namespace Unit
         private bool isJumping;
         private bool isFalling;
 
+        public Vector2Int startJumpDir { get; protected set; }
+        
         #region MonoBehaviour
         private void Update()
         {
@@ -43,14 +45,24 @@ namespace Unit
             this.unit = unit;
         }
 
-        public void SetState(UnitStateChangeArg newState)
+        public void Move(Vector2Int dir)
         {
-            if (newState.ProcessJump) {
-                StartJump(jumpSpeed);
-            } else if (!isJumping && !isFalling) {
-                var newSpeed = GetSpeed(newState.State);
-                SetMove(newState.Dir, newSpeed);
-            }
+            if (isJumping || isFalling)
+                return; //TODO?
+
+            var newSpeed = GetSpeed(unit.State);
+            SetMove(dir, newSpeed);
+        }
+
+        public void StopMove()
+        {
+            SetMove(Vector2Int.zero, 0);
+        }
+
+        public void Jump(Vector2Int dir)
+        {
+            startJumpDir = dir;
+            StartJump(startJumpDir, jumpSpeed);
         }
         #endregion
 
@@ -65,7 +77,7 @@ namespace Unit
             RB.velocity = new Vector2(dir.x, dir.y) * speed;
         }
 
-        private void StartJump(float speed)
+        private void StartJump(Vector2Int dir, float speed)
         {
             isJumping = true;
             _startJump(speed);

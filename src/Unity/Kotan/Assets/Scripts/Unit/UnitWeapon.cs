@@ -33,7 +33,12 @@ namespace Unit
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            HitDetection();
+            if (collision == null || collision.gameObject == null) 
+                return;
+
+            var enemyBody = collision.gameObject.GetComponent<Test.IEnemyBody>();
+            if (enemyBody != null)
+                HitDetection();
         }
 
         public void Reset()

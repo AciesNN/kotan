@@ -13,7 +13,7 @@ namespace Unit
         [SerializeField] UnitAnimator unitAnimator;
         [SerializeField] UnitWeapon unitWeapon;
 
-        public UnitState UnitState { get; private set; }
+        public UnitState State { get; private set; }
 
         private Vector2Int curDir;
         public Vector2Int CurDir
@@ -22,7 +22,7 @@ namespace Unit
             set
             {
                 curDir = value;
-                unitAnimator.SetDir(CurDir);
+                unitAnimator.SetDirection(CurDir);
             }
         }
 
@@ -41,30 +41,35 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            SetState(new UnitStateChangeArg() {
-                State = newState,
-            });
+            //Debug.Log($"-> {newState}");
+
+            unitWeapon.Reset();
+            State = newState;
+            unitAnimator.SetState(newState);
+            OnStateChanged?.Invoke();
         }
 
-        public bool SetState(UnitStateChangeArg newState)
+        public void SetDirection(Vector2Int dir)
         {
-            if (newState == null) {
-                return false;
-            }
+            CurDir = dir;
+            unitAnimator.SetDirection(dir);
+        }
 
-            if (newState.ChangeDir) {
-                CurDir = newState.Dir;
-            }
-            unitAnimator.SetState(newState, changeAnim: (UnitState != newState.State || newState.ReplayAnimation));
-            unitPhysics.SetState(newState);
-            unitWeapon.Reset();
-            if (UnitState != newState.State && newState.State != UnitState.None){
-                //Debug.Log($"-> {newState.State}");
-                UnitState = newState.State;
-                OnStateChanged?.Invoke();
-            }
+        public void StopMove()
+        {
+            unitPhysics.StopMove();
+        }
 
-            return true;
+        public void Move(Vector2Int dir)
+        {
+            SetDirection(dir);
+            unitPhysics.Move(dir);
+        }
+
+        public void Jump(Vector2Int dir)
+        {
+            SetDirection(dir);
+            unitPhysics.Jump(dir);
         }
 
         public void AnimationEvent(string eventName)

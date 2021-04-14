@@ -5,40 +5,6 @@ using UnityEngine;
 
 namespace Unit
 {
-    public abstract class UnitStateChangeModel
-    {
-        private static readonly UnitStateInputLogic defaultInputLogic = new UnitStateInputLogic_Idle();
-        public abstract UnitState State { get; }
-
-        protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
-        protected virtual InputAction ActionToLockBuffer { get; }
-
-        public UnitStateChangeArg ProcessInput(Unit unit, InputAction action, Vector2Int dir, bool force)
-        {
-            if (unitStateInputLogic == null)
-                return null;
-
-            foreach (var strategy in unitStateInputLogic)
-            {
-                var res = strategy.Do(unit, action, dir, force);
-                if (res != null) {
-                    res.Dir = dir;
-                    return res;
-                }
-            }
-
-            return null;
-        }
-
-        public static UnitStateChangeArg ProcessDefault(Unit unit, InputAction action, Vector2Int dir, bool force)
-        {
-            return defaultInputLogic.Do(unit, action, dir, force);
-        }
-
-        public InputAction GetActionToLockBuffer() => ActionToLockBuffer;
-    }
-
-    #region State models
     public class UnitStateIdle : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Idle;
@@ -90,13 +56,14 @@ namespace Unit
     {
         public override UnitState State => UnitState.Jump;
     }
+
     public class UnitStateFall : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Fall;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Jump(onAmimationComplete: true),
-            new UnitStateInputLogic_Poke(onAmimationComplete: true),
+            new UnitStateInputLogic_Jump {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Poke {DoOnlyOnAmimationComplete = true},
 
             new UnitStateInputLogic_Walk(),
         };
@@ -109,8 +76,8 @@ namespace Unit
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Walk(),
 
-            new UnitStateInputLogic_Poke(),
-            new UnitStateInputLogic_Combo1(),
+            new UnitStateInputLogic_Combo1() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Poke {DoOnlyOnAmimationComplete = true},
         };
 
         protected override InputAction ActionToLockBuffer => InputAction.Slash;
@@ -123,7 +90,7 @@ namespace Unit
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Walk(),
 
-            new UnitStateInputLogic_Combo2()
+            new UnitStateInputLogic_Combo2() {DoOnlyOnAmimationComplete = true}
         };
     }    
     
@@ -134,7 +101,7 @@ namespace Unit
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Walk(),
 
-            new UnitStateInputLogic_Combo3(),
+            new UnitStateInputLogic_Combo3() {DoOnlyOnAmimationComplete = true},
         };
     }   
     
@@ -145,8 +112,7 @@ namespace Unit
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Walk(),
 
-            new UnitStateInputLogic_Poke(onAmimationComplete: true),
+            new UnitStateInputLogic_Poke() {DoOnlyOnAmimationComplete = true},
         };
     }
-    #endregion
 }

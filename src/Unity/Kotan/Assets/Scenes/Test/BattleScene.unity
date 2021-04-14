@@ -714,6 +714,7 @@ GameObject:
   - component: {fileID: 420149695}
   - component: {fileID: 420149694}
   - component: {fileID: 420149692}
+  - component: {fileID: 420149693}
   m_Layer: 13
   m_Name: MockEnemy
   m_TagString: Player
@@ -747,6 +748,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56, y: 0.76}
   m_EdgeRadius: 0
+--- !u!114 &420149693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420149691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854701267cb272844a4297a49c82ff1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &420149694
 SpriteRenderer:
   m_ObjectHideFlags: 0

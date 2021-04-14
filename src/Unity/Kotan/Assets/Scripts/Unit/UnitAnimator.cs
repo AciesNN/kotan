@@ -8,11 +8,9 @@ namespace Unit
 
         public bool IsAnimationComplete { get; internal set; }
 
-        public void SetState(UnitStateChangeArg newState, bool changeAnim)
+        public void SetState(UnitState newState)
         {
-            if (changeAnim) {
-                SetAnim(newState.State.ToString());
-            }
+            SetAnim(newState.ToString());
         }
 
         private void SetAnim(string animName)
@@ -21,7 +19,7 @@ namespace Unit
             animator.SetTrigger(animName);
         }
 
-        public void SetDir(Vector2Int dir)
+        public void SetDirection(Vector2Int dir)
         {
             if (dir.x != 0) {
                 animator.transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
