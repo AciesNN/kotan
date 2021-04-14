@@ -6,7 +6,8 @@ namespace Unit
     public class UnitStateInputLogic_Idle : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => dir.x == 0 && dir.y == 0;
+            => dir.x == 0 
+            && dir.y == 0;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -19,7 +20,9 @@ namespace Unit
     public class UnitStateInputLogic_Run : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => force && dir.x != 0 && dir.y == 0;
+            => force 
+            && dir.x != 0 
+            && dir.y == 0;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -31,7 +34,8 @@ namespace Unit
     public class UnitStateInputLogic_ContinueRun : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => dir.x != 0 && dir.x == unit.CurDir.x;
+            => dir.x != 0 
+            && dir.x == unit.CurDir.x;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -43,7 +47,8 @@ namespace Unit
     public class UnitStateInputLogic_Dash : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => force && dir.x == 0 && dir.y != 0;
+            => force && dir.x == 0 
+            && dir.y != 0;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -55,7 +60,7 @@ namespace Unit
     public class UnitStateInputLogic_Walk : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => dir.x != 0 || dir.y != 0;
+            => (dir.x != 0 || dir.y != 0);
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -64,10 +69,23 @@ namespace Unit
         }
     }
 
+    public class UnitStateInputLogic_JumpMove : UnitStateInputLogic
+    {
+        protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
+            => (dir.x != 0 || dir.y == 0)
+            && !unit.IsAnimationComplete;
+
+        protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
+        {
+            UnitMove(unit, dir);
+        }
+    }
+
     public class UnitStateInputLogic_Jump : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Jump && dir.y == 0;
+            => action == InputAction.Jump 
+            && dir.y == 0;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -92,7 +110,8 @@ namespace Unit
     public class UnitStateInputLogic_Combo1 : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Slash && unit.HitDetected;
+            => action == InputAction.Slash 
+            && unit.HitDetected;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -104,7 +123,8 @@ namespace Unit
     public class UnitStateInputLogic_Combo2 : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Slash && unit.HitDetected;
+            => action == InputAction.Slash 
+            && unit.HitDetected;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {
@@ -116,7 +136,8 @@ namespace Unit
     public class UnitStateInputLogic_Combo3 : UnitStateInputLogic
     {
         protected override bool CheckCondition(Unit unit, InputAction action, Vector2Int dir, bool force)
-            => action == InputAction.Slash && unit.HitDetected;
+            => action == InputAction.Slash 
+            && unit.HitDetected;
 
         protected override void ProcessImpl(Unit unit, InputAction action, Vector2Int dir, bool force)
         {

@@ -50,11 +50,15 @@ namespace Unit
     public class UnitStateDash : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Dash;
-    }    
-    
+    }
+
     public class UnitStateJump : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Jump;
+
+        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_JumpMove(),
+        };
     }
 
     public class UnitStateFall : UnitStateChangeModel
@@ -62,10 +66,12 @@ namespace Unit
         public override UnitState State => UnitState.Fall;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
+            new UnitStateInputLogic_JumpMove(),
+
             new UnitStateInputLogic_Jump {DoOnlyOnAmimationComplete = true},
             new UnitStateInputLogic_Poke {DoOnlyOnAmimationComplete = true},
 
-            new UnitStateInputLogic_Walk(),
+            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
         };
     }
 

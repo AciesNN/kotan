@@ -11,11 +11,14 @@ namespace Unit
         {
             new List<UnitStateChangeModel>(){
                 new UnitStateIdle(),
+
                 new UnitStateWalk(),
                 new UnitStateRun(),
                 new UnitStateDash(),
+
                 new UnitStateJump(),
                 new UnitStateFall(),
+
                 new UnitStatePoke(),
                 new UnitStateCombo1(),
                 new UnitStateCombo2(),

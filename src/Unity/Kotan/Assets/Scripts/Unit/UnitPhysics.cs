@@ -26,9 +26,12 @@ namespace Unit
         };
 
         private float jumpSpeed = 4;
+        private float jumpChangeSpeed = 2;
+        private float jumpIdleSpeed = 0.5f;
 
         private bool isJumping;
         private bool isFalling;
+        private bool isJumpingFallingFromIdle;
 
         public Vector2Int startJumpDir { get; protected set; }
         
@@ -47,11 +50,13 @@ namespace Unit
 
         public void Move(Vector2Int dir)
         {
-            if (isJumping || isFalling)
-                return; //TODO?
-
-            var newSpeed = GetSpeed(unit.State);
-            SetMove(dir, newSpeed);
+            if (isJumping || isFalling) {
+                var newSpeed = RB.velocity.x + Mathf.Sign(dir.x) * (isJumpingFallingFromIdle ? jumpIdleSpeed : jumpChangeSpeed);
+                SetMove(dir, newSpeed);
+            } else {
+                var newSpeed = GetSpeedForState(unit.State);
+                SetMove(dir, newSpeed);
+            }
         }
 
         public void StopMove()
@@ -67,7 +72,7 @@ namespace Unit
         #endregion
 
         #region Impl
-        private float GetSpeed(UnitState state)
+        private float GetSpeedForState(UnitState state)
         {
             return speeds.ContainsKey(state) ? speeds[state] : 0;
         }
@@ -80,6 +85,7 @@ namespace Unit
         private void StartJump(Vector2Int dir, float speed)
         {
             isJumping = true;
+            isJumpingFallingFromIdle = Mathf.Approximately(RB.velocity.x, 0);
             _startJump(speed);
         }
 
