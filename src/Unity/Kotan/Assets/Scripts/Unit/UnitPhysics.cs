@@ -26,8 +26,8 @@ namespace Unit
         };
 
         private float jumpSpeed = 4;
-        private float jumpChangeSpeed = 2;
-        private float jumpIdleSpeed = 0.5f;
+        private float jumpChangeSpeed = 1;
+        private float jumpIdleSpeed = 0.2f;
 
         private bool isJumping;
         private bool isFalling;
