@@ -44,6 +44,11 @@ namespace UI
             currentAction = InputAction.None;
         }
 
+        public void ResetForce()
+        {
+            currentForce = false;
+        }
+
         public void LockBufferedAction(InputAction action)
         {
             lockedBufferedAction = action;

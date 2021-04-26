@@ -4,11 +4,15 @@ using UnityEngine;
 
 namespace Unit
 {
-    public class UnitDirectionInputController : UnitInputController
+    public class UnitDirectionInputController : MonoBehaviour
     {
         [SerializeField] BufferedInputController bufferedInputController;
         private BufferedDirectonInput bufferedDirectonInput;
         
+        [SerializeField] protected Unit unit;
+
+        protected UnitChangeStateLogicFactory stateLogicFactory;
+
         private UnitStateChangeModel CurrentStateModel => stateLogicFactory.GetModel(unit.State);
 
         #region MonoBehaviour
@@ -17,6 +21,8 @@ namespace Unit
             bufferedDirectonInput = new BufferedDirectonInput(bufferedInputController);
             bufferedDirectonInput.OnSetDir += BufferedDirectonInput_SetDir;
             bufferedDirectonInput.OnAction += BufferedDirectonInput_OnAction;
+
+            stateLogicFactory = new UnitChangeStateLogicFactory(unit, bufferedDirectonInput); //FIXME: DI
 
             unit.OnAnimationComplete += Unit_OnAnimationComplete;
             unit.OnStateChanged += Unit_OnStateChanged;
@@ -63,20 +69,12 @@ namespace Unit
 
         private bool UpdateUnitStateFromInput()
         {
-            var action = bufferedDirectonInput.CurrentAction;
-            var dir = bufferedDirectonInput.CurrentDir;
-            var force = bufferedDirectonInput.CurrentForce;
-
-            return CurrentStateModel?.ProcessInput(unit, action, dir, force) ?? false;
+            return CurrentStateModel?.ProcessInput() ?? false;
         }
 
         private bool UpdateUnitStateDefault()
         {
-            var action = bufferedDirectonInput.CurrentAction;
-            var dir = bufferedDirectonInput.CurrentDir;
-            var force = bufferedDirectonInput.CurrentForce;
-
-            return UnitStateChangeModel.ProcessDefault(unit, action, dir, force);
+            return stateLogicFactory.GetModel(UnitState.Idle).ProcessInput();
         }
         #endregion
     }

@@ -7,7 +7,7 @@ namespace Unit
     {
         private readonly Dictionary<UnitState, UnitStateChangeModel> items = new Dictionary<UnitState, UnitStateChangeModel>();
 
-        public UnitChangeStateLogicFactory()
+        public UnitChangeStateLogicFactory(Unit unit, UI.BufferedDirectonInput bufferedDirectonInput)
         {
             new List<UnitStateChangeModel>(){
                 new UnitStateIdle(),
@@ -23,7 +23,10 @@ namespace Unit
                 new UnitStateCombo1(),
                 new UnitStateCombo2(),
                 new UnitStateCombo3(),
-            }.ForEach(item => items[item.State] = item);
+            }.ForEach(item => {
+                item.Init(unit, bufferedDirectonInput); //DI: FIXME
+                items[item.State] = item;
+             });
         }
 
         public UnitStateChangeModel GetModel(UnitState unitState)
