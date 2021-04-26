@@ -41,7 +41,7 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            Debug.Log($"-> {newState}");
+            //Debug.Log($"-> {newState}");
 
             unitWeapon.Reset();
             State = newState;
@@ -60,14 +60,14 @@ namespace Unit
             unitPhysics.StopMove();
         }
 
-        public void Move(Vector2Int dir)
+        public void Move(Vector2Int dir, bool force)
         {
-            unitPhysics.Move(dir);
+            unitPhysics.Move(dir, force);
         }
 
-        public void Jump(Vector2Int dir)
+        public void Jump(Vector2Int dir, bool force)
         {
-            unitPhysics.Jump(dir);
+            unitPhysics.Jump(dir, force);
         }
 
         public void AnimationEvent(string eventName)

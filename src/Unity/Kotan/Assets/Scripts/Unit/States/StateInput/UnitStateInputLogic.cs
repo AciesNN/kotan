@@ -111,12 +111,12 @@ namespace Unit
 
         protected void UnitMove()
         {
-            unit.Move(input.CurrentDir);
+            unit.Move(input.CurrentDir, force);
         }
         
         protected void UnitJump()
         {
-            unit.Jump(dir);
+            unit.Jump(dir, force);
         }
 
         protected void ResetForce()

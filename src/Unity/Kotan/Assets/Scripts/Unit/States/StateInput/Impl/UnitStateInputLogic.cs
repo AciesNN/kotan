@@ -98,9 +98,23 @@ namespace Unit
         protected override bool setDir => true;
         protected override UnitState? newState => UnitState.Jump;
 
+        protected override void ProcessImpl()
+        {
+            UnitJump();
+        }
+    }
+
+    public class UnitStateInputLogic_JumpRun : UnitStateInputLogic
+    {
+        //protected override bool? checkInputForce => true;
+        protected override InputAction? checkAction => InputAction.Jump;
+        protected override bool setDir => true;
+        protected override UnitState? newState => UnitState.Jump;
+
         protected override bool CheckCondition()
-            => CheckInputDirecton(yNotZero: false);
-        
+            => CheckInputDirecton(xNotZero: true, yNotZero: false)
+            && dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
+
         protected override void ProcessImpl()
         {
             UnitJump();

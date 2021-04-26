@@ -41,6 +41,8 @@ namespace Unit
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
             new UnitStateInputLogic_Idle(),
+            new UnitStateInputLogic_JumpRun(),
+
             new UnitStateInputLogic_ContinueRun(),
             new UnitStateInputLogic_Dash(),
             new UnitStateInputLogic_Walk(),
