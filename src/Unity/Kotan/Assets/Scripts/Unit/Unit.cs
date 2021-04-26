@@ -62,13 +62,11 @@ namespace Unit
 
         public void Move(Vector2Int dir)
         {
-            SetDirection(dir);
             unitPhysics.Move(dir);
         }
 
         public void Jump(Vector2Int dir)
         {
-            SetDirection(dir);
             unitPhysics.Jump(dir);
         }
 

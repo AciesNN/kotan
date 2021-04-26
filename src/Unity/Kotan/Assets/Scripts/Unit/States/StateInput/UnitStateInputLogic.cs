@@ -6,30 +6,49 @@ namespace Unit
 {
     public abstract class UnitStateInputLogic
     {
-        public bool DoOnlyOnAmimationComplete;
+        protected virtual InputAction? checkAction => null;
+        protected virtual bool? checkInputForce => null;
+        
+        public bool? CheckAmimationComplete;
+        protected bool? checkAmimationComplete => CheckAmimationComplete;
+        
+        protected virtual UnitState? newState => null;
+        protected virtual bool setDir => false;
 
         public virtual bool ProcessInput()
         {
-            if (DoOnlyOnAmimationComplete && !unit.IsAnimationComplete) {
+            if (!CheckAnimationComplete()) {
                 return false;
             }
 
-            if (CheckCondition()) {
-                ProcessImpl();
-                return true;
+            if (!CheckInputForce()) {
+                return false;
+            }
+            
+            if (!CheckInputAction()) {
+                return false;
             }
 
-            return false;
+            if (!CheckCondition()) {
+                return false;
+            }
+
+            SetUnitState();
+            SetUnitDirection();
+            ProcessImpl();
+            return true;
         }
 
-        protected abstract bool CheckCondition();
-        protected abstract void ProcessImpl();
+        protected virtual bool CheckCondition() => true;
+        protected virtual void ProcessImpl() { }
 
+        #region DI
         //weird DI pattern? TODO?
         protected BufferedDirectonInput input;
         protected Unit unit;
         protected Vector2Int dir;
         protected bool force;
+        protected InputAction action;
         public void SetCurrentData(BufferedDirectonInput input, Unit unit)
         {
             this.unit = unit;
@@ -37,37 +56,52 @@ namespace Unit
 
             dir = input.CurrentDir;
             force = input.CurrentForce;
+            action = input.CurrentAction;
         }
+        #endregion
 
         #region Checks - move to strategy classes
-        protected bool CheckInputAction(InputAction desireableAction)
+        protected bool CheckAnimationComplete()
         {
-            return input.CurrentAction.Equals(desireableAction);
+            return checkAmimationComplete.HasValue ? checkAmimationComplete.Value == unit.IsAnimationComplete : true;
         }
 
-        protected bool CheckInputForce(bool desireableForce = true)
+        protected bool CheckUnitHitDetected()
         {
-            return desireableForce == force;
+            return unit.HitDetected;
         }
 
-        protected bool CheckInputDirecton(bool? xNotZero = null, bool? yNotZero = null, bool andCheck = true)
+        protected bool CheckInputAction()
+        {
+            return checkAction.HasValue ? input.CurrentAction.Equals(checkAction.Value) : true;
+        }
+
+        protected bool CheckInputForce()
+        {
+            return checkInputForce.HasValue ? checkInputForce == force : true;
+        }
+
+        protected bool CheckInputDirecton(bool? xNotZero = null, bool? yNotZero = null)
         {
             bool checkDirX = xNotZero.HasValue ? (xNotZero.Value ? dir.x != 0: dir.x == 0) : true;
             bool checkDirY = yNotZero.HasValue ? (yNotZero.Value ? dir.y != 0 : dir.y == 0) : true;
-            bool checkDir = andCheck ? checkDirX && checkDirY : checkDirX || checkDirY;
-            return checkDir;
+            return checkDirX && checkDirY;
         }
         #endregion
 
         #region Actions - move to strategy classes
-        protected void SetUnitState(UnitState state)
+        private void SetUnitState()
         {
-            unit.SetState(state);
+            if (newState.HasValue) {
+                unit.SetState(newState.Value);
+            }
         }
         
-        protected void SetUnitDirection()
+        private void SetUnitDirection()
         {
-            unit.SetDirection(dir);
+            if (setDir) {
+                unit.SetDirection(dir);
+            }
         }
         
         protected void StopUnit()

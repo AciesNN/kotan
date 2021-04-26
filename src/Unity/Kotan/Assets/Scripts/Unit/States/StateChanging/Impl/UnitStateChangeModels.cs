@@ -49,8 +49,6 @@ namespace Unit
 
     public class UnitStateDash : UnitStateChangeModel
     {
-        protected override bool resetForce => true;
-
         public override UnitState State => UnitState.Dash;
     }
 
@@ -68,12 +66,12 @@ namespace Unit
         public override UnitState State => UnitState.Fall;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_JumpMove(),
+            new UnitStateInputLogic_JumpMove() {CheckAmimationComplete = false},
 
-            new UnitStateInputLogic_Jump {DoOnlyOnAmimationComplete = true},
-            new UnitStateInputLogic_Poke {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Jump {CheckAmimationComplete = true},
+            new UnitStateInputLogic_Poke {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
         };
     }
 
@@ -82,10 +80,10 @@ namespace Unit
         public override UnitState State => UnitState.Poke;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo1() {DoOnlyOnAmimationComplete = true},
-            new UnitStateInputLogic_Poke {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Combo1() {CheckAmimationComplete = true},
+            new UnitStateInputLogic_Poke {CheckAmimationComplete = true},
         };
 
         protected override InputAction ActionToLockBuffer => InputAction.Slash;
@@ -96,9 +94,9 @@ namespace Unit
         public override UnitState State => UnitState.Combo1;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo2() {DoOnlyOnAmimationComplete = true}
+            new UnitStateInputLogic_Combo2() {CheckAmimationComplete = true}
         };
     }    
     
@@ -107,9 +105,9 @@ namespace Unit
         public override UnitState State => UnitState.Combo2;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo3() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Combo3() {CheckAmimationComplete = true},
         };
     }   
     
@@ -118,9 +116,9 @@ namespace Unit
         public override UnitState State => UnitState.Combo3;
 
         protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Poke() {DoOnlyOnAmimationComplete = true},
+            new UnitStateInputLogic_Poke() {CheckAmimationComplete = true},
         };
     }
 }

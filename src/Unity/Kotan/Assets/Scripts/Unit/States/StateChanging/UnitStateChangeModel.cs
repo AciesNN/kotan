@@ -12,8 +12,6 @@ namespace Unit
         protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
         protected virtual InputAction ActionToLockBuffer { get; }
 
-        protected virtual bool resetForce => false;
-
         #region DI: FIXME
         protected BufferedDirectonInput input;
         protected Unit unit;
