@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections.Generic;
 
 namespace Unit
@@ -7,7 +6,7 @@ namespace Unit
     {
         private readonly Dictionary<UnitState, UnitStateChangeModel> items = new Dictionary<UnitState, UnitStateChangeModel>();
 
-        public UnitChangeStateLogicFactory(Unit unit, UI.BufferedDirectonInput bufferedDirectonInput)
+        public UnitChangeStateLogicFactory(Unit unit, UI.BufferedStatedInput input)
         {
             new List<UnitStateChangeModel>(){
                 new UnitStateIdle(),
@@ -24,7 +23,7 @@ namespace Unit
                 new UnitStateCombo2(),
                 new UnitStateCombo3(),
             }.ForEach(item => {
-                item.Init(unit, bufferedDirectonInput); //DI: FIXME
+                item.Init(unit, input); //DI: FIXME
                 items[item.State] = item;
              });
         }

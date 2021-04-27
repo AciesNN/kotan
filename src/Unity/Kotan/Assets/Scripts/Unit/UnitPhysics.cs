@@ -23,15 +23,17 @@ namespace Unit
             {UnitState.Walk, 2},
             {UnitState.Run, 5},
             {UnitState.Dash, 2},
+            {UnitState.Jump, 0.5f},
         };
 
         private float jumpSpeed = 4;
         private float jumpXSpeed = 2;
         private float jumpYSpeed = 1;
-        private float jumpXForceSpeed = 4;
+        private float jumpXForceSpeed = 3;
 
         private bool isJumping;
         private bool isFalling;
+        private bool isJumpingFallingFromIdle;
 
         public Vector2Int startJumpDir { get; protected set; }
         
@@ -48,32 +50,35 @@ namespace Unit
             this.unit = unit;
         }
 
-        public void Move(Vector2Int dir, bool _ /*force*/)
+        public void Move(Vector2Int dir, bool force)
         {
-            //ignore "force" for now, get speed from state
             if (isJumping || isFalling) {
+                if (isJumpingFallingFromIdle) {
+                    var moveSpeed = GetMoveSpeedForState(unit.State, dir, force);
+                    SetMove(dir, moveSpeed);
+                }
             } else {
-                var newSpeed = GetMoveSpeedForState(unit.State, dir);
-                SetMove(dir, newSpeed);
+                var moveSpeed = GetMoveSpeedForState(unit.State, dir, force);
+                SetMove(dir, moveSpeed);
             }
         }
 
         public void StopMove()
         {
-            SetMove(Vector2Int.zero, 0);
+            SetMove(Vector2Int.zero, Vector2.zero);
         }
 
         public void Jump(Vector2Int dir, bool force)
         {
             //ignore "force" for now, get speed from state
             startJumpDir = dir;
-            var moveSpeed = GetJumpMoveSpeed(dir, force);
+            var moveSpeed = GetJumpMoveSpeed(unit.State, dir, force);
             StartJump(dir, moveSpeed, jumpSpeed);
         }
         #endregion
 
         #region Impl
-        private Vector2 GetJumpMoveSpeed(Vector2Int dir, bool force)
+        private Vector2 GetJumpMoveSpeed(UnitState state, Vector2Int dir, bool force)
         {
             var xSpeed = 0f;
             if (dir.x != 0) {
@@ -88,19 +93,23 @@ namespace Unit
             return new Vector2(xSpeed, ySpeed);
         }
 
-        private float GetMoveSpeedForState(UnitState state, Vector2Int dir)
+        private Vector2 GetMoveSpeedForState(UnitState state, Vector2Int dir, bool force)
         {
-            return speeds.ContainsKey(state) ? speeds[state] : 0;
+            var speed = speeds.ContainsKey(state) ? speeds[state] : 0;
+            return Vector2.one * speed;
         }
 
-        private void SetMove(Vector2Int dir, float speed)
+        private void SetMove(Vector2Int dir, Vector2 moveSpeed)
         {
-            RB.velocity = new Vector2(dir.x, dir.y) * speed;
+            RB.velocity = new Vector2(dir.x * Mathf.Abs(moveSpeed.x), dir.y * Mathf.Abs(moveSpeed.y));
         }
 
         private void StartJump(Vector2Int dir, Vector2 moveSpeed, float jumpSpeed)
         {
             isJumping = true;
+            isJumpingFallingFromIdle = Mathf.Approximately(RB.velocity.x, 0);
+
+            SetMove(dir, moveSpeed);
             _startJump(dir, moveSpeed, jumpSpeed);
         }
 
@@ -137,8 +146,6 @@ namespace Unit
         [SerializeField] private Rigidbody _jumpRB;
         private void _startJump(Vector2Int dir, Vector2 moveSpeed, float jumpSpeed)
         {
-            RB.velocity = new Vector2(dir.x * Mathf.Abs(moveSpeed.x), dir.y * Mathf.Abs(moveSpeed.y));
-
             _jumpRB.velocity = new Vector2(0, 1) * jumpSpeed;
             _jumpRB.useGravity = true;
         }

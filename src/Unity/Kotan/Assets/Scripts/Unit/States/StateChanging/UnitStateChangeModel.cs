@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UI;
-using UnityEngine;
+using Unit.UnitStateInputLogic;
 
 namespace Unit
 {
@@ -9,13 +8,12 @@ namespace Unit
     {
         public abstract UnitState State { get; }
 
-        protected virtual List<UnitStateInputLogic> unitStateInputLogic { get; }
-        protected virtual InputAction ActionToLockBuffer { get; }
+        protected virtual List<BaseUnitStateInputLogic> unitStateInputLogic { get; }
 
         #region DI: FIXME
-        protected BufferedDirectonInput input;
+        protected BufferedStatedInput input;
         protected Unit unit;
-        public void Init(Unit unit, BufferedDirectonInput input)
+        public void Init(Unit unit, BufferedStatedInput input)
         {
             this.unit = unit;
             this.input = input;
@@ -29,7 +27,8 @@ namespace Unit
 
             foreach (var strategy in unitStateInputLogic)
             {
-                strategy.SetCurrentData(input, unit);
+                strategy.SetCurrentData(unit, input); //TODO move to init
+
                 var processed = strategy.ProcessInput();
                 if (processed) {
                     return true;
@@ -38,7 +37,5 @@ namespace Unit
 
             return false;
         }
-
-        public InputAction GetActionToLockBuffer() => ActionToLockBuffer;
     }
 }

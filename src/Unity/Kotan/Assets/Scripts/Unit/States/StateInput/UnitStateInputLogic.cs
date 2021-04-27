@@ -1,22 +1,22 @@
-using System;
 using UI;
-using UnityEngine;
 
-namespace Unit
+namespace Unit.UnitStateInputLogic
 {
-    public abstract class UnitStateInputLogic
+    public abstract class BaseUnitStateInputLogic
     {
         protected virtual InputAction? checkAction => null;
         protected virtual bool? checkInputForce => null;
         
         public bool? CheckAmimationComplete;
-        protected bool? checkAmimationComplete => CheckAmimationComplete;
+        protected virtual bool? checkAmimationComplete => CheckAmimationComplete;
         
         protected virtual UnitState? newState => null;
         protected virtual bool setDir => false;
 
         public virtual bool ProcessInput()
         {
+            inputState = input.GetInputState();
+
             if (!CheckAnimationComplete()) {
                 return false;
             }
@@ -44,19 +44,14 @@ namespace Unit
 
         #region DI
         //weird DI pattern? TODO?
-        protected BufferedDirectonInput input;
+        protected BufferedStatedInput input;
         protected Unit unit;
-        protected Vector2Int dir;
-        protected bool force;
-        protected InputAction action;
-        public void SetCurrentData(BufferedDirectonInput input, Unit unit)
+        protected InputState inputState;
+        public void SetCurrentData(Unit unit, BufferedStatedInput input)
         {
             this.unit = unit;
             this.input = input;
 
-            dir = input.CurrentDir;
-            force = input.CurrentForce;
-            action = input.CurrentAction;
         }
         #endregion
 
@@ -73,18 +68,18 @@ namespace Unit
 
         protected bool CheckInputAction()
         {
-            return checkAction.HasValue ? input.CurrentAction.Equals(checkAction.Value) : true;
+            return checkAction.HasValue ? inputState.action.Equals(checkAction.Value) : true;
         }
 
         protected bool CheckInputForce()
         {
-            return checkInputForce.HasValue ? checkInputForce == force : true;
+            return checkInputForce.HasValue ? checkInputForce == inputState.force : true;
         }
 
         protected bool CheckInputDirecton(bool? xNotZero = null, bool? yNotZero = null)
         {
-            bool checkDirX = xNotZero.HasValue ? (xNotZero.Value ? dir.x != 0: dir.x == 0) : true;
-            bool checkDirY = yNotZero.HasValue ? (yNotZero.Value ? dir.y != 0 : dir.y == 0) : true;
+            bool checkDirX = xNotZero.HasValue ? (xNotZero.Value ? inputState.dir.x != 0: inputState.dir.x == 0) : true;
+            bool checkDirY = yNotZero.HasValue ? (yNotZero.Value ? inputState.dir.y != 0 : inputState.dir.y == 0) : true;
             return checkDirX && checkDirY;
         }
         #endregion
@@ -100,7 +95,7 @@ namespace Unit
         private void SetUnitDirection()
         {
             if (setDir) {
-                unit.SetDirection(dir);
+                unit.SetDirection(inputState.dir);
             }
         }
         
@@ -111,17 +106,22 @@ namespace Unit
 
         protected void UnitMove()
         {
-            unit.Move(input.CurrentDir, force);
+            unit.Move(inputState.dir, inputState.force);
         }
         
         protected void UnitJump()
         {
-            unit.Jump(dir, force);
+            unit.Jump(inputState.dir, inputState.force);
         }
 
         protected void ResetForce()
         {
             input.ResetForce();
+        }
+
+        protected void BufferInputState()
+        {
+            input.AddBuffer();
         }
         #endregion
     }

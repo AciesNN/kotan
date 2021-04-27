@@ -1,9 +1,22 @@
+using System.Collections.Generic;
 using UI;
-using UnityEngine;
 
-namespace Unit
-{
-    public class UnitStateInputLogic_Idle : UnitStateInputLogic
+namespace Unit.UnitStateInputLogic
+{    
+    public class BufferInput: BaseUnitStateInputLogic
+    {
+        public InputAction? BufferAction;
+
+        protected override bool? checkAmimationComplete => false;
+        protected override InputAction? checkAction => BufferAction;
+
+        protected override void ProcessImpl()
+        {
+            BufferInputState();
+        }
+    }
+
+    public class Idle : BaseUnitStateInputLogic
     {
         protected override bool setDir => true;
         protected override UnitState? newState => UnitState.Idle;
@@ -17,7 +30,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Run : UnitStateInputLogic
+    public class Run : BaseUnitStateInputLogic
     {
         protected override bool? checkInputForce => true;
         protected override bool setDir => true;
@@ -32,7 +45,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_ContinueRun : UnitStateInputLogic
+    public class ContinueRun : BaseUnitStateInputLogic
     {
         //protected override bool? checkInputForce => true;
         protected override bool setDir => true;
@@ -40,7 +53,7 @@ namespace Unit
 
         protected override bool CheckCondition()
             => CheckInputDirecton(xNotZero: true)
-            && dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
+            && inputState.dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
 
         protected override void ProcessImpl()
         {
@@ -48,7 +61,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Dash : UnitStateInputLogic
+    public class Dash : BaseUnitStateInputLogic
     {
         protected override bool? checkInputForce => true;
         protected override bool setDir => true;
@@ -64,7 +77,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Walk : UnitStateInputLogic
+    public class Walk : BaseUnitStateInputLogic
     {
         protected override bool? checkInputForce => false;
         protected override bool setDir => true;
@@ -79,12 +92,12 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_JumpMove : UnitStateInputLogic
+    public class JumpMove : BaseUnitStateInputLogic
     {
         protected override bool setDir => true;
 
         protected override bool CheckCondition()
-            => CheckInputDirecton(xNotZero: true);
+            => CheckInputDirecton(xNotZero: true, yNotZero: false);
 
         protected override void ProcessImpl()
         {
@@ -92,7 +105,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Jump : UnitStateInputLogic
+    public class Jump : BaseUnitStateInputLogic
     {
         protected override InputAction? checkAction => InputAction.Jump;
         protected override bool setDir => true;
@@ -104,7 +117,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_JumpRun : UnitStateInputLogic
+    public class JumpRun : BaseUnitStateInputLogic
     {
         //protected override bool? checkInputForce => true;
         protected override InputAction? checkAction => InputAction.Jump;
@@ -113,7 +126,7 @@ namespace Unit
 
         protected override bool CheckCondition()
             => CheckInputDirecton(xNotZero: true, yNotZero: false)
-            && dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
+            && inputState.dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
 
         protected override void ProcessImpl()
         {
@@ -121,7 +134,7 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Poke : UnitStateInputLogic
+    public class Poke : BaseUnitStateInputLogic
     {
         protected override InputAction? checkAction => InputAction.Slash;
         protected override bool setDir => true;
@@ -133,28 +146,13 @@ namespace Unit
         }
     }
 
-    public class UnitStateInputLogic_Combo1 : UnitStateInputLogic
+    public class Combo : BaseUnitStateInputLogic
     {
-        protected override InputAction? checkAction => InputAction.Slash;
-        protected override UnitState? newState => UnitState.Combo1;
+        static readonly List<UnitState> newStates = new List<UnitState> { UnitState.Combo1, UnitState.Combo2, UnitState.Combo3 };
+        public int N;
 
-        protected override bool CheckCondition()
-            => CheckUnitHitDetected();
-    }    
-    
-    public class UnitStateInputLogic_Combo2 : UnitStateInputLogic
-    {
         protected override InputAction? checkAction => InputAction.Slash;
-        protected override UnitState? newState => UnitState.Combo2;
-
-        protected override bool CheckCondition()
-            => CheckUnitHitDetected();
-    }    
-    
-    public class UnitStateInputLogic_Combo3 : UnitStateInputLogic
-    {
-        protected override InputAction? checkAction => InputAction.Slash;
-        protected override UnitState? newState => UnitState.Combo3;
+        protected override UnitState? newState => newStates[N-1];
 
         protected override bool CheckCondition()
             => CheckUnitHitDetected();

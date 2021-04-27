@@ -7,22 +7,20 @@ namespace Unit
     public class UnitDirectionInputController : MonoBehaviour
     {
         [SerializeField] BufferedInputController bufferedInputController;
-        private BufferedDirectonInput bufferedDirectonInput;
+        private BufferedStatedInput bufferedStatedInput;
         
         [SerializeField] protected Unit unit;
 
         protected UnitChangeStateLogicFactory stateLogicFactory;
 
-        private UnitStateChangeModel CurrentStateModel => stateLogicFactory.GetModel(unit.State);
-
         #region MonoBehaviour
         private void Awake()
         {
-            bufferedDirectonInput = new BufferedDirectonInput(bufferedInputController);
-            bufferedDirectonInput.OnSetDir += BufferedDirectonInput_SetDir;
-            bufferedDirectonInput.OnAction += BufferedDirectonInput_OnAction;
+            bufferedStatedInput = new BufferedStatedInput(bufferedInputController);
+            bufferedStatedInput.OnSetDir += BufferedDirectonInput_SetDir;
+            bufferedStatedInput.OnAction += BufferedDirectonInput_OnAction;
 
-            stateLogicFactory = new UnitChangeStateLogicFactory(unit, bufferedDirectonInput); //FIXME: DI
+            stateLogicFactory = new UnitChangeStateLogicFactory(unit, bufferedStatedInput); //FIXME: DI
 
             unit.OnAnimationComplete += Unit_OnAnimationComplete;
             unit.OnStateChanged += Unit_OnStateChanged;
@@ -30,8 +28,8 @@ namespace Unit
 
         private void OnDestroy()
         {
-            bufferedDirectonInput.OnSetDir -= BufferedDirectonInput_SetDir; 
-            bufferedDirectonInput.OnAction -= BufferedDirectonInput_OnAction;
+            bufferedStatedInput.OnSetDir -= BufferedDirectonInput_SetDir; 
+            bufferedStatedInput.OnAction -= BufferedDirectonInput_OnAction;
 
             unit.OnAnimationComplete -= Unit_OnAnimationComplete;
             unit.OnStateChanged -= Unit_OnStateChanged;
@@ -41,40 +39,30 @@ namespace Unit
         #region Impl
         private void Unit_OnStateChanged()
         {
-            bufferedDirectonInput.RefreshActionBuffer();
+            bufferedStatedInput.RefreshActionBuffer();
         }
 
         private void BufferedDirectonInput_SetDir(Vector2Int dir, bool forceMove)
         {
-            UpdateUnitStateFromInput();
+            UpdateUnitStateFromInput(unit.State);
         }
 
         private void BufferedDirectonInput_OnAction(InputAction action)
         {
-            var updated = UpdateUnitStateFromInput();
-            if (!updated) {
-                if (action != InputAction.None && action == CurrentStateModel?.GetActionToLockBuffer()) {
-                    bufferedDirectonInput.LockBufferedAction(action);
-                }
-            }
+            UpdateUnitStateFromInput(unit.State);
         }
 
         private void Unit_OnAnimationComplete()
         {
-            var updated = UpdateUnitStateFromInput();
+            var updated = UpdateUnitStateFromInput(unit.State);
             if (!updated) {
-                UpdateUnitStateDefault();
+                UpdateUnitStateFromInput(UnitState.Idle);
             }
         }
 
-        private bool UpdateUnitStateFromInput()
+        private bool UpdateUnitStateFromInput(UnitState unitState)
         {
-            return CurrentStateModel?.ProcessInput() ?? false;
-        }
-
-        private bool UpdateUnitStateDefault()
-        {
-            return stateLogicFactory.GetModel(UnitState.Idle).ProcessInput();
+            return stateLogicFactory?.GetModel(unitState)?.ProcessInput() ?? false;
         }
         #endregion
     }

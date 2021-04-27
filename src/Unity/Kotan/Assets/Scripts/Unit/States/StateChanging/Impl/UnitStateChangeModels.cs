@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using UI;
-using UnityEngine;
+using Unit.UnitStateInputLogic;
 
 namespace Unit
 {
@@ -9,14 +8,14 @@ namespace Unit
     {
         public override UnitState State => UnitState.Idle;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Poke(),
-            new UnitStateInputLogic_Jump(),
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Poke(),
+            new Jump(),
 
-            new UnitStateInputLogic_Idle(),
-            new UnitStateInputLogic_Run(),
-            new UnitStateInputLogic_Dash(),
-            new UnitStateInputLogic_Walk(),
+            new Idle(),
+            new Run(),
+            new Dash(),
+            new Walk(),
         };
     }
 
@@ -24,14 +23,14 @@ namespace Unit
     {
         public override UnitState State => UnitState.Walk;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Poke(),
-            new UnitStateInputLogic_Jump(),
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Poke(),
+            new Jump(),
 
-            new UnitStateInputLogic_Idle(),
-            new UnitStateInputLogic_Run(),
-            new UnitStateInputLogic_Dash(),
-            new UnitStateInputLogic_Walk(),
+            new Idle(),
+            new Run(),
+            new Dash(),
+            new Walk(),
         };
     }
 
@@ -39,13 +38,13 @@ namespace Unit
     {
         public override UnitState State => UnitState.Run;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Idle(),
-            new UnitStateInputLogic_JumpRun(),
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Idle(),
+            new JumpRun(),
 
-            new UnitStateInputLogic_ContinueRun(),
-            new UnitStateInputLogic_Dash(),
-            new UnitStateInputLogic_Walk(),
+            new ContinueRun(),
+            new Dash(),
+            new Walk(),
         };
     }
 
@@ -58,8 +57,8 @@ namespace Unit
     {
         public override UnitState State => UnitState.Jump;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_JumpMove(),
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new JumpMove(),
         };
     }
 
@@ -67,13 +66,13 @@ namespace Unit
     {
         public override UnitState State => UnitState.Fall;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_JumpMove() {CheckAmimationComplete = false},
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new JumpMove() {CheckAmimationComplete = false},
 
-            new UnitStateInputLogic_Jump {CheckAmimationComplete = true},
-            new UnitStateInputLogic_Poke {CheckAmimationComplete = true},
+            new Jump {CheckAmimationComplete = true},
+            new Poke {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
+            new Walk() {CheckAmimationComplete = true},
         };
     }
 
@@ -81,24 +80,24 @@ namespace Unit
     {
         public override UnitState State => UnitState.Poke;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo1() {CheckAmimationComplete = true},
-            new UnitStateInputLogic_Poke {CheckAmimationComplete = true},
+            new Combo() {CheckAmimationComplete = true, N = 1},
+            new Poke {CheckAmimationComplete = true},
+
+            new BufferInput() {BufferAction = InputAction.Slash},
         };
-
-        protected override InputAction ActionToLockBuffer => InputAction.Slash;
     }
 
     public class UnitStateCombo1 : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Combo1;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo2() {CheckAmimationComplete = true}
+            new Combo() {CheckAmimationComplete = true, N = 2}
         };
     }    
     
@@ -106,10 +105,10 @@ namespace Unit
     {
         public override UnitState State => UnitState.Combo2;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Combo3() {CheckAmimationComplete = true},
+            new Combo() {CheckAmimationComplete = true, N = 3},
         };
     }   
     
@@ -117,10 +116,10 @@ namespace Unit
     {
         public override UnitState State => UnitState.Combo3;
 
-        protected override List<UnitStateInputLogic> unitStateInputLogic => new List<UnitStateInputLogic>() {
-            new UnitStateInputLogic_Walk() {CheckAmimationComplete = true},
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Walk() {CheckAmimationComplete = true},
 
-            new UnitStateInputLogic_Poke() {CheckAmimationComplete = true},
+            new Poke() {CheckAmimationComplete = true},
         };
     }
 }

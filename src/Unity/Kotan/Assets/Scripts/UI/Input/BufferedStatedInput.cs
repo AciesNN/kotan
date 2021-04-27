@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI
 {
-    public class BufferedDirectonInput : IDisposable
+    public class BufferedStatedInput: IDisposable
     {
         private const float actionThreshold = 0.3f; //TODO - in settings
 
@@ -13,20 +14,20 @@ namespace UI
         private IBufferedInputController controller;
 
         private Vector2Int lastPreForceDir;
-        private Vector2Int curDir;
-        private bool currentForce;
 
+        private Vector2Int curDir;
         public Vector2Int CurrentDir => curDir;
+
+        private bool currentForce;
         public bool CurrentForce => currentForce;
 
         private InputAction currentAction;
-        private InputAction lockedBufferedAction;
 
         private float lastActionChange;
         public InputAction CurrentAction => GetCurrentAction();
 
         #region Life circle
-        public BufferedDirectonInput(IBufferedInputController controller)
+        public BufferedStatedInput(IBufferedInputController controller)
         {
             this.controller = controller;
 
@@ -40,7 +41,6 @@ namespace UI
 
         public void RefreshActionBuffer()
         {
-            lockedBufferedAction = InputAction.None;
             currentAction = InputAction.None;
         }
 
@@ -49,9 +49,42 @@ namespace UI
             currentForce = false;
         }
 
-        public void LockBufferedAction(InputAction action)
+        public void ClearBuffer()
         {
-            lockedBufferedAction = action;
+            bufferOfActons.Clear();
+            currentBufferedState = null;
+        }
+
+        Stack<InputState> bufferOfActons = new Stack<InputState>();
+        public void AddBuffer()
+        {
+            var currentAction = new InputState() {
+                dir = CurrentDir,
+                force = CurrentForce,
+                action = CurrentAction,
+            };
+            bufferOfActons.Push(currentAction);
+        }
+
+        private InputState? currentBufferedState;
+        public void PopBuffer() {
+            if (bufferOfActons.Count > 0) {
+                currentBufferedState = bufferOfActons.Pop();
+            } else {
+                currentBufferedState = null;
+            }
+        }
+
+        public InputState GetInputState()
+        {
+            if (currentBufferedState.HasValue) {
+                return currentBufferedState.Value;
+            }
+            return new InputState() {
+                dir = CurrentDir,
+                force = CurrentForce,
+                action = CurrentAction,
+            };
         }
         #endregion
 
@@ -122,10 +155,6 @@ namespace UI
 
         private InputAction GetCurrentAction()
         {
-            if (lockedBufferedAction != InputAction.None) {
-                return lockedBufferedAction;
-            }
-
             if (Time.time - lastActionChange > actionThreshold) {
                 return InputAction.None;
             }
