@@ -40,6 +40,7 @@ namespace Unit
 
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
             new Idle(),
+            new DashAttack(),
             new JumpRun(),
 
             new ContinueRun(),
@@ -97,6 +98,23 @@ namespace Unit
 
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
             new Poke {CheckAmimationComplete = true}, //FIX ME no need check input
+
+            new BufferInput() {BufferAction = InputAction.Slash},
+        };
+    }
+
+    public class UnitStateDashAttack : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.DashAttack;
+
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Poke() {CheckAmimationComplete = true},
+            new Jump() {CheckAmimationComplete = true},
+
+            new Idle() {CheckAmimationComplete = true}, //TODO ??? -> None ?
+            new Run() {CheckAmimationComplete = true},
+            new Dash() {CheckAmimationComplete = true},
+            new Walk() {CheckAmimationComplete = true},
 
             new BufferInput() {BufferAction = InputAction.Slash},
         };

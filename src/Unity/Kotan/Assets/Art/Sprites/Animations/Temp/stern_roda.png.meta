@@ -190,7 +190,7 @@ TextureImporter:
     second: stern_run_7
   - first:
       213: 7327215108904489282
-    second: stern_roda_62
+    second: stern_dash_attack_0
   - first:
       213: 3517709085766604023
     second: stern_roda_63
@@ -1822,10 +1822,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_62
+      name: stern_dash_attack_0
       rect:
         serializedVersion: 2
-        x: 566
+        x: 565
         y: 1078
         width: 100
         height: 57

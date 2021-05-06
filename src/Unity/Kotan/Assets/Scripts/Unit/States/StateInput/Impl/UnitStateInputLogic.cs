@@ -144,6 +144,15 @@ namespace Unit.UnitStateInputLogic
             UnitJump();
         }
     }
+    public class DashAttack : BaseUnitStateInputLogic
+    {
+        protected override InputAction? checkAction => InputAction.Slash;
+        protected override UnitState? newState => UnitState.DashAttack;
+
+        protected override bool CheckCondition()
+            => CheckInputDirecton(xNotZero: true, yNotZero: false)
+            && CheckInputToCurrentDirecton(xEqual: true);
+    }
 
     public class Poke : BaseUnitStateInputLogic
     {

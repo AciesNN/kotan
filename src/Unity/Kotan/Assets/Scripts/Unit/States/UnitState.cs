@@ -11,9 +11,10 @@ namespace Unit
         Fall,
 
         Poke,
-        HitBack,
         Combo1,
         Combo2,
         Combo3,
+        DashAttack,
+        HitBack,
     }
 }
