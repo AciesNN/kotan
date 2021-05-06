@@ -46,7 +46,7 @@ namespace UI
         public void RefreshActionBuffer()
         {
             lastInputState = null;
-            Debug.Log($"buff1: {lastInputState}");
+            //Debug.Log($"buff1: {lastInputState}");
             currentBufferedState = null;
         }
 
@@ -64,7 +64,7 @@ namespace UI
         public void AddBuffer()
         {
             InputState currentAction = GetCurrentInputState();
-            Debug.Log($"buff2: {currentAction}");
+            //Debug.Log($"buff2: {currentAction}");
             bufferOfActons.Push(currentAction);
         }
 
@@ -74,7 +74,7 @@ namespace UI
             } else {
                 currentBufferedState = null;
             }
-            Debug.Log($"buff2 pop: {currentBufferedState}");
+            //Debug.Log($"buff2 pop: {currentBufferedState}");
         }
 
         public InputState GetEffectiveInputState()
@@ -146,7 +146,7 @@ namespace UI
         private void BufferedInputController_OnJoystickPressAction()
         {
             lastInputState = GetCurrentInputState();
-            Debug.Log($"buff1: {lastInputState}");
+            //Debug.Log($"buff1: {lastInputState}");
             lastActionChange = Time.time;
             OnAction?.Invoke(CurrentAction);
         }

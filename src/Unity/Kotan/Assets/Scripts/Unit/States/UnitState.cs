@@ -16,5 +16,12 @@ namespace Unit
         Combo3,
         DashAttack,
         HitBack,
+
+        Damage,
+        Knockout,
+
+        Magic,
+
+        Parry,
     }
 }

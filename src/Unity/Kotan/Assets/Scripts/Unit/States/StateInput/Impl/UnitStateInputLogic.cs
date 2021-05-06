@@ -144,6 +144,19 @@ namespace Unit.UnitStateInputLogic
             UnitJump();
         }
     }
+
+    public class Magic : BaseUnitStateInputLogic
+    {
+        protected override InputAction? checkAction => InputAction.Magic;
+        protected override UnitState? newState => UnitState.Magic;
+    }
+
+    public class Parry : BaseUnitStateInputLogic
+    {
+        protected override InputAction? checkAction => InputAction.Parry;
+        protected override UnitState? newState => UnitState.Parry;
+    }
+
     public class DashAttack : BaseUnitStateInputLogic
     {
         protected override InputAction? checkAction => InputAction.Slash;
@@ -153,7 +166,7 @@ namespace Unit.UnitStateInputLogic
             => CheckInputDirecton(xNotZero: true, yNotZero: false)
             && CheckInputToCurrentDirecton(xEqual: true);
     }
-
+    
     public class Poke : BaseUnitStateInputLogic
     {
         protected override InputAction? checkAction => InputAction.Slash;

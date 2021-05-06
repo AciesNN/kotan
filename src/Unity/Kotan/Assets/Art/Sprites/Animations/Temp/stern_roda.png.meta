@@ -19,7 +19,7 @@ TextureImporter:
     second: stern_pre_jump_0
   - first:
       213: -2470789549710709224
-    second: stern_roda_5
+    second: stern_magic_0
   - first:
       213: 7964125014136738901
     second: stern_roda_6
@@ -37,37 +37,37 @@ TextureImporter:
     second: stern_roda_10
   - first:
       213: -1469066418880613492
-    second: stern_roda_11
+    second: stern_dmg_0
   - first:
       213: 5708605326925022681
-    second: stern_roda_12
+    second: stern_dmg_1
   - first:
       213: -8458652599583065180
-    second: stern_roda_13
+    second: stern_dmg_2
   - first:
       213: -1718659402497917685
-    second: stern_roda_14
+    second: stern_dmg_3
   - first:
       213: -8430627682191285816
-    second: stern_roda_15
+    second: stern_dmg_4
   - first:
       213: -2958238449954179954
-    second: stern_roda_16
+    second: stern_dmg_5
   - first:
       213: 803395720553352346
-    second: stern_lay_0
+    second: stern_dmg_6
   - first:
       213: 8141018527689407456
-    second: stern_lay_1
+    second: stern_dmg_7
   - first:
       213: -544987884545570241
-    second: stern_roda_19
+    second: stern_dmg_8
   - first:
       213: -2215201853952949130
-    second: stern_roda_20
+    second: stern_dmg_9
   - first:
       213: -2046819224878137979
-    second: stern_roda_21
+    second: stern_dmg_10
   - first:
       213: 1621036194664581783
     second: stern_fall_0
@@ -337,13 +337,13 @@ TextureImporter:
     second: stern_combo3_8
   - first:
       213: -779179273834102578
-    second: stern_roda_111
+    second: stern_parry_0
   - first:
       213: -3696240502979786995
-    second: stern_roda_112
+    second: stern_parry_1
   - first:
       213: 6042614201794859990
-    second: stern_roda_113
+    second: stern_parry_2
   - first:
       213: 7836162084243186123
     second: stern_roda_114
@@ -625,11 +625,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_5
+      name: stern_magic_0
       rect:
         serializedVersion: 2
         x: 409
-        y: 1510
+        y: 1509
         width: 73
         height: 107
       alignment: 7
@@ -751,7 +751,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_11
+      name: stern_dmg_0
       rect:
         serializedVersion: 2
         x: 21
@@ -772,7 +772,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_12
+      name: stern_dmg_1
       rect:
         serializedVersion: 2
         x: 92
@@ -793,7 +793,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_13
+      name: stern_dmg_2
       rect:
         serializedVersion: 2
         x: 154
@@ -814,7 +814,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_14
+      name: stern_dmg_3
       rect:
         serializedVersion: 2
         x: 231
@@ -835,7 +835,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_15
+      name: stern_dmg_4
       rect:
         serializedVersion: 2
         x: 289
@@ -856,7 +856,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_16
+      name: stern_dmg_5
       rect:
         serializedVersion: 2
         x: 372
@@ -877,7 +877,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_lay_0
+      name: stern_dmg_6
       rect:
         serializedVersion: 2
         x: 456
@@ -898,7 +898,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_lay_1
+      name: stern_dmg_7
       rect:
         serializedVersion: 2
         x: 553
@@ -919,7 +919,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_19
+      name: stern_dmg_8
       rect:
         serializedVersion: 2
         x: 648
@@ -940,7 +940,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_20
+      name: stern_dmg_9
       rect:
         serializedVersion: 2
         x: 738
@@ -961,7 +961,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_21
+      name: stern_dmg_10
       rect:
         serializedVersion: 2
         x: 844
@@ -2851,7 +2851,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_111
+      name: stern_parry_0
       rect:
         serializedVersion: 2
         x: 37
@@ -2872,10 +2872,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_112
+      name: stern_parry_1
       rect:
         serializedVersion: 2
-        x: 99
+        x: 101
         y: 335
         width: 65
         height: 71
@@ -2893,7 +2893,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_113
+      name: stern_parry_2
       rect:
         serializedVersion: 2
         x: 174

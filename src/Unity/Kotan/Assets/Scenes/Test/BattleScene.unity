@@ -328,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40bc670a4306204f8092a79048afee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 1347921125}
   bufferedInputController: {fileID: 227359448}
+  unit: {fileID: 1347921125}
 --- !u!4 &227359451
 Transform:
   m_ObjectHideFlags: 0
@@ -1933,6 +1933,7 @@ MonoBehaviour:
   unitPhysics: {fileID: 1347921127}
   unitAnimator: {fileID: 1347921128}
   unitWeapon: {fileID: 283035149}
+  unitHPBody: {fileID: 593581337}
 --- !u!114 &1347921127
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,6 +24,13 @@ namespace Unit
                 new UnitStateCombo3(),
                 new UnitStateHitBack(),
                 new UnitStateDashAttack(),
+
+                new UnitStateDamage(),
+                new UnitStateKnockout(),
+
+                new UnitStateMagic(),
+
+                new UnitStateParry(),
             }.ForEach(item => {
                 item.Init(unit, input); //DI: FIXME
                 items[item.State] = item;

@@ -1,12 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Unit
 {
     public class UnitHPBody : MonoBehaviour
     {
+        Unit unit;
+
+        public void Init(Unit unit)
+        {
+            this.unit = unit;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             HitDetection();
@@ -19,6 +23,7 @@ namespace Unit
 
         private void HitDetection()
         {
+            unit.Dmg();
         }
     }
 }

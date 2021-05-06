@@ -12,10 +12,12 @@ namespace Unit
         [SerializeField] UnitPhysics unitPhysics;
         [SerializeField] UnitAnimator unitAnimator;
         [SerializeField] UnitWeapon unitWeapon;
+        [SerializeField] UnitHPBody unitHPBody;
 
         public UnitState State { get; private set; }
 
         private Vector2Int curDir;
+
         public Vector2Int CurDir
         {
             get => curDir;
@@ -34,6 +36,7 @@ namespace Unit
         private void Awake()
         {
             unitPhysics.Init(this);
+            unitHPBody.Init(this);
             SetState(UnitState.Idle);
         }
         #endregion
@@ -68,6 +71,13 @@ namespace Unit
         public void Jump(Vector2Int dir, bool force)
         {
             unitPhysics.Jump(dir, force);
+        }
+
+        public void Dmg()
+        {
+            SetState(UnitState.Damage);
+            var dir = Vector2Int.right * (CurDir.x > 0 ? +1 : -1);
+            unitPhysics.Move(dir, false);
         }
 
         public void AnimationEvent(string eventName)

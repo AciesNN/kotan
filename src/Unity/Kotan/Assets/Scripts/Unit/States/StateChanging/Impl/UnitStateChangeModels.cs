@@ -11,6 +11,8 @@ namespace Unit
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
             new Poke(),
             new Jump(),
+            new Parry(),
+            new Magic(),
 
             new Idle(), //TODO ??? -> None ?
             new Run(),
@@ -52,6 +54,31 @@ namespace Unit
     public class UnitStateDash : UnitStateChangeModel
     {
         public override UnitState State => UnitState.Dash;
+    }
+
+    public class UnitStateDamage : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Damage;
+    }
+
+    public class UnitStateKnockout : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Knockout;
+    }
+
+    public class UnitStateParry : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Parry;
+    }
+
+    public class UnitStateMagic : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.Magic;
+    }
+
+    public class UnitStateDashAttack : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.DashAttack;
     }
 
     public class UnitStateJump : UnitStateChangeModel
@@ -98,23 +125,6 @@ namespace Unit
 
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
             new Poke {CheckAmimationComplete = true}, //FIX ME no need check input
-
-            new BufferInput() {BufferAction = InputAction.Slash},
-        };
-    }
-
-    public class UnitStateDashAttack : UnitStateChangeModel
-    {
-        public override UnitState State => UnitState.DashAttack;
-
-        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
-            new Poke() {CheckAmimationComplete = true},
-            new Jump() {CheckAmimationComplete = true},
-
-            new Idle() {CheckAmimationComplete = true}, //TODO ??? -> None ?
-            new Run() {CheckAmimationComplete = true},
-            new Dash() {CheckAmimationComplete = true},
-            new Walk() {CheckAmimationComplete = true},
 
             new BufferInput() {BufferAction = InputAction.Slash},
         };
