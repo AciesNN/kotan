@@ -53,7 +53,7 @@ namespace Unit.UnitStateInputLogic
 
         protected override bool CheckCondition()
             => CheckInputDirecton(xNotZero: true)
-            && inputState.dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
+            && CheckInputToCurrentDirecton(xEqual: true);
 
         protected override void ProcessImpl()
         {
@@ -105,6 +105,17 @@ namespace Unit.UnitStateInputLogic
         }
     }
 
+    public class JumpStopMove : BaseUnitStateInputLogic
+    {
+        protected override bool CheckCondition()
+            => CheckInputDirecton(xNotZero: false, yNotZero: false);
+
+        protected override void ProcessImpl()
+        {
+            StopUnit();
+        }
+    }
+
     public class Jump : BaseUnitStateInputLogic
     {
         protected override InputAction? checkAction => InputAction.Jump;
@@ -126,7 +137,7 @@ namespace Unit.UnitStateInputLogic
 
         protected override bool CheckCondition()
             => CheckInputDirecton(xNotZero: true, yNotZero: false)
-            && inputState.dir.x == unit.CurDir.x; //        protected override bool? checkInputForce => true; ???? move logic to inpt buffer? TODO
+            && CheckInputToCurrentDirecton(xEqual: true);
 
         protected override void ProcessImpl()
         {
@@ -156,5 +167,20 @@ namespace Unit.UnitStateInputLogic
 
         protected override bool CheckCondition()
             => CheckUnitHitDetected();
+    }
+
+    public class HitBack : BaseUnitStateInputLogic
+    {
+        protected override InputAction? checkAction => InputAction.Slash;
+        protected override bool setDir => true;
+        protected override UnitState? newState => UnitState.HitBack;
+        protected override bool CheckCondition()
+            => CheckInputDirecton(xNotZero: true, yNotZero: false)
+            && CheckInputToCurrentDirecton(xEqual: false);
+
+        protected override void ProcessImpl()
+        {
+            StopUnit();
+        }
     }
 }

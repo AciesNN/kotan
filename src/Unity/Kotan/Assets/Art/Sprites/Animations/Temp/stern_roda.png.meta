@@ -355,37 +355,37 @@ TextureImporter:
     second: stern_roda_116
   - first:
       213: 8843125650295629850
-    second: stern_roda_117
+    second: stern_hit_back_0
   - first:
       213: 1493244726256649323
-    second: stern_roda_118
+    second: stern_hit_back_1
   - first:
       213: -3957557603384170232
-    second: stern_roda_119
+    second: stern_hit_back_2
   - first:
       213: -4133302800752874554
-    second: stern_roda_120
+    second: stern_hit_back_3
   - first:
       213: -3863351820863773010
-    second: stern_roda_121
+    second: stern_hit_back_4
   - first:
       213: -6478032266523135994
-    second: stern_roda_122
+    second: stern_hit_back_5
   - first:
       213: 4992833166746430772
-    second: stern_roda_123
+    second: stern_hit_back_6
   - first:
       213: 5973677367884249960
-    second: stern_roda_124
+    second: stern_hit_back_7
   - first:
       213: -3597142919317339418
-    second: stern_roda_125
+    second: stern_hit_back_8
   - first:
       213: 5747466396311442297
-    second: stern_roda_126
+    second: stern_hit_back_9
   - first:
       213: -4895519561996937297
-    second: stern_roda_127
+    second: stern_hit_back_10
   - first:
       213: 8931396428962384535
     second: stern_roda_128
@@ -2977,7 +2977,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_117
+      name: stern_hit_back_0
       rect:
         serializedVersion: 2
         x: 44
@@ -2998,7 +2998,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_118
+      name: stern_hit_back_1
       rect:
         serializedVersion: 2
         x: 96
@@ -3019,7 +3019,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_119
+      name: stern_hit_back_2
       rect:
         serializedVersion: 2
         x: 150
@@ -3040,7 +3040,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_120
+      name: stern_hit_back_3
       rect:
         serializedVersion: 2
         x: 201
@@ -3061,7 +3061,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_121
+      name: stern_hit_back_4
       rect:
         serializedVersion: 2
         x: 268
@@ -3082,7 +3082,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_122
+      name: stern_hit_back_5
       rect:
         serializedVersion: 2
         x: 335
@@ -3103,7 +3103,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_123
+      name: stern_hit_back_6
       rect:
         serializedVersion: 2
         x: 402
@@ -3124,7 +3124,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_124
+      name: stern_hit_back_7
       rect:
         serializedVersion: 2
         x: 476
@@ -3145,7 +3145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_125
+      name: stern_hit_back_8
       rect:
         serializedVersion: 2
         x: 525
@@ -3166,7 +3166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_126
+      name: stern_hit_back_9
       rect:
         serializedVersion: 2
         x: 595
@@ -3187,7 +3187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: stern_roda_127
+      name: stern_hit_back_10
       rect:
         serializedVersion: 2
         x: 655

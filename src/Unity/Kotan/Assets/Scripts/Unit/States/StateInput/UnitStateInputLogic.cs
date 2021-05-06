@@ -15,7 +15,7 @@ namespace Unit.UnitStateInputLogic
 
         public virtual bool ProcessInput()
         {
-            inputState = input.GetInputState();
+            inputState = input.GetEffectiveInputState();
 
             if (!CheckAnimationComplete()) {
                 return false;
@@ -36,6 +36,7 @@ namespace Unit.UnitStateInputLogic
             SetUnitState();
             SetUnitDirection();
             ProcessImpl();
+
             return true;
         }
 
@@ -80,6 +81,13 @@ namespace Unit.UnitStateInputLogic
         {
             bool checkDirX = xNotZero.HasValue ? (xNotZero.Value ? inputState.dir.x != 0: inputState.dir.x == 0) : true;
             bool checkDirY = yNotZero.HasValue ? (yNotZero.Value ? inputState.dir.y != 0 : inputState.dir.y == 0) : true;
+            return checkDirX && checkDirY;
+        }
+
+        protected bool CheckInputToCurrentDirecton(bool? xEqual = null, bool? yEqual = null)
+        {
+            bool checkDirX = xEqual.HasValue ? (xEqual.Value ? inputState.dir.x == unit.CurDir.x : inputState.dir.x != unit.CurDir.x) : true;
+            bool checkDirY = yEqual.HasValue ? (yEqual.Value ? inputState.dir.y == unit.CurDir.y : inputState.dir.y != unit.CurDir.y) : true;
             return checkDirX && checkDirY;
         }
         #endregion

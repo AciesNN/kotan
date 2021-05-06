@@ -19,6 +19,7 @@ namespace Unit
                 new UnitStateFall(),
 
                 new UnitStatePoke(),
+                new UnitStateHitBack(),
                 new UnitStateCombo1(),
                 new UnitStateCombo2(),
                 new UnitStateCombo3(),

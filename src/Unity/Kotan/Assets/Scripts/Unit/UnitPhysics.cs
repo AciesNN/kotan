@@ -23,13 +23,13 @@ namespace Unit
             {UnitState.Walk, 2},
             {UnitState.Run, 5},
             {UnitState.Dash, 2},
-            {UnitState.Jump, 0.5f},
+            {UnitState.Jump, 1},
         };
 
-        private float jumpSpeed = 4;
-        private float jumpXSpeed = 2;
-        private float jumpYSpeed = 1;
-        private float jumpXForceSpeed = 3;
+        private float jumpUpSpeed = 4;
+        private float jumpUpForcedSpeed = 5;
+        private float jumpSpeed = 2;
+        private float jumpForcedSpeed = 3;
 
         private bool isJumping;
         private bool isFalling;
@@ -73,7 +73,8 @@ namespace Unit
             //ignore "force" for now, get speed from state
             startJumpDir = dir;
             var moveSpeed = GetJumpMoveSpeed(unit.State, dir, force);
-            StartJump(dir, moveSpeed, jumpSpeed);
+            var upSpeed = force ? jumpUpForcedSpeed : jumpUpSpeed;
+            StartJump(dir, moveSpeed, upSpeed);
         }
         #endregion
 
@@ -82,12 +83,12 @@ namespace Unit
         {
             var xSpeed = 0f;
             if (dir.x != 0) {
-                xSpeed = force ? jumpXForceSpeed : jumpXSpeed;
+                xSpeed = force ? jumpForcedSpeed : jumpSpeed;
             }
 
             var ySpeed = 0f;
             if (dir.y != 0) {
-                ySpeed = force ? 0 : jumpYSpeed;
+                ySpeed = force ? 0 : jumpSpeed;
             }
 
             return new Vector2(xSpeed, ySpeed);
@@ -104,13 +105,13 @@ namespace Unit
             RB.velocity = new Vector2(dir.x * Mathf.Abs(moveSpeed.x), dir.y * Mathf.Abs(moveSpeed.y));
         }
 
-        private void StartJump(Vector2Int dir, Vector2 moveSpeed, float jumpSpeed)
+        private void StartJump(Vector2Int dir, Vector2 moveSpeed, float jumpUpSpeed)
         {
             isJumping = true;
             isJumpingFallingFromIdle = Mathf.Approximately(RB.velocity.x, 0);
 
             SetMove(dir, moveSpeed);
-            _startJump(dir, moveSpeed, jumpSpeed);
+            _startJump(dir, moveSpeed, jumpUpSpeed);
         }
 
         private void StartFall()
@@ -144,9 +145,9 @@ namespace Unit
 
         #region _test
         [SerializeField] private Rigidbody _jumpRB;
-        private void _startJump(Vector2Int dir, Vector2 moveSpeed, float jumpSpeed)
+        private void _startJump(Vector2Int dir, Vector2 moveSpeed, float jumpUpSpeed)
         {
-            _jumpRB.velocity = new Vector2(0, 1) * jumpSpeed;
+            _jumpRB.velocity = Vector2.up * jumpUpSpeed;
             _jumpRB.useGravity = true;
         }
 

@@ -54,6 +54,11 @@ namespace Unit
 
         private void Unit_OnAnimationComplete()
         {
+            bufferedStatedInput.PopBuffer();
+            if (unit.State == UnitState.Poke)
+            {
+                Debug.Log($"buff1: {bufferedStatedInput.GetEffectiveInputState()}");
+            }
             var updated = UpdateUnitStateFromInput(unit.State);
             if (!updated) {
                 UpdateUnitStateFromInput(UnitState.Idle);

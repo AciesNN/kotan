@@ -12,7 +12,7 @@ namespace Unit
             new Poke(),
             new Jump(),
 
-            new Idle(),
+            new Idle(), //TODO ??? -> None ?
             new Run(),
             new Dash(),
             new Walk(),
@@ -81,45 +81,61 @@ namespace Unit
         public override UnitState State => UnitState.Poke;
 
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
-            new Walk() {CheckAmimationComplete = true},
+            new HitBack() {CheckAmimationComplete = true},
 
             new Combo() {CheckAmimationComplete = true, N = 1},
             new Poke {CheckAmimationComplete = true},
+
+            new Walk() {CheckAmimationComplete = true},
+            new BufferInput() {BufferAction = InputAction.Slash},
+        };
+    }
+
+    public class UnitStateHitBack : UnitStateChangeModel
+    {
+        public override UnitState State => UnitState.HitBack;
+
+        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new Poke {CheckAmimationComplete = true}, //FIX ME no need check input
 
             new BufferInput() {BufferAction = InputAction.Slash},
         };
     }
 
-    public class UnitStateCombo1 : UnitStateChangeModel
+    public abstract class UnitStateCombo : UnitStateChangeModel
     {
-        public override UnitState State => UnitState.Combo1;
+        static readonly List<UnitState> States = new List<UnitState> { UnitState.Combo1, UnitState.Combo2, UnitState.Combo3 };
+
+        public override UnitState State => States[ComboN - 1];
+
+        public abstract int ComboN { get; }
+
+        public virtual BaseUnitStateInputLogic NextHit
+            => new Combo() { CheckAmimationComplete = true, N = ComboN + 1 };
 
         protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
+            new HitBack() {CheckAmimationComplete = true},
+            NextHit,
+
             new Walk() {CheckAmimationComplete = true},
 
-            new Combo() {CheckAmimationComplete = true, N = 2}
+            new BufferInput() {BufferAction = InputAction.Slash},
         };
-    }    
-    
-    public class UnitStateCombo2 : UnitStateChangeModel
+    }
+
+    public class UnitStateCombo1 : UnitStateCombo
     {
-        public override UnitState State => UnitState.Combo2;
-
-        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
-            new Walk() {CheckAmimationComplete = true},
-
-            new Combo() {CheckAmimationComplete = true, N = 3},
-        };
-    }   
-    
-    public class UnitStateCombo3 : UnitStateChangeModel
+        public override int ComboN => 1;
+    }
+    public class UnitStateCombo2 : UnitStateCombo
     {
-        public override UnitState State => UnitState.Combo3;
+        public override int ComboN => 2;
+    }
+    public class UnitStateCombo3 : UnitStateCombo
+    {
+        public override int ComboN => 3;
 
-        protected override List<BaseUnitStateInputLogic> unitStateInputLogic => new List<BaseUnitStateInputLogic>() {
-            new Walk() {CheckAmimationComplete = true},
-
-            new Poke() {CheckAmimationComplete = true},
-        };
+        public override BaseUnitStateInputLogic NextHit
+            => new Poke { CheckAmimationComplete = true };
     }
 }

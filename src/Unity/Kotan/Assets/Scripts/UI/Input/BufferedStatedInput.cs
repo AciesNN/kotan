@@ -20,11 +20,15 @@ namespace UI
 
         private bool currentForce;
         public bool CurrentForce => currentForce;
+        public InputAction CurrentAction => controller.GetJoystickActions()[0]; //FIXME: really;
 
-        private InputAction currentAction;
+        private InputState? lastInputState;
 
         private float lastActionChange;
-        public InputAction CurrentAction => GetCurrentAction();
+
+        Stack<InputState> bufferOfActons = new Stack<InputState>();
+
+        private InputState? currentBufferedState;
 
         #region Life circle
         public BufferedStatedInput(IBufferedInputController controller)
@@ -41,7 +45,9 @@ namespace UI
 
         public void RefreshActionBuffer()
         {
-            currentAction = InputAction.None;
+            lastInputState = null;
+            Debug.Log($"buff1: {lastInputState}");
+            currentBufferedState = null;
         }
 
         public void ResetForce()
@@ -55,36 +61,33 @@ namespace UI
             currentBufferedState = null;
         }
 
-        Stack<InputState> bufferOfActons = new Stack<InputState>();
         public void AddBuffer()
         {
-            var currentAction = new InputState() {
-                dir = CurrentDir,
-                force = CurrentForce,
-                action = CurrentAction,
-            };
+            InputState currentAction = GetCurrentInputState();
+            Debug.Log($"buff2: {currentAction}");
             bufferOfActons.Push(currentAction);
         }
 
-        private InputState? currentBufferedState;
         public void PopBuffer() {
             if (bufferOfActons.Count > 0) {
                 currentBufferedState = bufferOfActons.Pop();
             } else {
                 currentBufferedState = null;
             }
+            Debug.Log($"buff2 pop: {currentBufferedState}");
         }
 
-        public InputState GetInputState()
+        public InputState GetEffectiveInputState()
         {
             if (currentBufferedState.HasValue) {
                 return currentBufferedState.Value;
             }
-            return new InputState() {
-                dir = CurrentDir,
-                force = CurrentForce,
-                action = CurrentAction,
-            };
+
+            if (Time.time - lastActionChange < actionThreshold && lastInputState.HasValue) {
+                return lastInputState.Value;
+            }
+
+            return GetCurrentInputState();
         }
         #endregion
 
@@ -142,24 +145,20 @@ namespace UI
 
         private void BufferedInputController_OnJoystickPressAction()
         {
-            var actions = controller.GetJoystickActions();
-            currentAction = actions[0]; //FIXME: really?
+            lastInputState = GetCurrentInputState();
+            Debug.Log($"buff1: {lastInputState}");
             lastActionChange = Time.time;
-            FireOnActionEvent();
+            OnAction?.Invoke(CurrentAction);
         }
 
-        private void FireOnActionEvent()
+        private InputState GetCurrentInputState()
         {
-            OnAction?.Invoke(currentAction);
-        }
-
-        private InputAction GetCurrentAction()
-        {
-            if (Time.time - lastActionChange > actionThreshold) {
-                return InputAction.None;
-            }
-
-            return currentAction;
+            return new InputState()
+            {
+                dir = CurrentDir,
+                force = CurrentForce,
+                action = CurrentAction,
+            };
         }
         #endregion
     }
