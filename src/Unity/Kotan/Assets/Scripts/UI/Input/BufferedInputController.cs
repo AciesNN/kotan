@@ -1,3 +1,4 @@
+using Core.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,6 @@ namespace UI
         [SerializeField] PlayerInputControllerSettings settings;
         [SerializeField] string AxisPostfix;
         
-        string HorizontalAxis => $"Horizontal{AxisPostfix}";
-        string VerticalAxis => $"Vertical{AxisPostfix}";
-
         float lastDirChange;
         bool neitral = true;
         bool dirChanged = false;
@@ -36,9 +34,12 @@ namespace UI
         InputAction[] actions;
         InputAction[] curActions = new InputAction[MaxStates]; //TODO all logic now is about 2 max actions (PlayerInputController.CheckActions())
 
+        RawInput rawInput;
+
         #region MonoBehaviour
         private void Awake()
         {
+            rawInput = new RawInput(AxisPostfix);
             actions = Enum.GetValues(typeof(InputAction)).Cast<InputAction>().Where(e => e != InputAction.None).ToArray();
         }
 
@@ -50,14 +51,10 @@ namespace UI
         #endregion
 
         #region IPlayerInputController interface
-        //public bool GetJoystickActionState(InputLogAction action) => Input.GetButtonDown(action.ToString());
-
         public InputAction[] GetJoystickActions() => curActions;
 
-        public Vector2Int GetJoystickPositionInt() => new Vector2Int(
-                SignOrZero(Input.GetAxisRaw(HorizontalAxis)),
-                SignOrZero(Input.GetAxisRaw(VerticalAxis))
-            );
+        public Vector2Int GetJoystickPositionInt() => rawInput.GetJoystickPositionInt();
+
         public bool GetJoystickDirIsPressed => dirPressed && !neitral;
         #endregion
 
@@ -73,7 +70,7 @@ namespace UI
 
             foreach (var action in actions)
             {
-                if (Input.GetButtonDown($"{action}{AxisPostfix}"))
+                if (rawInput.GetButtonDown(action.ToString()))
                 {
                     if (curActions[0] != InputAction.None)
                     {
@@ -144,12 +141,6 @@ namespace UI
                     }
                 }
             }
-        }
-
-        private int SignOrZero(float val)
-        {
-            return Mathf.Approximately(val, 0) ?
-                0 : val > 0 ? 1 : -1;
         }
         #endregion
     }
