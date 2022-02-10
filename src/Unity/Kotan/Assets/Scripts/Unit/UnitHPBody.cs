@@ -11,7 +11,7 @@ namespace Unit
             this.unit = unit;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collision)
         {
             HitDetection();
         }

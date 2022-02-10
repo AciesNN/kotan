@@ -44,7 +44,7 @@ namespace Unit
         #region Interface
         public void SetState(UnitState newState)
         {
-            //Debug.Log($"-> {newState}");
+            Debug.Log($"-> {newState}");
 
             unitWeapon.Reset();
             State = newState;

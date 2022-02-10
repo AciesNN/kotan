@@ -6,7 +6,9 @@ namespace UI
 {
     public class BufferedStatedInput: IDisposable
     {
-        private const float actionThreshold = 0.3f; //TODO - in settings
+        //TODO - in settings
+        private const float actionThreshold = 0.3f; 
+        private const int MaxBufferSize = 2;
 
         public event Action<Vector2Int, bool> OnSetDir;
         public event Action<InputAction> OnAction;
@@ -20,11 +22,11 @@ namespace UI
 
         private bool currentForce;
         public bool CurrentForce => currentForce;
-        public InputAction CurrentAction => controller.GetJoystickActions()[0]; //FIXME: really;
+        
+        public InputAction CurrentAction => controller.GetJoystickActions()[0]; //FIXME: really?
 
         private InputState? lastInputState;
-
-        private float lastActionChange;
+        private float lastActionChangeTime;
 
         Stack<InputState> bufferOfActons = new Stack<InputState>();
 
@@ -83,7 +85,7 @@ namespace UI
                 return currentBufferedState.Value;
             }
 
-            if (Time.time - lastActionChange < actionThreshold && lastInputState.HasValue) {
+            if (Time.time - lastActionChangeTime < actionThreshold && lastInputState.HasValue) {
                 return lastInputState.Value;
             }
 
@@ -147,7 +149,7 @@ namespace UI
         {
             lastInputState = GetCurrentInputState();
             //Debug.Log($"buff1: {lastInputState}");
-            lastActionChange = Time.time;
+            lastActionChangeTime = Time.time;
             OnAction?.Invoke(CurrentAction);
         }
 
