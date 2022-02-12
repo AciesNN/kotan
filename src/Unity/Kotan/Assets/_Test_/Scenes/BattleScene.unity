@@ -293,6 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227359451}
+  - component: {fileID: 227359450}
   - component: {fileID: 227359448}
   - component: {fileID: 227359449}
   m_Layer: 0
@@ -316,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 311326a047ee19444a33e74cae2807c5, type: 2}
   AxisPostfix: 
+  bufferedInput: {fileID: 227359450}
 --- !u!114 &227359449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +332,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bufferedInputController: {fileID: 227359448}
   unit: {fileID: 1347921125}
+--- !u!114 &227359450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227359447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8ec7feb20b993489500dc09c8ba77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons: []
+  axisName: 
+  settings: {fileID: 11400000, guid: 311326a047ee19444a33e74cae2807c5, type: 2}
 --- !u!4 &227359451
 Transform:
   m_ObjectHideFlags: 0

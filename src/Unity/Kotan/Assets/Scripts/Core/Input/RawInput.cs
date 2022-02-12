@@ -7,14 +7,14 @@ namespace Core.Input
     /// </summary>
     public class RawInput
     {
-        string HorizontalAxis => $"Horizontal{axisName}";
-        string VerticalAxis => $"Vertical{axisName}";
-
+        #region Fields
         private readonly string axisName = "";
+
         public RawInput(string axisName)
         {
             this.axisName = axisName;
         }
+        #endregion
 
         #region Interface
         /// <summary>
@@ -23,19 +23,17 @@ namespace Core.Input
         /// <returns></returns>
         public Vector2Int GetJoystickPositionInt() 
             => new Vector2Int(
-                SignOrZero(UnityEngine.Input.GetAxisRaw(HorizontalAxis)),
-                SignOrZero(UnityEngine.Input.GetAxisRaw(VerticalAxis))
+                SignOrZero(UnityEngine.Input.GetAxisRaw($"Horizontal{axisName}")),
+                SignOrZero(UnityEngine.Input.GetAxisRaw($"Vertical{axisName}"))
             );
-
-        public bool GetButtonDown(string buttonName)
-            => UnityEngine.Input.GetButtonDown($"{buttonName}{axisName}");
-        #endregion
 
         /// <summary>
         /// Should be called on Unity thread only?
         /// </summary>
         /// <returns></returns>
-
+        public bool GetButtonDown(string buttonName)
+            => UnityEngine.Input.GetButtonDown($"{buttonName}{axisName}");
+        #endregion
 
         #region Implementation
         private int SignOrZero(float val)

@@ -13,7 +13,7 @@ namespace UI
         event Action OnJoystickPressAction;
 
         Vector2Int GetJoystickPositionInt();
-        bool GetJoystickDirIsPressed { get; }
+        bool JoystickDirIsPressed { get; }
 
         InputAction[] GetJoystickActions();
     }
@@ -90,7 +90,7 @@ namespace UI
         private IInputLoggerModelEntry CreateEntry()
         {
             var dir = controller.GetJoystickPositionInt();
-            var isPressed = controller.GetJoystickDirIsPressed;
+            var isPressed = controller.JoystickDirIsPressed;
             var actions = controller.GetJoystickActions();
             lastEntry = new InputLoggerModelEntry(dir, isPressed, actions); //TODO new!?
             OnEntryAdded?.Invoke();

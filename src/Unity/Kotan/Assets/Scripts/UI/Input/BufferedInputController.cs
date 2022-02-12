@@ -20,126 +20,61 @@ namespace UI
         public const int MaxStates = 2;
         #endregion
 
-        [SerializeField] PlayerInputControllerSettings settings;
-        [SerializeField] string AxisPostfix;
+        [SerializeField] BufferedInput bufferedInput;
         
-        float lastDirChange;
-        bool neitral = true;
-        bool dirChanged = false;
-        Vector2Int curDir;
-        bool dirPressed;
-
-        float lastActionChange;
-        bool clearStates;
         InputAction[] actions;
         InputAction[] curActions = new InputAction[MaxStates]; //TODO all logic now is about 2 max actions (PlayerInputController.CheckActions())
-
-        RawInput rawInput;
 
         #region MonoBehaviour
         private void Awake()
         {
-            rawInput = new RawInput(AxisPostfix);
             actions = Enum.GetValues(typeof(InputAction)).Cast<InputAction>().Where(e => e != InputAction.None).ToArray();
+            bufferedInput.SetButtons(actions.Select(e => e.ToString()).ToList());
         }
 
         void Update()
         {
-            CheckDirection();
-            CheckActions();
+            CheckEvents();
         }
         #endregion
 
         #region IPlayerInputController interface
         public InputAction[] GetJoystickActions() => curActions;
 
-        public Vector2Int GetJoystickPositionInt() => rawInput.GetJoystickPositionInt();
+        public Vector2Int GetJoystickPositionInt() => bufferedInput.RawInputState.PositionInt;
 
-        public bool GetJoystickDirIsPressed => dirPressed && !neitral;
+        public bool JoystickDirIsPressed => bufferedInput.CurrentInputState.PositionPressed;
         #endregion
 
         #region Implementaton
-        private void CheckActions()
+        private void CheckEvents()
         {
-            if (clearStates)
+            var currentState = bufferedInput.CurrentInputState;
+
+            if (currentState.SetPositionChanged)
             {
-                curActions[0] = InputAction.None;
-                curActions[1] = InputAction.None;
-                clearStates = false;
+                OnJoystickSetPosition?.Invoke(currentState.PositionInt);
             }
 
-            foreach (var action in actions)
+            if (currentState.SetPositionNeitral)
             {
-                if (rawInput.GetButtonDown(action.ToString()))
-                {
-                    if (curActions[0] != InputAction.None)
-                    {
-                        curActions[1] = action;
-                        OnJoystickPressAction?.Invoke();
-                        clearStates = true;
-                        break;
-                    }
-                    else
-                    {
-                        curActions[0] = action;
-                        lastActionChange = Time.time;
-                    }
-                }
+                OnJoystickNeitralPosition?.Invoke();
             }
 
-            if (curActions[0] != InputAction.None && curActions[1] == InputAction.None)
+            if (currentState.SetPositionPressed)
             {
-                var timeSinceLastChanged = Time.time - lastActionChange;
-                if (timeSinceLastChanged > settings.ActionTimeout)
-                {
-                    OnJoystickPressAction?.Invoke();
-                    clearStates = true;
-                }
-            }
-        }
-
-        private void CheckDirection()
-        {
-            var dir = GetJoystickPositionInt();
-
-            if (!dir.Equals(curDir))
-            {
-                curDir = dir;
-                neitral = curDir.Equals(Vector2Int.zero);
-                if (!dirChanged)
-                {
-                    lastDirChange = Time.time;
-                }
-                dirChanged = true;
-                dirPressed = false;
+                OnJoystickPressPosition?.Invoke(currentState.PositionInt);
             }
 
-
-            var timeSinceLastChanged = Time.time - lastDirChange;
-            if (dirChanged && timeSinceLastChanged > settings.DirectionTimeout)
+            for (int i = 0; i < currentState.ButtonsState.Count(); i++)
             {
-                OnJoystickSetPosition?.Invoke(curDir);
-                dirChanged = false;
+                var buttonState = currentState.ButtonsState[i];
+                curActions[i] = buttonState < 0 || buttonState >= actions.Length ? InputAction.None : actions[buttonState];
             }
 
-            if (!dirPressed)
+            if (currentState.SetButtonsState)
             {
-                if (neitral)
-                {
-                    if (timeSinceLastChanged > settings.DirectionNeitralTimeout)
-                    {
-                        OnJoystickNeitralPosition?.Invoke();
-                        dirPressed = true;
-                    }
-                }
-                else
-                {
-                    if (timeSinceLastChanged > settings.DirectionPressTimeout)
-                    {
-                        OnJoystickPressPosition?.Invoke(curDir);
-                        dirPressed = true;
-                    }
-                }
+                OnJoystickPressAction?.Invoke();
             }
         }
         #endregion
