@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521901e2950cd5a479eca0d26cfa5390, type: 3}
   m_Name: PlayerInputControllerSettings
   m_EditorClassIdentifier: 
-  directionTimeout: 0.06
-  directionPressTimeout: 1
-  directionNeitralTimeout: 0.5
-  actionTimeout: 0.06
+  directionTimeout: 0.02
+  directionPressTimeout: 0.15
+  directionNeitralTimeout: 0.1
+  actionTimeout: 0.02
