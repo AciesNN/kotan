@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class BufferedInputController : MonoBehaviour, IBufferedInputController
+    public class BufferedInputController : MonoBehaviour
     {
         #region Events
         public event Action<Vector2Int> OnJoystickSetPosition;
@@ -38,13 +38,11 @@ namespace UI
         }
         #endregion
 
-        #region IPlayerInputController interface
         public InputAction[] GetJoystickActions() => curActions;
 
         public Vector2Int GetJoystickPositionInt() => bufferedInput.RawInputState.PositionInt;
 
         public bool JoystickDirIsPressed => bufferedInput.CurrentInputState.PositionPressed;
-        #endregion
 
         #region Implementaton
         private void CheckEvents()

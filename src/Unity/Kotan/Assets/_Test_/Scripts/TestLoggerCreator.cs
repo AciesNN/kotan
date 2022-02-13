@@ -7,7 +7,7 @@ namespace UI.Test
     {
         void Start()
         {
-            var controller = FindObjectOfIType<IBufferedInputController>();
+            var controller = FindObjectOfIType<BufferedInputController>();
             var logger = new InputLoggerModel(controller);
             GetComponent<InputLogger>().SetData(logger);
         }

@@ -4,20 +4,6 @@ using UnityEngine;
 
 namespace UI
 {
-    public interface IBufferedInputController
-    {
-        event Action<Vector2Int> OnJoystickSetPosition;
-        event Action<Vector2Int> OnJoystickPressPosition;
-        event Action OnJoystickNeitralPosition;
-
-        event Action OnJoystickPressAction;
-
-        Vector2Int GetJoystickPositionInt();
-        bool JoystickDirIsPressed { get; }
-
-        InputAction[] GetJoystickActions();
-    }
-
     public interface IInputLoggerModelEntry
     {
         Vector2Int Dir { get; }
@@ -36,10 +22,10 @@ namespace UI
         public IInputLoggerModelEntry LastEntry => lastEntry;
         private IInputLoggerModelEntry lastEntry;
 
-        private IBufferedInputController controller;
+        private BufferedInputController controller;
 
         #region Public
-        public InputLoggerModel(IBufferedInputController controller)
+        public InputLoggerModel(BufferedInputController controller)
         {
             this.controller = controller;
 

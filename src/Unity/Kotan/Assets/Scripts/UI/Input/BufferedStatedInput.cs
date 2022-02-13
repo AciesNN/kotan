@@ -13,7 +13,7 @@ namespace UI
         public event Action<Vector2Int, bool> OnSetDir;
         public event Action<InputAction> OnAction;
 
-        private IBufferedInputController controller;
+        private BufferedInputController controller;
 
         private Vector2Int lastPreForceDir;
 
@@ -33,7 +33,7 @@ namespace UI
         private InputState? currentBufferedState;
 
         #region Life circle
-        public BufferedStatedInput(IBufferedInputController controller)
+        public BufferedStatedInput(BufferedInputController controller)
         {
             this.controller = controller;
 
