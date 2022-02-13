@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class BufferedInputController : MonoBehaviour
+    public class BufferedInputController : BufferedInput
     {
         #region Events
         public event Action<Vector2Int> OnJoystickSetPosition;
@@ -16,61 +16,57 @@ namespace UI
         public event Action OnJoystickPressAction;
         #endregion
 
-        #region Consts
-        public const int MaxStates = 2;
-        #endregion
-
-        [SerializeField] BufferedInput bufferedInput;
-        
         InputAction[] actions;
-        InputAction[] curActions = new InputAction[MaxStates]; //TODO all logic now is about 2 max actions (PlayerInputController.CheckActions())
+        InputAction[] curActions = new InputAction[MaxStates];
 
         #region MonoBehaviour
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             actions = Enum.GetValues(typeof(InputAction)).Cast<InputAction>().Where(e => e != InputAction.None).ToArray();
-            bufferedInput.SetButtons(actions.Select(e => e.ToString()).ToList());
+            SetButtons(actions.Select(e => e.ToString()).ToList());
         }
 
-        void Update()
+        protected override void Update()
         {
+            base.Update();
+
             CheckEvents();
         }
         #endregion
 
         public InputAction[] GetJoystickActions() => curActions;
 
-        public Vector2Int GetJoystickPositionInt() => bufferedInput.RawInputState.PositionInt;
+        public Vector2Int GetJoystickPositionInt() => RawInputState.PositionInt;
 
-        public bool JoystickDirIsPressed => bufferedInput.CurrentInputState.PositionPressed;
+        public bool JoystickDirIsPressed => CurrentInputState.PositionPressed;
 
         #region Implementaton
         private void CheckEvents()
         {
-            var currentState = bufferedInput.CurrentInputState;
-
-            if (currentState.SetPositionChanged)
+            if (CurrentInputState.SetPositionChanged)
             {
-                OnJoystickSetPosition?.Invoke(currentState.PositionInt);
+                OnJoystickSetPosition?.Invoke(CurrentInputState.PositionInt);
             }
 
-            if (currentState.SetPositionNeitral)
+            if (CurrentInputState.SetPositionNeitral)
             {
                 OnJoystickNeitralPosition?.Invoke();
             }
 
-            if (currentState.SetPositionPressed)
+            if (CurrentInputState.SetPositionPressed)
             {
-                OnJoystickPressPosition?.Invoke(currentState.PositionInt);
+                OnJoystickPressPosition?.Invoke(CurrentInputState.PositionInt);
             }
 
-            for (int i = 0; i < currentState.ButtonsState.Count(); i++)
+            for (int i = 0; i < CurrentInputState.ButtonsState.Count(); i++)
             {
-                var buttonState = currentState.ButtonsState[i];
+                var buttonState = CurrentInputState.ButtonsState[i];
                 curActions[i] = buttonState < 0 || buttonState >= actions.Length ? InputAction.None : actions[buttonState];
             }
 
-            if (currentState.SetButtonsState)
+            if (CurrentInputState.SetButtonsState)
             {
                 OnJoystickPressAction?.Invoke();
             }
