@@ -8,3 +8,11 @@
 /src/Unity/Kotan/obj
 /src/Unity/Kotan/*.csproj
 /src/Unity/Kotan/UserSettings/EditorUserSettings.asset
+/src/Unity/Prototypes/Prototypes.sln
+/src/Unity/Prototypes/.vs
+/src/Unity/Prototypes/Library
+/src/Unity/Prototypes/Logs
+/src/Unity/Prototypes/obj
+/src/Unity/Prototypes/Assembly-CSharp.csproj
+/src/Unity/Prototypes/KotanTest.sln
+/src/Unity/Prototypes/Temp
